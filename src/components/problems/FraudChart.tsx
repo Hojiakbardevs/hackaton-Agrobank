@@ -19,14 +19,19 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
         return (
             <div className="bg-card border border-red-500/30 p-4 rounded-lg shadow-xl backdrop-blur-md">
-                <p className="text-foreground font-bold mb-2">{label}</p>
-                <p className="text-red-500 text-sm">
+                <p className="text-foreground font-bold mb-3">{label}</p>
+                <p className="text-red-500 text-sm mb-2">
                     Holatlar: <span className="font-bold text-foreground">{payload[0].value.toLocaleString()}</span>
                 </p>
                 {payload[1] && (
-                    <p className="text-orange-500 text-sm">
-                        Zarar: <span className="font-bold text-foreground">{payload[1].value} mlrd so'm</span>
-                    </p>
+                    <div className="border-t border-border pt-2">
+                        <p className="text-orange-500 text-sm mb-1">
+                            Zarar:
+                        </p>
+                        <p className="text-2xl font-bold text-orange-500">
+                            {payload[1].value} mlrd so'm
+                        </p>
+                    </div>
                 )}
             </div>
         );

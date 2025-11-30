@@ -45,9 +45,9 @@ export const TeamMemberCard = ({
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 dark:from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
 
       <div className="relative z-10 flex flex-col h-full">
-        {/* icon + name + role */}
-        <div className="flex items-center gap-4 mb-4">
-          <div className="w-14 h-14 rounded-full bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 flex items-center justify-center group-hover:border-primary/50 dark:group-hover:border-primary/50 group-hover:shadow-[0_0_15px_rgba(0,204,105,0.3)] dark:group-hover:shadow-[0_0_15px_rgba(0,204,105,0.25)] transition-all duration-300 overflow-hidden">
+        {/* Image centered at top */}
+        <div className="flex justify-center mb-6">
+          <div className="w-24 h-24 rounded-full bg-gray-100 dark:bg-gray-700 border-4 border-white dark:border-gray-800 shadow-xl flex items-center justify-center group-hover:border-primary/50 group-hover:shadow-[0_0_25px_rgba(0,204,105,0.4)] transition-all duration-300 overflow-hidden">
             {image ? (
               <img
                 src={image}
@@ -55,31 +55,33 @@ export const TeamMemberCard = ({
                 className="w-full h-full object-cover"
               />
             ) : (
-              <div className="text-gray-600 dark:text-gray-300 group-hover:text-primary dark:group-hover:text-primary transition-colors">
+              <div className="text-gray-600 dark:text-gray-300 group-hover:text-primary transition-colors">
                 {icon}
               </div>
             )}
           </div>
-          <div>
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight">
-              {name}
-            </h3>
-            <p className="text-sm text-primary dark:text-primary font-medium">
-              {role}
-            </p>
-          </div>
+        </div>
+
+        {/* Name and role centered */}
+        <div className="text-center mb-4">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight mb-1">
+            {name}
+          </h3>
+          <p className="text-base text-primary dark:text-primary font-semibold">
+            {role}
+          </p>
         </div>
 
         {/* description */}
         {description && (
-          <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+          <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 leading-relaxed text-center">
             {description}
           </p>
         )}
 
-        {/* skills tags */}
+        {/* skills tags centered */}
         {skills.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mb-4">
+          <div className="flex flex-wrap gap-1.5 mb-4 justify-center">
             {skills.map((skill) => (
               <span
                 key={skill}
@@ -90,8 +92,8 @@ export const TeamMemberCard = ({
           </div>
         )}
 
-        {/* push links to bottom */}
-        <div className="mt-auto pt-3 border-t border-gray-300 dark:border-gray-700 flex flex-wrap gap-3 text-xs">
+        {/* push links to bottom - centered */}
+        <div className="mt-auto pt-3 border-t border-gray-300 dark:border-gray-700 flex flex-wrap gap-3 text-xs justify-center">
           {links?.linkedin && (
             <a
               href={links.linkedin}

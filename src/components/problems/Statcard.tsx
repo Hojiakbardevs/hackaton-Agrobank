@@ -44,7 +44,7 @@ export const StatCard = ({ value, label, icon, delay = 0 }: StatCardProps) => {
 
                     {/* Value with gradient */}
                     <motion.h3
-                        className="text-5xl md:text-6xl font-bold mb-3 bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent group-hover:from-red-500 group-hover:to-orange-500 transition-all duration-500"
+                        className="text-5xl md:text-4xl font-bold mb-3 bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent group-hover:from-red-500 group-hover:to-orange-500 transition-all duration-500"
                         initial={{ scale: 0.8 }}
                         whileInView={{ scale: 1 }}
                         transition={{ duration: 0.5, delay: delay + 0.2 }}

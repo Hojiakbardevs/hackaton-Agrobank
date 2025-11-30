@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Github, Linkedin, MessageCircle } from 'lucide-react';
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -38,7 +38,7 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="relative w-full py-24 bg-gradient-to-br from-gray-100 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+    <section id="contact" className="relative w-full py-48 bg-white dark:bg-gray-900 overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
@@ -204,8 +204,8 @@ export const Contact = () => {
                   </div>
                   <div>
                     <h4 className="text-gray-900 dark:text-white font-semibold mb-1">Email</h4>
-                    <p className="text-gray-600 dark:text-gray-400">info@firiblock.ai</p>
-                    <p className="text-primary text-sm">support@firiblock.ai</p>
+                    <p className="text-gray-600 dark:text-gray-400">hojiakbardevs@gmail.com</p>
+                    <p className="text-primary text-sm">Hojiakbar Abdulhakimov</p>
                   </div>
                 </motion.div>
 
@@ -218,8 +218,8 @@ export const Contact = () => {
                   </div>
                   <div>
                     <h4 className="text-gray-900 dark:text-white font-semibold mb-1">Telefon</h4>
-                    <p className="text-gray-600 dark:text-gray-400">+998 90 123 45 67</p>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">Ish vaqti: 9:00 - 18:00</p>
+                    <p className="text-gray-600 dark:text-gray-400">+998 88 624 64 40</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">Hojiakbar Abdulhakimov</p>
                   </div>
                 </motion.div>
 
@@ -265,17 +265,40 @@ export const Contact = () => {
               transition={{ delay: 0.3 }}
             >
               <h4 className="text-gray-900 dark:text-white font-semibold mb-4">Ijtimoiy tarmoqlar</h4>
-              <div className="flex gap-4">
-                {['GitHub', 'LinkedIn', 'Telegram'].map((social) => (
-                  <motion.button
-                    key={social}
-                    className="px-4 py-2 bg-white/10 dark:bg-white/10 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white hover:border-primary transition-all"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {social}
-                  </motion.button>
-                ))}
+              <div className="flex gap-3">
+                <motion.a
+                  href="https://github.com/Hojiakbardevs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 bg-white/10 dark:bg-white/10 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Github className="w-4 h-4" />
+                  GitHub
+                </motion.a>
+                <motion.a
+                  href="https://www.linkedin.com/in/hojiakbardev/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 bg-white/10 dark:bg-white/10 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Linkedin className="w-4 h-4" />
+                  LinkedIn
+                </motion.a>
+                <motion.a
+                  href="https://t.me/Alpha_development"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 bg-white/10 dark:bg-white/10 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Telegram
+                </motion.a>
               </div>
             </motion.div>
           </motion.div>

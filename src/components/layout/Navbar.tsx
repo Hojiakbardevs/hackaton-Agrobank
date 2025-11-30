@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "../ui/button";
 import { ModeToggle } from "../mode-toggle";
 import { useTheme } from "../theme-provider";
+import { Link } from "react-router-dom";
 
 // Logotiplarni import qilish
 import FiriblockLight from "@/assets/firiblock.svg";
@@ -49,33 +50,33 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-4 flex flex-col justify-between items-center">
         <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4 my-5 w-full">
           <div className="flex items-center gap-5 sm:gap-8 md:gap-10 flex-1 justify-center">
-            <div className="flex items-center group cursor-pointer">
+            <Link to="/" className="flex items-center cursor-pointer hover:opacity-80 transition-opacity duration-300">
               <img
                 src={firiblockLogo}
                 alt="FiribLock AI"
-                className="h-6 sm:h-7 md:h-8 w-auto transition-all duration-300 group-hover:scale-110"
+                className="h-6 sm:h-7 md:h-8 w-auto"
               />
-            </div>
+            </Link>
 
             <div className="h-4 sm:h-5 md:h-6 w-px bg-border"></div>
 
-            <div className="flex items-center group cursor-pointer">
+            <Link to="/" className="flex items-center cursor-pointer hover:opacity-80 transition-opacity duration-300">
               <img
                 src={agrobankLogo}
                 alt="Agrobank"
-                className="h-6 sm:h-7 md:h-8 w-auto transition-all duration-300 group-hover:scale-110"
+                className="h-6 sm:h-7 md:h-8 w-auto"
               />
-            </div>
+            </Link>
 
             <div className="h-4 sm:h-5 md:h-6 w-px bg-border"></div>
 
-            <div className="flex items-center group cursor-pointer">
+            <Link to="/" className="flex items-center cursor-pointer hover:opacity-80 transition-opacity duration-300">
               <img
                 src={tdiuLogo}
                 alt="TDIU"
-                className="h-6 sm:h-7 md:h-8 w-auto transition-all duration-300 group-hover:scale-110"
+                className="h-6 sm:h-7 md:h-8 w-auto"
               />
-            </div>
+            </Link>
           </div>
 
           <div className="hidden md:flex items-center gap-4">

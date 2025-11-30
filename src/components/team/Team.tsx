@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   Code,
   Smartphone,
@@ -31,13 +32,21 @@ const teamMembers = [
     featured: true,
   },
   {
-    name: "Azizbek Hayitov",
-    role: "Economist & Startup Advisor",
+    name: "Azizbek Xaitov",
+    role: "Co-Founder & Startup Advisor",
     icon: <Building2 className="w-8 h-8" />,
     image: Azizbek,
     description:
-      "Toshkent iqtisodiyot universitetida ishlaydi. 15 yil tajribaga ega iqtisodchi. Startuplar bilan qo'llab-quvvatlash va moliyaviy maslahatlar.",
-    skills: ["Economics", "Finance", "Startup Advisory", "Business Strategy"],
+      "5+ yil TDIU startap ekotizimida. Yangi g‘oyalarni tezkor validatsiya qilish, jamoalarni rivojlantirish, biznes modeli va moliyaviy strategiyalarni shakllantirish bo‘yicha amaliy ekspert.\n\nStack: FinTech, AgTech, EdTech, GovTech, Smart City, IoT (Internet of Things), GreenTech",
+    skills: [
+      "FinTech",
+      "AgTech",
+      "EdTech",
+      "GovTech",
+      "Smart City",
+      "IoT",
+      "GreenTech",
+    ],
     links: {
       linkedin: "https://www.linkedin.com/in/azizbek-khaitov/",
     },
@@ -48,8 +57,17 @@ const teamMembers = [
     icon: <Users className="w-8 h-8" />,
     image: Abulqosim,
     description:
-      "5 yil tajribaga ega Fullstack AI Engineer. Nihol kompaniyasida Senior Software Engineer sifatida ishlaydi.",
-    skills: ["Python", "React", "Node.js", "Machine Learning", "AI/ML"],
+      "4 yil tajribaga ega Fullstack AI Engineer. Nihol kompaniyasida Senior Software Engineer. Django, PostgreSQL, Machine Learning bo'yicha chuqur bilimga ega. RESTful API, optimizatsiya va test-driven development mutaxassisi.",
+    skills: [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "React",
+      "Node.js",
+      "Machine Learning",
+      "AI/ML",
+      "RESTful API",
+    ],
     links: {
       linkedin: "https://www.linkedin.com/in/abulqosim-rafiqov-97b594326/",
       github: "https://github.com/Abulqosim0227",
@@ -96,7 +114,7 @@ const teamMembers = [
 
 export const Team = () => {
   return (
-    <section className="relative w-full py-24 bg-gradient-to-br from-gray-100 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+    <section className="relative w-full py-24 bg-linear-to-br from-gray-100 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <motion.h2
@@ -129,11 +147,10 @@ export const Team = () => {
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
           Nega aynan bizning jamoamiz bu muammoni hal qila oladi?
         </h3>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="space-y-4">
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0 mt-1">
+              <div className="w-8 h-8 rounded-full bg-primary/20 dark:bg-primary/30 flex items-center justify-center shrink-0 mt-1">
                 <span className="text-primary dark:text-primary font-bold text-sm">
                   1
                 </span>
@@ -150,7 +167,7 @@ export const Team = () => {
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0 mt-1">
+              <div className="w-8 h-8 rounded-full bg-primary/20 dark:bg-primary/30 flex items-center justify-center shrink-0 mt-1">
                 <span className="text-primary dark:text-primary font-bold text-sm">
                   2
                 </span>
@@ -167,7 +184,7 @@ export const Team = () => {
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0 mt-1">
+              <div className="w-8 h-8 rounded-full bg-primary/20 dark:bg-primary/30 flex items-center justify-center shrink-0 mt-1">
                 <span className="text-primary dark:text-primary font-bold text-sm">
                   3
                 </span>
@@ -186,7 +203,7 @@ export const Team = () => {
 
           <div className="space-y-4">
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0 mt-1">
+              <div className="w-8 h-8 rounded-full bg-primary/20 dark:bg-primary/30 flex items-center justify-center shrink-0 mt-1">
                 <span className="text-primary dark:text-primary font-bold text-sm">
                   4
                 </span>
@@ -203,7 +220,7 @@ export const Team = () => {
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0 mt-1">
+              <div className="w-8 h-8 rounded-full bg-primary/20 dark:bg-primary/30 flex items-center justify-center shrink-0 mt-1">
                 <span className="text-primary dark:text-primary font-bold text-sm">
                   5
                 </span>
@@ -220,7 +237,7 @@ export const Team = () => {
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0 mt-1">
+              <div className="w-8 h-8 rounded-full bg-primary/20 dark:bg-primary/30 flex items-center justify-center shrink-0 mt-1">
                 <span className="text-primary dark:text-primary font-bold text-sm">
                   6
                 </span>
@@ -237,15 +254,15 @@ export const Team = () => {
             </div>
           </div>
         </div>
-
         <div className="text-center">
-          <motion.button
-            className="px-8 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => (window.location.href = "#contact")}>
-            Jamoa bilan bog'lanish
-          </motion.button>
+          <Link to="/contact" style={{ display: "inline-block" }}>
+            <motion.button
+              className="px-8 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}>
+              Jamoa bilan bog'lanish
+            </motion.button>
+          </Link>
         </div>
       </motion.div>
     </section>

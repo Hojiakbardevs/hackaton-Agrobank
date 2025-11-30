@@ -92,12 +92,12 @@ export const Problem = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <StatCard
                             value="46,000+"
-                            label="Rasmiy holatlar (2025)"
+                            label="Umumiy kiberjinoyatchilik"
                             icon={<AlertTriangle className="w-6 h-6" />}
                             delay={0.1}
                         />
                         <StatCard
-                            value="1.2 trln"
+                            value="1.2 trillion so'm"
                             label="Umumiy moliyaviy zarar"
                             icon={<TrendingUp className="w-6 h-6" />}
                             delay={0.2}
@@ -110,7 +110,7 @@ export const Problem = () => {
                         />
                         <StatCard
                             value="70%"
-                            label="Qo'ng'iroqlardan boshlanadi"
+                            label="Qo'ng'iroqlar asosida kiberjinoyatchilik"
                             icon={<PhoneOff className="w-6 h-6" />}
                             delay={0.4}
                         />
