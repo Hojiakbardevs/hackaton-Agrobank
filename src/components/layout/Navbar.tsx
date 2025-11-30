@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
     { name: "Jamoa haqida", href: "#team" },
     { name: "Nega biz", href: "#why-us" },
     { name: "Yo'l xaritasi", href: "#roadmap" },
-    { name: "Qanday hal qilamiz", href: "#how-solve" },
+    { name: "Qanday hal qilamiz", href: "#texnologiya" },
   ];
 
   // Logotiplarni theme ga qarab tanlash

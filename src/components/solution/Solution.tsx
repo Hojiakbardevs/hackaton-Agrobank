@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion';
-import { RiskGauge } from './RiskGauge';
-import { SolutionSteps } from './SolutionSteper';
-import { DeviceVsCloud } from './devicecloud';
-import { InteractiveStepper } from './InteractiveStepper';
+import { HowToWork } from './howToWork';
+import { CheckCircle2 } from 'lucide-react';
 export const Solution = () => {
     return (
         <section className="relative w-full py-24  via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
@@ -42,59 +40,37 @@ export const Solution = () => {
                     </motion.div>
                 </div>
 
-                {/* Main 4-Step Diagram */}
-                <motion.div
-                    className="mb-20"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
-                >
-                    <SolutionSteps />
-                </motion.div>
 
-                {/* Comparison & Gauge Section */}
+
+                <HowToWork />
+
+
+
                 <motion.div
-                    className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-20 items-center"
-                    initial={{ opacity: 0, y: 40 }}
+                    className="mt-16 text-center"
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.8 }}
-                >
-                    <motion.div
-                        className="lg:col-span-2"
-                        whileHover={{ scale: 1.02 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <DeviceVsCloud />
-                    </motion.div>
-                    <motion.div
-                        className="flex justify-center lg:justify-end"
-                        whileHover={{ scale: 1.05, rotate: 1 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-emerald-200/50 dark:border-emerald-700/30 p-8 rounded-2xl shadow-xl shadow-emerald-500/10 dark:shadow-emerald-500/20 flex flex-col items-center hover:shadow-emerald-500/20 dark:hover:shadow-emerald-500/30 transition-all duration-300">
-                            <motion.h4
-                                className="text-gray-800 dark:text-gray-100 font-semibold mb-6 text-lg"
-                                whileHover={{ scale: 1.1 }}
-                                transition={{ duration: 0.2 }}
-                            >
-                                Real-vaqt Risk Tahlili
-                            </motion.h4>
-                            <RiskGauge />
+                    transition={{ duration: 0.8, delay: 0.9 }}>
+                    <div className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm border border-emerald-200/50 dark:border-emerald-700/30 rounded-2xl p-8 max-w-2xl mx-auto">
+                        <div className="flex items-center justify-center gap-2 mb-4">
+                            <CheckCircle2 className="w-6 h-6 text-emerald-500 dark:text-emerald-400" />
+                            <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                                Tizim tayyor ishlayapti
+                            </h3>
                         </div>
-                    </motion.div>
-                </motion.div>
-
-                {/* Interactive Stepper */}
-                <motion.div
-
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 1.0 }}
-                >
-                    <InteractiveStepper />
+                        <p className="text-gray-600 dark:text-gray-300 mb-6">
+                            AI Muhofiz Agrobank mijozlari uchun tayyor. Demo versiyani ko'rib
+                            chiqing va qanday ishlashini bilib oling.
+                        </p>
+                        <motion.button
+                            className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-green-600 dark:from-emerald-500 dark:to-green-500 text-white rounded-lg font-semibold hover:from-emerald-700 hover:to-green-700 dark:hover:from-emerald-600 dark:hover:to-green-600 transition-all duration-300 shadow-lg shadow-emerald-500/30 dark:shadow-emerald-500/20"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => (window.location.href = "#contact")}>
+                            Demo Ko'rish
+                        </motion.button>
+                    </div>
                 </motion.div>
             </div>
         </section>

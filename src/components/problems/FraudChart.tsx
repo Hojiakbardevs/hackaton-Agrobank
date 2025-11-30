@@ -1,7 +1,8 @@
 /** @jsxImportSource react */
 import {
-    BarChart,
+    ComposedChart,
     Bar,
+    Line,
     XAxis,
     YAxis,
     CartesianGrid,
@@ -18,21 +19,20 @@ const data = [
 const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
         return (
-            <div className="bg-card border border-red-500/30 p-4 rounded-lg shadow-xl backdrop-blur-md">
-                <p className="text-foreground font-bold mb-3">{label}</p>
-                <p className="text-red-500 text-sm mb-2">
-                    Holatlar: <span className="font-bold text-foreground">{payload[0].value.toLocaleString()}</span>
-                </p>
-                {payload[1] && (
-                    <div className="border-t border-border pt-2">
-                        <p className="text-orange-500 text-sm mb-1">
-                            Zarar:
-                        </p>
-                        <p className="text-2xl font-bold text-orange-500">
-                            {payload[1].value} mlrd so'm
-                        </p>
+            <div className="bg-gray-900/95 backdrop-blur-sm border border-red-500/30 p-4 rounded-lg shadow-2xl">
+                <p className="text-white font-semibold mb-3 text-lg">{label}-yil</p>
+                <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 bg-red-500 rounded-full" />
+                        <span className="text-gray-300 text-sm">Aldanish holatlari:</span>
+                        <span className="text-red-400 font-bold ml-auto">{payload[0].value.toLocaleString()} ta</span>
                     </div>
-                )}
+                    <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 bg-orange-500 rounded-full" />
+                        <span className="text-gray-300 text-sm">Moliyaviy zarar:</span>
+                        <span className="text-orange-400 font-bold ml-auto">{payload[1].value.toLocaleString()} mlrd so'm</span>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -41,88 +41,75 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
 export const FraudChart = () => {
     return (
-        <div className="w-full h-[450px] bg-card border border-border rounded-2xl p-6 backdrop-blur-sm relative overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <div className="w-full h-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-8 rounded-2xl shadow-2xl border border-red-500/20">
             {/* Top accent line */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-orange-500 to-red-500 opacity-60" />
+            <div className="w-full h-1 bg-gradient-to-r from-red-600 via-orange-500 to-red-600 rounded-full mb-6" />
 
             {/* Header */}
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-3">
-                <div>
-                    <h3 className="text-xl font-bold text-foreground">Firibgarlik O'sish Dinamikasi</h3>
-                    <p className="text-sm text-muted-foreground">2023–2025 yillar kesimida</p>
-                </div>
-                <div className="px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-xs text-red-500 font-medium w-fit">
-                    Manba: IIV va Markaziy bank
-                </div>
+            <div className="mb-8">
+                <h2 className="text-3xl font-bold text-white mb-2">
+                    Firibgarlik O'sish Dinamikasi
+                </h2>
+                <p className="text-gray-400 text-sm">2023–2025 yillar kesimida</p>
+                <p className="text-gray-500 text-xs mt-1">Manba: IIV va Markaziy bank</p>
             </div>
 
             {/* Chart */}
-            <ResponsiveContainer width="100%" height="80%">
-                <BarChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                    <defs>
-                        <linearGradient id="colorCasesBar" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#EF4444" stopOpacity={0.9} />
-                            <stop offset="95%" stopColor="#EF4444" stopOpacity={0.4} />
-                        </linearGradient>
-                        <linearGradient id="colorDamageBar" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#F97316" stopOpacity={0.9} />
-                            <stop offset="95%" stopColor="#F97316" stopOpacity={0.4} />
-                        </linearGradient>
-                    </defs>
-                    <CartesianGrid
-                        strokeDasharray="3 3"
-                        stroke="currentColor"
-                        className="text-border opacity-30"
-                        vertical={false}
-                    />
+            <ResponsiveContainer width="100%" height={400}>
+                <ComposedChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" opacity={0.3} />
                     <XAxis
                         dataKey="year"
-                        stroke="currentColor"
-                        className="text-muted-foreground"
-                        fontSize={12}
-                        tickLine={false}
-                        axisLine={false}
+                        stroke="#9CA3AF"
+                        style={{ fontSize: '14px', fontWeight: 500 }}
                     />
                     <YAxis
-                        stroke="currentColor"
-                        className="text-muted-foreground"
-                        fontSize={12}
-                        tickLine={false}
-                        axisLine={false}
-                        tickFormatter={(value) => `${value / 1000}k`}
+                        yAxisId="left"
+                        stroke="#EF4444"
+                        style={{ fontSize: '12px' }}
+                        label={{ value: 'Holatlar soni', angle: -90, position: 'insideLeft', fill: '#EF4444' }}
+                        tickFormatter={(value) => {
+                            if (value >= 1000) return `${value / 1000}k`;
+                            return value;
+                        }}
                     />
-                    <Tooltip
-                        content={<CustomTooltip />}
-                        cursor={{ fill: 'rgba(239, 68, 68, 0.1)' }}
+                    <YAxis
+                        yAxisId="right"
+                        orientation="right"
+                        stroke="#F97316"
+                        style={{ fontSize: '12px' }}
+                        label={{ value: 'Zarar (mlrd so\'m)', angle: 90, position: 'insideRight', fill: '#F97316' }}
                     />
+                    <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(239, 68, 68, 0.1)' }} />
                     <Bar
+                        yAxisId="left"
                         dataKey="cases"
-                        fill="url(#colorCasesBar)"
-                        animationDuration={1500}
-                        animationBegin={300}
+                        fill="#EF4444"
                         radius={[8, 8, 0, 0]}
-                        maxBarSize={60}
+                        name="Aldanish holatlari"
                     />
-                    <Bar
+                    <Line
+                        yAxisId="right"
+                        type="monotone"
                         dataKey="damage"
-                        fill="url(#colorDamageBar)"
-                        animationDuration={1500}
-                        animationBegin={600}
-                        radius={[8, 8, 0, 0]}
-                        maxBarSize={60}
+                        stroke="#F97316"
+                        strokeWidth={3}
+                        dot={{ fill: '#F97316', r: 6 }}
+                        activeDot={{ r: 8 }}
+                        name="Moliyaviy zarar (mlrd so'm)"
                     />
-                </BarChart>
+                </ComposedChart>
             </ResponsiveContainer>
 
             {/* Legend */}
-            <div className="absolute bottom-4 right-6 flex gap-4 text-xs">
+            <div className="flex justify-center gap-8 mt-6">
                 <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded bg-gradient-to-b from-red-500 to-red-500/40" />
-                    <span className="text-muted-foreground">Holatlar soni</span>
+                    <div className="w-4 h-4 bg-red-500 rounded" />
+                    <span className="text-gray-300 text-sm">Aldanish holatlari (ta)</span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded bg-gradient-to-b from-orange-500 to-orange-500/40" />
-                    <span className="text-muted-foreground">Zarar (mlrd)</span>
+                    <div className="w-3 h-3 bg-orange-500 rounded-full" />
+                    <span className="text-gray-300 text-sm">Moliyaviy zarar (mlrd so'm)</span>
                 </div>
             </div>
         </div>

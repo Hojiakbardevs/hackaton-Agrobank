@@ -38,7 +38,7 @@ const teamMembers = [
     icon: <Building2 className="w-8 h-8" />,
     image: Azizbek,
     description:
-      "5+ yil TDIU startap ekotizimida. Yangi g‘oyalarni tezkor validatsiya qilish, jamoalarni rivojlantirish, biznes modeli va moliyaviy strategiyalarni shakllantirish bo‘yicha amaliy ekspert.\n\nStack: FinTech, AgTech, EdTech, GovTech, Smart City, IoT (Internet of Things), GreenTech",
+      "5+ yil TDIU startap ekotizimida. Yangi g‘oyalarni tezkor validatsiya qilish, jamoalarni rivojlantirish, biznes modeli va moliyaviy strategiyalarni shakllantirish bo‘yicha amaliy ekspert.",
     skills: [
       "FinTech",
       "AgTech",
@@ -100,7 +100,7 @@ const teamMembers = [
     },
   },
   {
-    name: "Hulqaru Rustamova",
+    name: "Hulkarbonu Rustamova",
     role: "Junior Software Engineer",
     icon: <Briefcase className="w-8 h-8" />,
     image: Hulqaru,

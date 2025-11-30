@@ -34,7 +34,7 @@ const Roadmap = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}>
               <span className="text-gray-800 dark:text-white">
-                Bosqichlar va{" "}
+                Bosqich va{" "}
               </span>
               <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-700 dark:from-emerald-500 dark:via-green-500 dark:to-emerald-600 bg-clip-text text-transparent">
                 Rivojlanish Rejasi
@@ -46,7 +46,7 @@ const Roadmap = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}>
-              FiribLock AI Prototipdan Launch bosqichasigacha rivojlanish
+              AI Muhofiz Prototipdan Launch bosqichasigacha rivojlanish
               yo'lixaritasi. 4 haftalik sprint orqali MVP tayyor qilishni
               rejalashtiryapmiz.
             </motion.p>

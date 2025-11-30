@@ -9,6 +9,7 @@ import { Footer } from "./components/fotter";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Roadmap from "./components/roadmap/Roadmap";
+import HowToSolutionTech from "./components/technical/howtoSolutiontech";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
                 </div>
                 <Team />
                 <Roadmap />
+                <HowToSolutionTech />
                 <Footer />
               </>
             }

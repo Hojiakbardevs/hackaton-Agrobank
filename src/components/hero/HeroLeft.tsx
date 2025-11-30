@@ -5,10 +5,8 @@ import {
   Lock,
   Smartphone,
   Activity,
-  CheckCircle2,
   FileText,
   Building2,
-  Globe,
 } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
@@ -39,7 +37,7 @@ export const HeroLeft = () => {
           Agrobank pulingizni ko'paytiradi.
         </span>
         <span className="bg-gradient-to-r from-primary via-emerald-500 to-primary bg-clip-text text-transparent block mt-2">
-          AI Muhofiz Firibgarlik qo'ng'iroqlarini yo'q qiladi.
+          AI Muhofiz Firibgarlarini yo'q qiladi.
         </span>
       </motion.h1>
 
@@ -53,24 +51,7 @@ export const HeroLeft = () => {
       </motion.p>
 
       {/* Features List */}
-      <motion.ul
-        className="space-y-3 mb-8 max-w-lg"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}>
-        <li className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
-          <CheckCircle2 className="w-5 h-5 text-primary dark:text-primary flex-shrink-0 mt-0.5" />
-          <span>Markaziy bank talablariga 100% mos</span>
-        </li>
-        <li className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
-          <Lock className="w-5 h-5 text-primary dark:text-primary flex-shrink-0 mt-0.5" />
-          <span>Shaxsiy ma'lumotlar telefonda qoladi</span>
-        </li>
-        <li className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
-          <Globe className="w-5 h-5 text-primary dark:text-primary flex-shrink-0 mt-0.5" />
-          <span>O'zbek + Rus + English til qo'llab-quvvatlash</span>
-        </li>
-      </motion.ul>
+      
 
       <motion.div
         className="flex flex-wrap gap-4 mb-12"
