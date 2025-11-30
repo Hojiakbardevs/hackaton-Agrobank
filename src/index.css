@@ -146,7 +146,59 @@
     animation: aurora 12s linear infinite;
 }
 
+/* Dark mode mos animatsiyalar */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
 
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+.animate-pulse-glow {
+    animation: pulse-glow 4s ease-in-out infinite;
+}
+
+@keyframes slide-in {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-slide-in {
+    animation: slide-in 0.8s ease-out;
+}
+
+/* Dark mode uchun qo'shimcha animatsiyalar */
+.dark .animate-pulse-glow {
+    animation-duration: 3s;
+}
+
+/* Smooth transitions for dark mode */
+* {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
 
 /* Agrobank ranglari uchun Tailwind classlari */
 .from-agrobank-green {
