@@ -15,6 +15,7 @@ import Husan from "@/assets/jasurbek.png";
 import Marjon from "@/assets/marjona.png";
 import Hulqaru from "@/assets/hulqarbonu.jfif";
 import { HowToSolution } from "./howtoSolution";
+// import { HowToWork } from "./howToWork";
 
 const teamMembers = [
   {
@@ -267,6 +268,8 @@ export const Team = () => {
           </Link>
         </div>
       </motion.div> */}
+      
+      {/* <HowToWork></HowToWork> */}
 
       <HowToSolution></HowToSolution>
     </section>

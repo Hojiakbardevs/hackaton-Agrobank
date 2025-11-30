@@ -53,17 +53,17 @@ export const Footer = () => {
     {
       name: "GitHub",
       icon: <Github className="w-5 h-5" />,
-      href: "https://github.com",
+      href: "https://github.com/Hojiakbardevs",
     },
     {
       name: "LinkedIn",
       icon: <Linkedin className="w-5 h-5" />,
-      href: "https://linkedin.com",
+      href: "https://www.linkedin.com/in/hojiakbardev/",
     },
     {
       name: "Telegram",
       icon: <MessageCircle className="w-5 h-5" />,
-      href: "https://t.me",
+      href: "https://t.me/Alpha_development",
     },
   ];
 
@@ -126,19 +126,25 @@ export const Footer = () => {
               <div className="space-y-3">
                 <div className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
                   <Mail className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                  <a
-                    href="mailto:info@firiblock.ai"
-                    className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
-                    info@firiblock.ai
-                  </a>
+                  <div>
+                    <a
+                      href="mailto:hojiakbardevs@gmail.com"
+                      className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                      hojiakbardevs@gmail.com
+                    </a>
+                    <span className="text-xs text-gray-500 dark:text-gray-500 ml-2">Hojiakbar Abdulhakimov</span>
+                  </div>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
                   <Phone className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                  <a
-                    href="tel:+998901234567"
-                    className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
-                    +998 90 123 45 67
-                  </a>
+                  <div>
+                    <a
+                      href="tel:+998886246440"
+                      className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                      +998 88 624 64 40
+                    </a>
+                    <span className="text-xs text-gray-500 dark:text-gray-500 ml-2">Hojiakbar Abdulhakimov</span>
+                  </div>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
                   <MapPin className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
@@ -214,7 +220,7 @@ export const Footer = () => {
               <Shield className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               <span>
                 © {new Date().getFullYear()} AI Muhofiz. Barcha huquqlar
-                himoyalangan.
+                himoyalangan. Created by Hojiakbar Abdulhakimov
               </span>
             </div>
 

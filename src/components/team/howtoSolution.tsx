@@ -122,26 +122,29 @@ export function HowToSolution() {
         return (
           <ResponsiveContainer width="100%" height={200}>
             <RadarChart data={data}>
-              <PolarGrid stroke="currentColor" className="text-green-200/30" />
+              <PolarGrid stroke="currentColor" className="text-gray-300 dark:text-gray-600" />
               <PolarAngleAxis
                 dataKey="name"
                 stroke="currentColor"
-                className="text-gray-600 dark:text-gray-300"
-                fontSize={10}
+                className="text-gray-700 dark:text-gray-200 font-bold text-xs"
+                tick={{ fill: "currentColor", fontSize: 12, fontWeight: 600 }}
               />
               <PolarRadiusAxis
                 angle={90}
                 domain={[0, 100]}
                 stroke="currentColor"
-                className="text-gray-600 dark:text-gray-300"
+                className="text-gray-500 dark:text-gray-400"
                 fontSize={10}
               />
               <Radar
                 name="Mahorat darajasi"
                 dataKey="level"
                 stroke="#10b981"
+                strokeWidth={3}
                 fill="#10b981"
-                fillOpacity={0.6}
+                fillOpacity={0.5}
+                dot={{ r: 4, fill: "#10b981", strokeWidth: 2, stroke: "#fff" }}
+                activeDot={{ r: 6, strokeWidth: 0 }}
               />
               <Tooltip content={<CustomTooltip />} />
             </RadarChart>
@@ -158,7 +161,10 @@ export function HowToSolution() {
                 innerRadius={40}
                 outerRadius={80}
                 paddingAngle={5}
-                dataKey="value">
+                dataKey="value"
+                label={({ name, percent }: { name?: string; percent?: number }) =>
+                  `${name || ""} ${((percent || 0) * 100).toFixed(0)}%`
+                }>
                 {data.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
@@ -174,18 +180,18 @@ export function HowToSolution() {
               <CartesianGrid
                 strokeDasharray="3 3"
                 stroke="currentColor"
-                className="text-green-200/20"
+                className="text-gray-300 dark:text-gray-600"
               />
               <XAxis
                 dataKey="year"
                 stroke="currentColor"
-                className="text-gray-600 dark:text-gray-300"
-                fontSize={10}
+                className="text-gray-700 dark:text-gray-200 font-medium"
+                fontSize={11}
               />
               <YAxis
                 stroke="currentColor"
-                className="text-gray-600 dark:text-gray-300"
-                fontSize={10}
+                className="text-gray-700 dark:text-gray-200 font-medium"
+                fontSize={11}
               />
               <Tooltip content={<CustomTooltip />} />
               <Bar dataKey="projects" fill="#10b981" radius={[8, 8, 0, 0]} />
@@ -200,18 +206,18 @@ export function HowToSolution() {
               <CartesianGrid
                 strokeDasharray="3 3"
                 stroke="currentColor"
-                className="text-green-200/20"
+                className="text-gray-300 dark:text-gray-600"
               />
               <XAxis
                 dataKey="month"
                 stroke="currentColor"
-                className="text-gray-600 dark:text-gray-300"
-                fontSize={10}
+                className="text-gray-700 dark:text-gray-200 font-medium"
+                fontSize={11}
               />
               <YAxis
                 stroke="currentColor"
-                className="text-gray-600 dark:text-gray-300"
-                fontSize={10}
+                className="text-gray-700 dark:text-gray-200 font-medium"
+                fontSize={11}
               />
               <Tooltip content={<CustomTooltip />} />
               <Line
@@ -318,7 +324,7 @@ export function HowToSolution() {
                   <div className="mt-4 pt-4 border-t border-green-200 dark:border-green-700">
                     <div className="flex items-center gap-2 mb-2">
                       <TrendingUp className="w-4 h-4 text-green-600 dark:text-green-400" />
-                      <span className="text-sm font-medium text-green-600 dark:text-green-400">
+                      <span className="text-sm font-bold text-gray-900 dark:text-white">
                         Ko'rsatkichlar
                       </span>
                     </div>
