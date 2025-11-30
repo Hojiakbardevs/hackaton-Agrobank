@@ -46,12 +46,9 @@ const Navbar: React.FC = () => {
           ? "bg-background/90 backdrop-blur-lg py-3 border-border shadow-lg opacity-95 translate-y-0"
           : "bg-transparent py-6 border-transparent opacity-100 translate-y-0"
       }`}>
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        {/* Logotiplar - 2 qator, o'rtada */}
-        <div className="flex flex-col items-center justify-center gap-1.5 sm:gap-2">
-          {/* Birinchi qator - FiribLock va Agrobank */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* FiribLock Logo */}
+      <div className="container mx-auto px-4 flex flex-col justify-between items-center">
+        <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4 my-5 w-full">
+          <div className="flex items-center gap-5 sm:gap-8 md:gap-10 flex-1 justify-center">
             <div className="flex items-center group cursor-pointer">
               <img
                 src={firiblockLogo}
@@ -60,10 +57,8 @@ const Navbar: React.FC = () => {
               />
             </div>
 
-            {/* Divider */}
             <div className="h-4 sm:h-5 md:h-6 w-px bg-border"></div>
 
-            {/* Agrobank Logo */}
             <div className="flex items-center group cursor-pointer">
               <img
                 src={agrobankLogo}
@@ -71,20 +66,37 @@ const Navbar: React.FC = () => {
                 className="h-6 sm:h-7 md:h-8 w-auto transition-all duration-300 group-hover:scale-110"
               />
             </div>
+
+            <div className="h-4 sm:h-5 md:h-6 w-px bg-border"></div>
+
+            <div className="flex items-center group cursor-pointer">
+              <img
+                src={tdiuLogo}
+                alt="TDIU"
+                className="h-6 sm:h-7 md:h-8 w-auto transition-all duration-300 group-hover:scale-110"
+              />
+            </div>
           </div>
 
-          {/* Ikkinchi qator - TDIU (o'rtada) */}
-          <div className="flex items-center justify-center group cursor-pointer">
-            <img
-              src={tdiuLogo}
-              alt="TDIU"
-              className="h-7 sm:h-9 md:h-11 w-auto transition-all duration-300 group-hover:scale-110"
-            />
+          <div className="hidden md:flex items-center gap-4">
+            <ModeToggle />
+            <Button className="size-lg font-semibold">Demo Ko'rish</Button>
+          </div>
+
+          <div className="md:hidden flex items-center gap-4">
+            <ModeToggle />
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-muted-foreground hover:text-foreground">
+              {mobileMenuOpen ? <X /> : <Menu />}
+            </button>
           </div>
         </div>
 
+        <hr className="w-full border-border" />
+
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-8 w-full justify-center py-2">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -93,18 +105,6 @@ const Navbar: React.FC = () => {
               {link.name}
             </a>
           ))}
-          <ModeToggle />
-          <Button className="size-lg font-semibold">Demo Ko'rish</Button>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-4">
-          <ModeToggle />
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-muted-foreground hover:text-foreground">
-            {mobileMenuOpen ? <X /> : <Menu />}
-          </button>
         </div>
       </div>
 
