@@ -19,10 +19,11 @@ const Navbar: React.FC = () => {
     }, []);
 
     const navLinks = [
-        { name: 'Muammo', href: '#problem' },
-        { name: 'Yechim', href: '#solution' },
-        { name: 'Bozor', href: '#market' },
-        { name: 'Jamoa', href: '#team' },
+        { name: 'Muammo va Yechim', href: '#problem-solution' },
+        { name: 'Jamoa haqida', href: '#team' },
+        { name: 'Nega biz', href: '#why-us' },
+        { name: 'Yo\'l xaritasi', href: '#roadmap' },
+        { name: 'Qanday hal qilamiz', href: '#how-solve' },
     ];
 
     // Logotiplarni theme ga qarab tanlash
@@ -62,7 +63,7 @@ const Navbar: React.FC = () => {
                         </a>
                     ))}
                     <ModeToggle />
-                    <Button className="rounded-full font-semibold">
+                    <Button className="size-lg font-semibold">
                         Demo Ko‘rish
                     </Button>
                 </div>

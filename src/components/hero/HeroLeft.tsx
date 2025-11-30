@@ -55,7 +55,7 @@ export const HeroLeft = () => {
                     Demoni Boshlash
                 </Button>
                 <Button
-                    variant="secondary"
+                    variant="outline"
                     size="lg"
                     onClick={() => trackEvent('download_pitch_deck', { location: 'hero' })}
                 >
