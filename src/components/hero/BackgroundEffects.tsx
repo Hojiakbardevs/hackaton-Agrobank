@@ -4,7 +4,7 @@ export const BackgroundEffects = () => {
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
             {/* Deep gradient background */}
-            <div className="absolute inset-0 bg-obsidian" />
+            <div className="absolute inset-0 bg-gray-900 dark:bg-gray-900" />
 
             {/* Agrobank neon glow effects -适度的 */}
             {/* Top right diagonal glow */}

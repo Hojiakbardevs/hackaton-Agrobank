@@ -38,7 +38,7 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="relative w-full py-24 bg-gradient-to-br from-obsidian via-gray-900 to-obsidian overflow-hidden">
+    <section id="contact" className="relative w-full py-24 bg-gradient-to-br from-gray-100 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
@@ -53,10 +53,10 @@ export const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-white">Biz bilan </span>
+            <span className="text-gray-900 dark:text-white">Biz bilan </span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">Bog'laning</span>
           </motion.h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             FiribLock AI loyihasi uchun biz bilan bog'laning. Mutaxassislarimiz sizga yordam berishdan mamnun bo'lishadi.
           </p>
         </div>
@@ -64,12 +64,12 @@ export const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
           <motion.div
-            className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
+            className="bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-gray-200 dark:border-white/10"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold text-white mb-6">Xabar yuborish</h3>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Xabar yuborish</h3>
             
             {isSubmitted ? (
               <motion.div
@@ -78,14 +78,14 @@ export const Contact = () => {
                 animate={{ opacity: 1, scale: 1 }}
               >
                 <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                <h4 className="text-xl font-semibold text-white mb-2">Xabar yuborildi!</h4>
-                <p className="text-gray-400">Tez orada siz bilan bog'lanamiz.</p>
+                <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Xabar yuborildi!</h4>
+                <p className="text-gray-600 dark:text-gray-400">Tez orada siz bilan bog'lanamiz.</p>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Ism
                     </label>
                     <input
@@ -94,13 +94,13 @@ export const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:bg-white/15 transition-all"
+                      className="w-full px-4 py-3 bg-white/90 dark:bg-white/10 border border-gray-300 dark:border-white/20 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-500 focus:outline-none focus:border-primary focus:bg-white dark:focus:bg-white/15 transition-all"
                       placeholder="To'liq ismingiz"
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Email
                     </label>
                     <input
@@ -109,14 +109,14 @@ export const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:bg-white/15 transition-all"
+                      className="w-full px-4 py-3 bg-white/90 dark:bg-white/10 border border-gray-300 dark:border-white/20 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-500 focus:outline-none focus:border-primary focus:bg-white dark:focus:bg-white/15 transition-all"
                       placeholder="email@example.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Telefon
                   </label>
                   <input
@@ -124,20 +124,20 @@ export const Contact = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:bg-white/15 transition-all"
+                    className="w-full px-4 py-3 bg-white/90 dark:bg-white/10 border border-gray-300 dark:border-white/20 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-500 focus:outline-none focus:border-primary focus:bg-white dark:focus:bg-white/15 transition-all"
                     placeholder="+998 XX XXX XX XX"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Loyiha turi
                   </label>
                   <select
                     name="projectType"
                     value={formData.projectType}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-primary focus:bg-white/15 transition-all"
+                    className="w-full px-4 py-3 bg-white/90 dark:bg-white/10 border border-gray-300 dark:border-white/20 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:border-primary focus:bg-white dark:focus:bg-white/15 transition-all"
                   >
                     <option value="antifraud">FiribLock AI - Antifraud tizimi</option>
                     <option value="consulting">Konsultatsiya</option>
@@ -147,7 +147,7 @@ export const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Xabar
                   </label>
                   <textarea
@@ -156,7 +156,7 @@ export const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={4}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:bg-white/15 transition-all resize-none"
+                    className="w-full px-4 py-3 bg-white/90 dark:bg-white/10 border border-gray-300 dark:border-white/20 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-500 focus:outline-none focus:border-primary focus:bg-white dark:focus:bg-white/15 transition-all resize-none"
                     placeholder="Loyiha haqida qisqacha ma'lumot..."
                   />
                 </div>
@@ -191,8 +191,8 @@ export const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-              <h3 className="text-2xl font-bold text-white mb-6">Aloqa ma'lumotlari</h3>
+            <div className="bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-gray-200 dark:border-white/10">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Aloqa ma'lumotlari</h3>
               
               <div className="space-y-6">
                 <motion.div 
@@ -203,8 +203,8 @@ export const Contact = () => {
                     <Mail className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold mb-1">Email</h4>
-                    <p className="text-gray-400">info@firiblock.ai</p>
+                    <h4 className="text-gray-900 dark:text-white font-semibold mb-1">Email</h4>
+                    <p className="text-gray-600 dark:text-gray-400">info@firiblock.ai</p>
                     <p className="text-primary text-sm">support@firiblock.ai</p>
                   </div>
                 </motion.div>
@@ -217,9 +217,9 @@ export const Contact = () => {
                     <Phone className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold mb-1">Telefon</h4>
-                    <p className="text-gray-400">+998 90 123 45 67</p>
-                    <p className="text-gray-400 text-sm">Ish vaqti: 9:00 - 18:00</p>
+                    <h4 className="text-gray-900 dark:text-white font-semibold mb-1">Telefon</h4>
+                    <p className="text-gray-600 dark:text-gray-400">+998 90 123 45 67</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">Ish vaqti: 9:00 - 18:00</p>
                   </div>
                 </motion.div>
 
@@ -231,9 +231,9 @@ export const Contact = () => {
                     <MapPin className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold mb-1">Manzil</h4>
-                    <p className="text-gray-400">Toshkent, O'zbekiston</p>
-                    <p className="text-gray-400 text-sm">Sun'iy intellekt tadqiqotlar instituti</p>
+                    <h4 className="text-gray-900 dark:text-white font-semibold mb-1">Manzil</h4>
+                    <p className="text-gray-600 dark:text-gray-400">Toshkent, O'zbekiston</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">Sun'iy intellekt tadqiqotlar instituti</p>
                   </div>
                 </motion.div>
               </div>
@@ -249,8 +249,8 @@ export const Contact = () => {
               <div className="flex items-start gap-3">
                 <AlertCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                 <div>
-                  <h4 className="text-white font-semibold mb-2">Tezkor javob</h4>
-                  <p className="text-gray-300 text-sm">
+                  <h4 className="text-gray-900 dark:text-white font-semibold mb-2">Tezkor javob</h4>
+                  <p className="text-gray-700 dark:text-gray-300 text-sm">
                     Barcha so'rovlarga 24 soat ichida javob beramiz. Muhim loyihalar uchun tezkor konsultatsiya mavjud.
                   </p>
                 </div>
@@ -259,17 +259,17 @@ export const Contact = () => {
 
             {/* Social Links */}
             <motion.div
-              className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
+              className="bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 dark:border-white/10"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              <h4 className="text-white font-semibold mb-4">Ijtimoiy tarmoqlar</h4>
+              <h4 className="text-gray-900 dark:text-white font-semibold mb-4">Ijtimoiy tarmoqlar</h4>
               <div className="flex gap-4">
                 {['GitHub', 'LinkedIn', 'Telegram'].map((social) => (
                   <motion.button
                     key={social}
-                    className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-gray-300 hover:bg-primary hover:text-white hover:border-primary transition-all"
+                    className="px-4 py-2 bg-white/10 dark:bg-white/10 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white hover:border-primary transition-all"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >

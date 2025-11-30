@@ -28,7 +28,7 @@ export const HeroRight = () => {
 
             {/* Phone Mockup */}
             <motion.div
-                className="relative w-[300px] h-[600px] bg-obsidian rounded-[3rem] border-4 border-gray-800 shadow-2xl overflow-hidden z-20"
+                className="relative w-[300px] h-[600px] bg-gray-900 rounded-[3rem] border-4 border-gray-800 shadow-2xl overflow-hidden z-20"
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -117,7 +117,7 @@ export const HeroRight = () => {
 
             {/* Floating Analytics Card */}
             <motion.div
-                className="absolute -right-12 bottom-32 bg-navy/80 backdrop-blur-xl border border-white/10 p-4 rounded-2xl shadow-2xl z-30 w-48 hidden md:block"
+                className="absolute -right-12 bottom-32 bg-gray-900/80 backdrop-blur-xl border border-white/10 p-4 rounded-2xl shadow-2xl z-30 w-48 hidden md:block"
                 initial={{ x: 50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.6 }}
