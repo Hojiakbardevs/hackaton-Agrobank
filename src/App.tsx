@@ -5,8 +5,10 @@ import { Problem } from "./components/problems/Problems";
 import { Solution } from "./components/solution/Solution";
 import { Team } from "./components/team/Team";
 import { Contact } from "./components/contact/Contact";
+import { Footer } from "./components/fotter";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Roadmap from "./components/roadmap/Roadmap";
 
 function App() {
   return (
@@ -42,10 +44,20 @@ function App() {
                   </Tabs>
                 </div>
                 <Team />
+                <Roadmap />
+                <Footer />
               </>
             }
           />
-          <Route path="/contact" element={<Contact />} />
+          <Route
+            path="/contact"
+            element={
+              <>
+                <Contact />
+                <Footer />
+              </>
+            }
+          />
         </Routes>
       </Router>
     </ThemeProvider>

@@ -1,6 +1,15 @@
 import { useAnalytics } from "@/hooks/useAnalytcs";
 import { motion } from "framer-motion";
-import { Shield, Lock, Smartphone, Activity } from "lucide-react";
+import {
+  Shield,
+  Lock,
+  Smartphone,
+  Activity,
+  CheckCircle2,
+  FileText,
+  Building2,
+  Globe,
+} from "lucide-react";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
@@ -35,26 +44,46 @@ export const HeroLeft = () => {
       </motion.h1>
 
       <motion.p
-        className="text-lg text-gray-400 mb-8 leading-relaxed max-w-lg"
+        className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed max-w-lg"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}>
-        AI Muhofiz — 100% on-device (telefonda ishlovchi) sun’iy
-        intellekt moduli. Internet shart emas, shaxsiy ma’lumotlar bulutga
-        yuborilmaydi.
+        AI Muhofiz 94–96% aniqlik bilan har bir qo'ng'iroq tahlil qilinadi.
+        Shaxsiy ma'lumotlar telefonda qoladi, bulutga yuborilmaydi.
       </motion.p>
+
+      {/* Features List */}
+      <motion.ul
+        className="space-y-3 mb-8 max-w-lg"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3 }}>
+        <li className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+          <CheckCircle2 className="w-5 h-5 text-primary dark:text-primary flex-shrink-0 mt-0.5" />
+          <span>Markaziy bank talablariga 100% mos</span>
+        </li>
+        <li className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+          <Lock className="w-5 h-5 text-primary dark:text-primary flex-shrink-0 mt-0.5" />
+          <span>Shaxsiy ma'lumotlar telefonda qoladi</span>
+        </li>
+        <li className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+          <Globe className="w-5 h-5 text-primary dark:text-primary flex-shrink-0 mt-0.5" />
+          <span>O'zbek + Rus + English til qo'llab-quvvatlash</span>
+        </li>
+      </motion.ul>
 
       <motion.div
         className="flex flex-wrap gap-4 mb-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}>
+        transition={{ duration: 0.6, delay: 0.4 }}>
         <Button
           size="lg"
           onClick={() =>
             trackEvent("cta_click", { location: "hero", label: "start_demo" })
           }>
-          Demoni Boshlash
+          <Building2 className="w-4 h-4 mr-2" />
+          Bankingiz uchun demoni so'rang
         </Button>
         <Button
           variant="outline"
@@ -62,7 +91,8 @@ export const HeroLeft = () => {
           onClick={() =>
             trackEvent("download_pitch_deck", { location: "hero" })
           }>
-          PDF Ta’qdimot
+          <FileText className="w-4 h-4 mr-2" />
+          PDF prezentatsiya
         </Button>
       </motion.div>
 

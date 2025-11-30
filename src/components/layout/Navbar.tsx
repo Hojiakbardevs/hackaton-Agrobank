@@ -27,6 +27,17 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    if (href.startsWith('#')) {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+    setMobileMenuOpen(false);
+  };
+
   const navLinks = [
     { name: "Muammo va Yechim", href: "#problem-solution" },
     { name: "Jamoa haqida", href: "#team" },
@@ -102,7 +113,8 @@ const Navbar: React.FC = () => {
             <a
               key={link.name}
               href={link.href}
-              className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium tracking-wide">
+              onClick={(e) => handleNavClick(e, link.href)}
+              className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium tracking-wide cursor-pointer">
               {link.name}
             </a>
           ))}
@@ -116,8 +128,8 @@ const Navbar: React.FC = () => {
             <a
               key={link.name}
               href={link.href}
-              className="text-lg text-foreground hover:text-primary font-medium border-border outline-ring/50"
-              onClick={() => setMobileMenuOpen(false)}>
+              onClick={(e) => handleNavClick(e, link.href)}
+              className="text-lg text-foreground hover:text-primary font-medium border-border outline-ring/50 cursor-pointer">
               {link.name}
             </a>
           ))}

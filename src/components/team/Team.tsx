@@ -114,7 +114,9 @@ const teamMembers = [
 
 export const Team = () => {
   return (
-    <section className="relative w-full py-24 bg-linear-to-br from-gray-100 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+    <section
+      id="team"
+      className="relative w-full bg-linear-to-br pt-24 from-gray-100 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <motion.h2
@@ -266,9 +268,7 @@ export const Team = () => {
         </div>
       </motion.div> */}
 
-
       <HowToSolution></HowToSolution>
-      
     </section>
   );
 };
