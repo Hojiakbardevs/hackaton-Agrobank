@@ -30,22 +30,25 @@ import {
   PolarRadiusAxis,
   Radar,
 } from "recharts";
+import cert2 from "@/assets/certifcaite 2.png";
+import cert3 from "@/assets/certifcaite 3.png";
+import cert4 from "@/assets/certifcaite 4.png";
+import cert5 from "@/assets/certifcaite 5.png";
+import cert6 from "@/assets/certifcaite 6.png";
+import cert7 from "@/assets/certifcaite 7.png";
+
+import Agrobank from "@/assets/agrbankbinosi.jfif"
+import Toshkent from "@/assets/toshkent.jpg"
+import moliya from "@/assets/moliya.jpg"
+
+
+import proj1 from "@/assets/project1.png"
+import proj2 from "@/assets/project2.jpg"
+import proj3 from "@/assets/project3.jpg"
+import proj4 from "@/assets/project4.jpg"
 
 export function HowToSolution() {
   // Data for charts
-  const skillsData = [
-    { name: "AI/ML", level: 95, fullMark: 100 },
-    { name: "Fullstack", level: 90, fullMark: 100 },
-    { name: "Bank Systems", level: 85, fullMark: 100 },
-    { name: "Real Projects", level: 92, fullMark: 100 },
-  ];
-
-  const experienceData = [
-    { year: "2023", projects: 12, team: 4 },
-    { year: "2024", projects: 28, team: 5 },
-    { year: "2025", projects: 46, team: 6 },
-  ];
-
   const techStackData = [
     { name: "Python", value: 30, color: "#10b981" },
     { name: "React/Next.js", value: 25, color: "#059669" },
@@ -60,8 +63,8 @@ export function HowToSolution() {
       title: "Sertifikatlangan AI mutaxassislar",
       description:
         "Suniy intellekt tadqiqotlar instituti va Nihol kabi yetakchi tashkilotlarda sertifikatlangan AI mutaxassislarimiz Deepfake, LLM va Machine Learning sohalarida chuqur bilimga ega.",
-      chartData: skillsData,
-      chartType: "radar",
+      certificates: [cert2, cert3, cert4, cert5, cert6, cert7],
+      chartType: "certificates",
     },
     {
       icon: <Code className="w-8 h-8" />,
@@ -76,21 +79,16 @@ export function HowToSolution() {
       title: "Bank sohasi tajriba",
       description:
         "Agrobank interfeyslari va moliyaviy tizimlarni chuqur tushunadigan mutaxassislarimiz bank talablari va xavfsizlik standartlarini mukammal biladi.",
-      chartData: experienceData,
-      chartType: "bar",
+      bankImages: [Agrobank, Toshkent, moliya],
+      chartType: "bankImages",
     },
     {
       icon: <Trophy className="w-8 h-8" />,
       title: "Real loyihalar",
       description:
-        "LenguaStory-AI startup asoschisi va boshqa muvaffaqiyatli loyihalar ortida tajribaga ega jamoamiz g'oyalarni real mahsulotga aylantirishni biladi.",
-      chartData: [
-        { month: "Yan", success: 8 },
-        { month: "Fev", success: 12 },
-        { month: "Mar", success: 15 },
-        { month: "Apr", success: 18 },
-      ],
-      chartType: "line",
+        "LenguaStory-AI startup asoschisi va bir qancha AI loyihalarida qatnashgan jamoamiz. Sun'iy intellekt sohasida 10+ dan ortiq muvaffaqiyatli loyihalar amalga oshirgan mutaxassislarimiz g'oyalarni real mahsulotga aylantirishni biladi.",
+      projectImages: [proj1, proj2, proj3, proj4],
+      chartType: "projectImages",
     },
   ];
 
@@ -225,10 +223,98 @@ export function HowToSolution() {
                 dataKey="success"
                 stroke="#10b981"
                 strokeWidth={3}
-                dot={{ fill: "#10b981", r: 5 }}
+                dot={{ fill: "#10b981", r: 4 }}
+                activeDot={{ r: 6 }}
               />
             </LineChart>
           </ResponsiveContainer>
+        );
+      case "certificates":
+        return (
+          <div className="grid grid-cols-3 gap-2 p-2">
+            {data.map((cert: string, index: number) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1, duration: 0.3 }}
+                whileHover={{ scale: 1.05, zIndex: 10 }}
+                className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
+              >
+                <img
+                  src={cert}
+                  alt={`Certificate ${index + 1}`}
+                  className="w-full h-24 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-1 left-1 right-1">
+                    <p className="text-white text-xs font-semibold text-center">
+                      Sertifikat {index + 1}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        );
+      case "bankImages":
+        return (
+          <div className="grid grid-cols-3 gap-3 p-2">
+            {data.map((image: string, index: number) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.15, duration: 0.4 }}
+                whileHover={{ scale: 1.05, zIndex: 10 }}
+                className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
+              >
+                <img
+                  src={image}
+                  alt={`Bank Experience ${index + 1}`}
+                  className="w-full h-24 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-1 left-1 right-1">
+                    <p className="text-white text-xs font-semibold text-center">
+                      {index === 0 ? "Agrobank" : index === 1 ? "Toshkent" : "Moliya"}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        );
+      case "projectImages":
+        return (
+          <div className="grid grid-cols-2 gap-3 p-2">
+            {data.map((image: string, index: number) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.15, duration: 0.4 }}
+                whileHover={{ scale: 1.05, zIndex: 10 }}
+                className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
+              >
+                <img
+                  src={image}
+                  alt={`Project ${index + 1}`}
+                  className="w-full h-32 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-2 left-2 right-2">
+                    <p className="text-white text-xs font-semibold text-center">
+                      AI Project {index + 1}
+                    </p>
+                    <p className="text-white/80 text-xs text-center mt-1">
+                      {index === 0 ? "LenguaStory-AI" : index === 1 ? "ChatBot System" : index === 2 ? "ML Platform" : "AI Analytics"}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         );
       default:
         return null;
@@ -328,7 +414,13 @@ export function HowToSolution() {
                         Ko'rsatkichlar
                       </span>
                     </div>
-                    {renderChart(strength.chartType, strength.chartData)}
+                    {strength.chartType === "certificates" 
+                    ? renderChart(strength.chartType, strength.certificates || [])
+                    : strength.chartType === "bankImages"
+                    ? renderChart(strength.chartType, strength.bankImages || [])
+                    : strength.chartType === "projectImages"
+                    ? renderChart(strength.chartType, strength.projectImages || [])
+                    : renderChart(strength.chartType, strength.chartData || [])}
                   </div>
                 </div>
               </motion.div>
