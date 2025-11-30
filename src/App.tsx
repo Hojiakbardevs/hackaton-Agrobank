@@ -3,8 +3,9 @@ import { ThemeProvider } from "./components/theme-provider"
 import Navbar from "./components/layout/Navbar"
 import { Problem } from "./components/problems/Problems"
 import { Solution } from "./components/solution/Solution"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs"
 import { Team } from "./components/team/Team"
+import { Contact } from "./components/contact/Contact"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs"
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
           </Tabs>
         </div>
         <Team />
+        <Contact />
       </ThemeProvider>
     </>
   )

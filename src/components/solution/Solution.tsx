@@ -2,8 +2,7 @@ import { motion } from 'framer-motion';
 import { RiskGauge } from './RiskGauge';
 import { SolutionSteps } from './SolutionSteper';
 import { DeviceVsCloud } from './devicecloud';
-import { InteractiveStepper } from './interactiveStepper';
-
+import { InteractiveStepper } from './InteractiveStepper';
 export const Solution = () => {
     return (
         <section className="relative w-full py-24  via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">

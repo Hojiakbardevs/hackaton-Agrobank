@@ -6,7 +6,7 @@ import Azizbek from "@/assets/aziz.png"
 import Abulqosim from "@/assets/abulqosim.png"
 import Husan from "@/assets/jasurbek.png"
 import Marjon from "@/assets/marjona.png"
-import Hulqaru from "@/assets/hulqaru.png"
+import Hulqaru from "@/assets/hulqarbonu.jfif"
 
 const teamMembers = [
     {
@@ -15,73 +15,74 @@ const teamMembers = [
         icon: <Code className="w-8 h-8" />,
         image: Hojiakbar,
         description:
-            "FiribLock AI jamoasining texnik yetakchisi. Frontend, UI/UX va SDK integratsiyasi uchun javobgar.",
-        skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "UI/UX"],
+            "Middle Frontend Software Engineer. 5 yil tajriba, dizayn, codlash, UI va AI yo'nalishlarida javobgar. Suniy intellekt tadqiqotlar institutida bosh mutaxassis.",
+        skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "UI/UX", "AI"],
         links: {
-            linkedin: "https://linkedin.com/in/...", // bu yerga haqiqiy linklarni qo'yasiz
-            github: "https://github.com/...",
+            linkedin: "https://www.linkedin.com/in/hojiakbardev/",
+            github: "https://github.com/Hojiakbardevs",
         },
         featured: true,
     },
     {
-        name: "Azizbek",
-        role: "Mobile Engineer (Flutter)",
-        icon: <Smartphone className="w-8 h-8" />,
+        name: "Azizbek Hayitov",
+        role: "Economist & Startup Advisor",
+        icon: <Building2 className="w-8 h-8" />,
         image: Azizbek,
         description:
-            "Android/iOS ilovalarini va on-device antifrod SDK integratsiyasini ishlab chiqadi.",
-        skills: ["Flutter", "Dart", "Android", "iOS", "SDK integratsiya"],
+            "Toshkent iqtisodiyot universitetida ishlaydi. 15 yil tajribaga ega iqtisodchi. Startuplar bilan qo'llab-quvvatlash va moliyaviy maslahatlar.",
+        skills: ["Economics", "Finance", "Startup Advisory", "Business Strategy"],
         links: {
-            linkedin: "https://linkedin.com/in/...",
-            github: "https://github.com/...",
+            linkedin: "https://www.linkedin.com/in/azizbek-khaitov/",
         },
     },
     {
-        name: "Abulqosim",
-        role: "AI & ML Core",
+        name: "Abulqosim Rafiqov",
+        role: "Fullstack AI Engineer",
         icon: <Users className="w-8 h-8" />,
         image: Abulqosim,
         description:
-            "Whisper Tiny asosida nutqni tahlil qilish, risk-score modeli va on-device optimizatsiya uchun javobgar.",
-        skills: ["Python", "PyTorch", "Whisper", "Audio ML", "On-device AI"],
+            "5 yil tajribaga ega Fullstack AI Engineer. Nihol kompaniyasida Senior Software Engineer sifatida ishlaydi.",
+        skills: ["Python", "React", "Node.js", "Machine Learning", "AI/ML"],
         links: {
-            linkedin: "https://linkedin.com/in/...",
-            github: "https://github.com/...",
+            linkedin: "https://www.linkedin.com/in/abulqosim-rafiqov-97b594326/",
+            github: "https://github.com/Abulqosim0227",
         },
     },
     {
-        name: "Jasurbek",
-        role: "Fraud & Risk Specialist",
+        name: "Xusan Xukumov",
+        role: "QA/Software Engineer",
         icon: <Shield className="w-8 h-8" />,
-        image: Jasur,
+        image: Husan,
         description:
-            "Bank antifrod jarayonlari, risk siyosati va regulyator talablari bo'yicha maslahatchi.",
-        skills: ["Fraud detection", "Risk management", "AML/KYC", "PDn qonuni"],
+            "Evertech kompaniyasida QA/Software Engineer. 2 yil QA tajribasi, Flutter, Automation, Python, Java. GenAI va LLM fine-tuning bilan shug'ullanadi.",
+        skills: ["Flutter", "QA Automation", "Python", "Java", "GenAI", "ML"],
         links: {
-            linkedin: "https://linkedin.com/in/...",
+            github: "https://github.com/IamKhuk",
         },
     },
     {
-        name: "Marjona",
-        role: "Fintech Operations",
-        icon: <Building2 className="w-8 h-8" />,
+        name: "Marjona Bobonazarova",
+        role: "Junior AI Developer",
+        icon: <Smartphone className="w-8 h-8" />,
         image: Marjon,
         description:
-            "Bank ichki jarayonlari, call-markazlar va mijozlar bilan ishlash mexanikasini jamoaga tushuntiradi.",
-        skills: ["Operations", "Bank processes", "Call-center", "Customer success"],
+            "IDU universiteti talabasi, ML developer. Machine Learning va AI yo'nalishida o'qiydi va loyihalar bilan shug'ullanadi.",
+        skills: ["Machine Learning", "Python", "AI/ML", "Data Science"],
         links: {
-            linkedin: "https://linkedin.com/in/...",
+            linkedin: "https://www.linkedin.com/in/marjona-bobonazarova-35b617284/",
+            github: "https://github.com/MARJONABOBONAZAROVA",
         },
     },
     {
-        name: "Project Manager",
-        role: "Product & Delivery",
+        name: "Hulqaru Rustamova",
+        role: "Junior Software Engineer",
         icon: <Briefcase className="w-8 h-8" />,
+        image: Hulqaru,
         description:
-            "Sprintlar, roadmap, pilotlar va banklar bilan uchrashuvlarni boshqaradi.",
-        skills: ["Agile", "Scrum", "Roadmap", "Stakeholder management"],
+            "Uzbek Industrial and Construction Bankda Project Management. LenguaStory-AI startup asoschisi. Toshkent Davlat Iqtisodiyot Universiteti.",
+        skills: ["Angular", "Oracle", "Business Strategy", "Banking"],
         links: {
-            linkedin: "https://linkedin.com/in/...",
+            linkedin: "https://www.linkedin.com/in/hulkarbonu-rustamova-9699a3338/",
         },
     },
 ];
@@ -100,11 +101,97 @@ export const Team = () => {
                         <span className="text-white">Bizning </span>
                         <span className="text-gradient">Jamoa</span>
                     </motion.h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-gray-400 max-w-2xl mx-auto mb-8">
                         6 kishilik professional fintech va antifrod tajribaga ega jamoa.
                         Har bir a’zo o‘z yo‘nalishida chuqur ekspert va Agrobank + AI Muhofiz loyihasiga bevosita hissa qo‘shadi.
                     </p>
                 </div>
+
+                <motion.div 
+                    className="max-w-4xl mx-auto bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                >
+                    <h3 className="text-2xl font-bold text-white mb-6 text-center">Nega aynan bizning jamoamiz bu muammoni hal qila oladi?</h3>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div className="space-y-4">
+                            <div className="flex items-start gap-3">
+                                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <span className="text-primary font-bold text-sm">1</span>
+                                </div>
+                                <div>
+                                    <h4 className="text-white font-semibold mb-1">Agrobank UI tajribasi</h4>
+                                    <p className="text-gray-400 text-sm">Agrobank interfeyslarini chuqur tushunamiz, bank talablarini va foydalanuvchi tajribasini mukammal bilamiz.</p>
+                                </div>
+                            </div>
+                            
+                            <div className="flex items-start gap-3">
+                                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <span className="text-primary font-bold text-sm">2</span>
+                                </div>
+                                <div>
+                                    <h4 className="text-white font-semibold mb-1">AI mutaxassislari jamoasi</h4>
+                                    <p className="text-gray-400 text-sm">Sun'iy intellekt tadqiqotlar instituti va Nihol kabi yetakchi kompaniyalarda tajribaga ega AI mutaxassislari.</p>
+                                </div>
+                            </div>
+                            
+                            <div className="flex items-start gap-3">
+                                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <span className="text-primary font-bold text-sm">3</span>
+                                </div>
+                                <div>
+                                    <h4 className="text-white font-semibold mb-1">Fullstack yechimlar</h4>
+                                    <p className="text-gray-400 text-sm">Frontend, backend, mobile, AI - barcha texnologiyalar bo'yicha chuqur bilimga ega jamoa.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div className="space-y-4">
+                            <div className="flex items-start gap-3">
+                                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <span className="text-primary font-bold text-sm">4</span>
+                                </div>
+                                <div>
+                                    <h4 className="text-white font-semibold mb-1">Bank sohasi tajribasi</h4>
+                                    <p className="text-gray-400 text-sm">Banklar bilan to'g'ridan-to'g'ri ishlagan, moliyaviy jarayonlarni yaxshi tushunadigan mutaxassislar.</p>
+                                </div>
+                            </div>
+                            
+                            <div className="flex items-start gap-3">
+                                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <span className="text-primary font-bold text-sm">5</span>
+                                </div>
+                                <div>
+                                    <h4 className="text-white font-semibold mb-1">Startup madaniyati</h4>
+                                    <p className="text-gray-400 text-sm">LenguaStory-AAI kabi startuplarni boshqargan, tez o'zgarishlarga moslasha oladigan jamoa.</p>
+                                </div>
+                            </div>
+                            
+                            <div className="flex items-start gap-3">
+                                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <span className="text-primary font-bold text-sm">6</span>
+                                </div>
+                                <div>
+                                    <h4 className="text-white font-semibold mb-1">Sertifikatlangan mutaxassislar</h4>
+                                    <p className="text-gray-400 text-sm">QA, PM, AI - har bir sohada professional sertifikatlar va real loyihalar tajribasi.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div className="text-center">
+                        <motion.button
+                            className="px-8 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => window.location.href = '#contact'}
+                        >
+                            Jamoa bilan bog'lanish
+                        </motion.button>
+                    </div>
+                </motion.div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {teamMembers.map((member, index) => (
