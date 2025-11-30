@@ -9,7 +9,6 @@ import {
   Target,
   TrendingUp,
   Award,
-  CheckCircle,
   Users,
 } from "lucide-react";
 import {
