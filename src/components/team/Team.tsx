@@ -15,6 +15,7 @@ import Abulqosim from "@/assets/abulqosim.png";
 import Husan from "@/assets/jasurbek.png";
 import Marjon from "@/assets/marjona.png";
 import Hulqaru from "@/assets/hulqarbonu.jfif";
+import { HowToSolution } from "./howtoSolution";
 
 const teamMembers = [
   {
@@ -139,7 +140,7 @@ export const Team = () => {
         </div>
       </div>
 
-      <motion.div
+      {/* <motion.div
         className="max-w-4xl mx-auto my-12 bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-200 dark:border-gray-700"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -264,7 +265,11 @@ export const Team = () => {
             </motion.button>
           </Link>
         </div>
-      </motion.div>
+      </motion.div> */}
+
+
+      <HowToSolution></HowToSolution>
+      
     </section>
   );
 };
