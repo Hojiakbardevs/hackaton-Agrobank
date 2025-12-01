@@ -3,7 +3,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "../ui/button";
 import { ModeToggle } from "../mode-toggle";
 import { useTheme } from "../theme-provider";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 // Logotiplarni import qilish
 import FiriblockLight from "@/assets/firiblock.svg";
@@ -17,6 +17,8 @@ const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme } = useTheme();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,12 +29,15 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     e.preventDefault();
-    if (href.startsWith('#')) {
+    if (href.startsWith("#")) {
       const element = document.querySelector(href);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
     setMobileMenuOpen(false);
@@ -61,7 +66,9 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-4 flex flex-col justify-between items-center">
         <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4 my-5 w-full">
           <div className="flex items-center gap-5 sm:gap-8 md:gap-10 flex-1 justify-center">
-            <Link to="/" className="flex items-center cursor-pointer hover:opacity-80 transition-opacity duration-300">
+            <Link
+              to="/"
+              className="flex items-center cursor-pointer hover:opacity-80 transition-opacity duration-300">
               <img
                 src={firiblockLogo}
                 alt="AI Muhofiz"
@@ -71,7 +78,9 @@ const Navbar: React.FC = () => {
 
             <div className="h-4 sm:h-5 md:h-6 w-px bg-border"></div>
 
-            <Link to="/" className="flex items-center cursor-pointer hover:opacity-80 transition-opacity duration-300">
+            <Link
+              to="/"
+              className="flex items-center cursor-pointer hover:opacity-80 transition-opacity duration-300">
               <img
                 src={agrobankLogo}
                 alt="Agrobank"
@@ -81,7 +90,9 @@ const Navbar: React.FC = () => {
 
             <div className="h-4 sm:h-5 md:h-6 w-px bg-border"></div>
 
-            <Link to="/" className="flex items-center cursor-pointer hover:opacity-80 transition-opacity duration-300">
+            <Link
+              to="/"
+              className="flex items-center cursor-pointer hover:opacity-80 transition-opacity duration-300">
               <img
                 src={tdiuLogo}
                 alt="TDIU"
@@ -92,7 +103,13 @@ const Navbar: React.FC = () => {
 
           <div className="hidden md:flex items-center gap-4">
             <ModeToggle />
-            <Button className="size-lg font-semibold">Demo Ko'rish</Button>
+            {location.pathname !== "/contact" && (
+              <Button
+                className="size-lg font-semibold"
+                onClick={() => navigate("/contact")}>
+                Bog'lanish
+              </Button>
+            )}
           </div>
 
           <div className="md:hidden flex items-center gap-4">
@@ -133,9 +150,13 @@ const Navbar: React.FC = () => {
               {link.name}
             </a>
           ))}
-          <Button className="w-full py-6 text-lg font-bold shadow-lg shadow-primary/20">
-            Demo Ko'rish
-          </Button>
+          {location.pathname !== "/contact" && (
+            <Button
+              className="w-full py-6 text-lg font-bold shadow-lg shadow-primary/20"
+              onClick={() => navigate("/contact")}>
+              Bog'lanish
+            </Button>
+          )}
         </div>
       )}
     </nav>
