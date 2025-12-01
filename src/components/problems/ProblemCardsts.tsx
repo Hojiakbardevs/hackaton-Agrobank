@@ -78,8 +78,8 @@ export const ProblemCards = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
           whileHover={{ y: -8 }}>
-          <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 via-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-orange-500 to-red-500 opacity-60" />
+          <div className="absolute inset-0 bg-linear-to-br from-red-500/10 via-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-red-500 via-orange-500 to-red-500 opacity-60" />
 
           <div className="relative z-10 p-6">
             <div className="flex items-start justify-between mb-4">
@@ -87,7 +87,7 @@ export const ProblemCards = () => {
                 <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-red-500/10 text-red-500">
                   <PhoneCall className="w-5 h-5" />
                 </div>
-                <span className="text-4xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+                <span className="text-4xl font-bold bg-linear-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
                   01
                 </span>
               </div>
@@ -169,8 +169,8 @@ export const ProblemCards = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
           whileHover={{ y: -8 }}>
-          <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 via-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-orange-500 to-red-500 opacity-60" />
+          <div className="absolute inset-0 bg-linear-to-br from-red-500/10 via-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-red-500 via-orange-500 to-red-500 opacity-60" />
 
           <div className="relative z-10 p-6">
             <div className="flex items-start justify-between mb-4">
@@ -178,7 +178,7 @@ export const ProblemCards = () => {
                 <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-red-500/10 text-red-500">
                   <Shield className="w-5 h-5" />
                 </div>
-                <span className="text-4xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+                <span className="text-4xl font-bold bg-linear-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
                   02
                 </span>
               </div>
@@ -263,8 +263,8 @@ export const ProblemCards = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
           whileHover={{ y: -8 }}>
-          <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 via-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-orange-500 to-red-500 opacity-60" />
+          <div className="absolute inset-0 bg-linear-to-br from-red-500/10 via-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-red-500 via-orange-500 to-red-500 opacity-60" />
 
           <div className="relative z-10 p-6">
             <div className="flex items-start justify-between mb-4">
@@ -272,7 +272,7 @@ export const ProblemCards = () => {
                 <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-red-500/10 text-red-500">
                   <Brain className="w-5 h-5" />
                 </div>
-                <span className="text-4xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+                <span className="text-4xl font-bold bg-linear-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
                   03
                 </span>
               </div>

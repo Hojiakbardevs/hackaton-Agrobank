@@ -64,7 +64,7 @@ const Navbar: React.FC = () => {
             <Link to="/" className="flex items-center cursor-pointer hover:opacity-80 transition-opacity duration-300">
               <img
                 src={firiblockLogo}
-                alt="FiribLock AI"
+                alt="AI Muhofiz"
                 className="h-6 sm:h-7 md:h-8 w-auto"
               />
             </Link>

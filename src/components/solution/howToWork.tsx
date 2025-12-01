@@ -105,17 +105,17 @@ export const HowToWork = () => {
                 transition={{ duration: 0.3 }}>
                 {/* Gradient Border Effect */}
                 <div
-                  className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300 -z-10 blur-xl`}
+                  className={`absolute inset-0 rounded-2xl bg-linear-to-br ${step.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300 -z-10 blur-xl`}
                 />
 
                 {/* Step Number */}
-                <div className="absolute -top-3 -left-3 w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-green-600 dark:from-emerald-400 dark:to-green-500 flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                <div className="absolute -top-3 -left-3 w-10 h-10 rounded-full bg-linear-to-br from-emerald-500 to-green-600 dark:from-emerald-400 dark:to-green-500 flex items-center justify-center text-white font-bold text-sm shadow-lg">
                   {step.id}
                 </div>
 
                 {/* Icon */}
                 <div
-                  className={`mb-4 p-4 rounded-xl bg-gradient-to-br ${step.color} text-white flex items-center justify-center w-fit mx-auto shadow-lg`}>
+                  className={`mb-4 p-4 rounded-xl bg-linear-to-br ${step.color} text-white flex items-center justify-center w-fit mx-auto shadow-lg`}>
                   {step.icon}
                 </div>
 
@@ -143,7 +143,7 @@ export const HowToWork = () => {
 
               {/* Connector Line (Mobile/Tablet) */}
               {index < steps.length - 1 && (
-                <div className="lg:hidden absolute bottom-0 left-1/2 transform translate-x-1/2 translate-y-full h-8 w-0.5 bg-gradient-to-b from-emerald-500/50 to-transparent" />
+                <div className="lg:hidden absolute bottom-0 left-1/2 transform translate-x-1/2 translate-y-full h-8 w-0.5 bg-linear-to-b from-emerald-500/50 to-transparent" />
               )}
             </motion.div>
           ))}
@@ -167,7 +167,7 @@ export const HowToWork = () => {
             transition={{ delay: 0.7 + index * 0.1 }}
             whileHover={{ scale: 1.02, y: -3 }}>
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 dark:from-emerald-400 dark:to-green-500 text-white flex-shrink-0">
+              <div className="p-3 rounded-xl bg-linear-to-br from-emerald-500 to-green-600 dark:from-emerald-400 dark:to-green-500 text-white shrink-0">
                 {feature.icon}
               </div>
               <div>

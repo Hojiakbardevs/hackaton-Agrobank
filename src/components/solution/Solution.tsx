@@ -25,7 +25,7 @@ export const Solution = () => {
                             transition={{ duration: 0.6, delay: 0.2 }}
                         >
                             <span className="text-gray-800 dark:text-gray-100">Yechim: </span>
-                            <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-700 dark:from-emerald-500 dark:via-green-500 dark:to-emerald-600 bg-clip-text text-transparent font-bold">On-device AI Muhofiz</span>
+                            <span className="bg-linear-to-r from-emerald-600 via-green-600 to-emerald-700 dark:from-emerald-500 dark:via-green-500 dark:to-emerald-600 bg-clip-text text-transparent font-bold">On-device AI Muhofiz</span>
                         </motion.h2>
                         <motion.p
                             className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed"
@@ -64,7 +64,7 @@ export const Solution = () => {
                             chiqing va qanday ishlashini bilib oling.
                         </p>
                         <motion.button
-                            className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-green-600 dark:from-emerald-500 dark:to-green-500 text-white rounded-lg font-semibold hover:from-emerald-700 hover:to-green-700 dark:hover:from-emerald-600 dark:hover:to-green-600 transition-all duration-300 shadow-lg shadow-emerald-500/30 dark:shadow-emerald-500/20"
+                            className="px-8 py-4 bg-linear-to-r from-emerald-600 to-green-600 dark:from-emerald-500 dark:to-green-500 text-white rounded-lg font-semibold hover:from-emerald-700 hover:to-green-700 dark:hover:from-emerald-600 dark:hover:to-green-600 transition-all duration-300 shadow-lg shadow-emerald-500/30 dark:shadow-emerald-500/20"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => (window.location.href = "#contact")}>

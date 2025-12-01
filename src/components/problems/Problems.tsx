@@ -27,7 +27,7 @@ export const Problem = () => {
                             className="text-center lg:text-left">
                             <h2 className="text-3xl lg:text-4xl font-bold mb-6">
                                 <span className="text-foreground">Firibgarlik </span>
-                                <span className="bg-gradient-to-r from-red-500 via-orange-500 to-red-600 bg-clip-text text-transparent">
+                                <span className="bg-linear-to-r from-red-500 via-orange-500 to-red-600 bg-clip-text text-transparent">
                                     nazoratdan chiqdi
                                 </span>
                             </h2>

@@ -38,7 +38,7 @@ export const HeroRight = () => {
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-black rounded-b-2xl z-30" />
 
                 {/* Screen Content */}
-                <div className="relative w-full h-full bg-gradient-to-b from-gray-900 to-black p-6 flex flex-col pt-16">
+                <div className="relative w-full h-full bg-linear-to-b from-gray-900 to-black p-6 flex flex-col pt-16">
 
                     {/* Incoming Call UI */}
                     <div className="flex flex-col items-center mb-8">
@@ -106,7 +106,7 @@ export const HeroRight = () => {
                     {/* Action Buttons */}
                     <div className="grid grid-cols-2 gap-4 mt-auto mb-8">
                         <button className="bg-red-500 hover:bg-red-600 text-white py-4 rounded-full flex items-center justify-center transition-colors">
-                            <Phone className="w-6 h-6 rotate-[135deg]" />
+                            <Phone className="w-6 h-6 rotate-135" />
                         </button>
                         <button className="bg-green-500 hover:bg-green-600 text-white py-4 rounded-full flex items-center justify-center transition-colors">
                             <Phone className="w-6 h-6" />

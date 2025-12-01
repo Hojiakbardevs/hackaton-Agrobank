@@ -12,7 +12,7 @@ export const DeviceVsCloud = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
             >
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 dark:from-emerald-400/20 to-transparent opacity-50" />
+                <div className="absolute inset-0 bg-linear-to-br from-emerald-500/10 dark:from-emerald-400/20 to-transparent opacity-50" />
                 <div className="relative z-10 flex items-start gap-4">
                     <div className="p-3 rounded-full bg-emerald-500/20 dark:bg-emerald-400/30 text-emerald-600 dark:text-emerald-400">
                         <Smartphone className="w-6 h-6" />

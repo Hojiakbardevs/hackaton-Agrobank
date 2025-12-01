@@ -65,7 +65,7 @@ export function SprintTimeline() {
             <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-2">
               {item.week}
             </p>
-            <div className="h-1 rounded-full bg-gradient-to-r from-emerald-500/50 to-green-500/50"></div>
+            <div className="h-1 rounded-full bg-linear-to-r from-emerald-500/50 to-green-500/50"></div>
           </div>
         ))}
       </div>
@@ -81,7 +81,7 @@ export function SprintTimeline() {
                 className="relative h-full rounded-2xl border border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-800/50 hover:border-emerald-500/50 dark:hover:border-emerald-500/50 transition-all duration-300 overflow-hidden backdrop-blur-sm
                 hover:shadow-lg hover:shadow-emerald-500/10 dark:hover:shadow-emerald-500/5 hover:bg-white/90 dark:hover:bg-gray-800/70">
                 {/* Corner accent */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-emerald-500/20 to-green-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+                <div className="absolute top-0 right-0 w-20 h-20 bg-linear-to-br from-emerald-500/20 to-green-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
 
                 <div className="relative z-10 p-6 h-full flex flex-col">
                   {/* Top section */}
@@ -134,7 +134,7 @@ export function SprintTimeline() {
                     </div>
                     <div className="w-full h-2 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
                       <div
-                        className="h-full rounded-full transition-all duration-500 bg-gradient-to-r from-emerald-500 to-green-600"
+                        className="h-full rounded-full transition-all duration-500 bg-linear-to-r from-emerald-500 to-green-600"
                         style={{ width: `${item.progress}%` }}></div>
                     </div>
                   </div>
@@ -146,7 +146,7 @@ export function SprintTimeline() {
       </div>
 
       {/* Result callout */}
-      <div className="mt-8 p-6 rounded-2xl border border-emerald-500/30 dark:border-emerald-500/30 bg-gradient-to-r from-emerald-500/10 to-green-500/10 dark:from-emerald-500/10 dark:to-green-500/10 backdrop-blur-sm">
+      <div className="mt-8 p-6 rounded-2xl border border-emerald-500/30 dark:border-emerald-500/30 bg-linear-to-r from-emerald-500/10 to-green-500/10 dark:from-emerald-500/10 dark:to-green-500/10 backdrop-blur-sm">
         <p className="text-sm font-semibold text-gray-800 dark:text-white mb-2">
           Natija:
         </p>

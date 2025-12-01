@@ -246,7 +246,7 @@ export function HowToSolution() {
                   alt={`Certificate ${index + 1}`}
                   className="w-full h-24 object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-1 left-1 right-1">
                     <p className="text-white text-xs font-semibold text-center">
                       Sertifikat {index + 1}
@@ -274,7 +274,7 @@ export function HowToSolution() {
                   alt={`Bank Experience ${index + 1}`}
                   className="w-full h-24 object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-1 left-1 right-1">
                     <p className="text-white text-xs font-semibold text-center">
                       {index === 0 ? "Agrobank" : index === 1 ? "Toshkent" : "Moliya"}
@@ -302,7 +302,7 @@ export function HowToSolution() {
                   alt={`Project ${index + 1}`}
                   className="w-full h-32 object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-2 left-2 right-2">
                     <p className="text-white text-xs font-semibold text-center">
                       AI Project {index + 1}
@@ -358,7 +358,7 @@ export function HowToSolution() {
               <span className="text-gray-900 dark:text-white">
                 Bu muammoni hal qila oladigan{" "}
               </span>
-              <span className="bg-gradient-to-r from-green-600 to-emerald-500 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-green-600 to-emerald-500 bg-clip-text text-transparent">
                 yagona jamoa
               </span>
             </motion.h2>
@@ -370,7 +370,7 @@ export function HowToSolution() {
               transition={{ delay: 0.4 }}>
               6 kishilik professional jamoamizning har bir a'zosi o'z
               yo'nalishida yetakchi mutaxassis. Bizning tajriba, texnik mahorat
-              va real loyihalar ortidagi bilimimiz FiribLock AI ni eng yaxshi
+              va real loyihalar ortidagi bilimimiz AI Muhofiz ni eng yaxshi
               yechimga aylantirish kafolatidir.
             </motion.p>
           </div>
@@ -387,11 +387,11 @@ export function HowToSolution() {
                 transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
                 whileHover={{ y: -5 }}>
                 {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+                <div className="absolute inset-0 bg-linear-to-br from-green-500/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
 
                 <div className="relative z-10">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <div className="text-green-600 dark:text-green-400">
                         {strength.icon}
                       </div>
@@ -479,7 +479,7 @@ export function HowToSolution() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 1.0 }}>
-            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-green-600 to-emerald-500 text-white font-semibold shadow-lg">
+            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-linear-to-r from-green-600 to-emerald-500 text-white font-semibold shadow-lg">
               <Shield className="w-5 h-5" />
               <span>100% muvaffaqiyat kafolati</span>
               <Zap className="w-5 h-5" />

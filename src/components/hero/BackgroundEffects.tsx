@@ -8,11 +8,11 @@ export const BackgroundEffects = () => {
 
       {/* Agrobank neon glow effects -适度的 */}
       {/* Top right diagonal glow */}
-      <div className="absolute -top-[10%] -right-[5%] w-[35%] h-[35%] bg-gradient-to-br from-primary/25 to-primary/10 blur-[140px] rounded-full animate-pulse" />
+      <div className="absolute -top-[10%] -right-[5%] w-[35%] h-[35%] bg-linear-to-br from-primary/25 to-primary/10 blur-[140px] rounded-full animate-pulse" />
 
       {/* Bottom left corner glow */}
       <div
-        className="absolute -bottom-[10%] -left-[5%] w-[30%] h-[30%] bg-gradient-to-tr from-primary/20 to-primary/8 blur-[130px] rounded-full animate-pulse"
+        className="absolute -bottom-[10%] -left-[5%] w-[30%] h-[30%] bg-linear-to-tr from-primary/20 to-primary/8 blur-[130px] rounded-full animate-pulse"
         style={{ animationDelay: "1.5s" }}
       />
 
@@ -24,7 +24,7 @@ export const BackgroundEffects = () => {
 
       {/* Right side vertical glow */}
       <div
-        className="absolute top-1/2 -right-[8%] -translate-y-1/2 w-[20%] h-[40%] bg-gradient-to-l from-primary/15 to-transparent blur-[120px] rounded-full opacity-60"
+        className="absolute top-1/2 -right-[8%] -translate-y-1/2 w-[20%] h-[40%] bg-linear-to-l from-primary/15 to-transparent blur-[120px] rounded-full opacity-60"
         style={{ animationDelay: "2.5s" }}
       />
 

@@ -81,7 +81,7 @@ export function RoadmapStages() {
               className={`h-full rounded-2xl border transition-all duration-300 overflow-hidden backdrop-blur-sm
                 ${
                   isCurrent
-                    ? "bg-gradient-to-br from-emerald-500/15 to-green-600/5 border-emerald-500/50 shadow-lg shadow-emerald-500/20 dark:shadow-emerald-500/10"
+                    ? "bg-linear-to-br from-emerald-500/15 to-green-600/5 border-emerald-500/50 shadow-lg shadow-emerald-500/20 dark:shadow-emerald-500/10"
                     : "bg-white/80 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 hover:bg-white/90 dark:hover:bg-gray-800/70"
                 }
               `}>
@@ -140,7 +140,7 @@ export function RoadmapStages() {
                   </div>
                   <div className="w-full h-2 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
                     <div
-                      className={`h-full rounded-full transition-all duration-500 bg-gradient-to-r ${item.color}`}
+                      className={`h-full rounded-full transition-all duration-500 bg-linear-to-r ${item.color}`}
                       style={{ width: `${item.progress}%` }}></div>
                   </div>
                 </div>

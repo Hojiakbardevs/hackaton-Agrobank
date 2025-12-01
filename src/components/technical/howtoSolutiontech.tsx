@@ -21,7 +21,7 @@ const HowToSolutionTech = () => {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               <span className="text-gray-900 dark:text-white">Qanday ishlaydi </span>
-              <span className="bg-gradient-to-r from-primary to-emerald-400 bg-clip-text text-transparent">AI Muhofiz?</span>
+              <span className="bg-linear-to-r from-primary to-emerald-400 bg-clip-text text-transparent">AI Muhofiz?</span>
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
               O'zbekistonda birinchi on-device antifrod AI tizimi - Agrobank mijozlarini 

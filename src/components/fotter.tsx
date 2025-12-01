@@ -68,7 +68,7 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="relative w-full bg-gradient-to-br from-gray-100 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 border-t border-gray-200 dark:border-gray-700 overflow-hidden">
+    <footer className="relative w-full bg-linear-to-br from-gray-100 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 border-t border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Background Glows */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-400/5 dark:bg-emerald-400/3 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-green-500/5 dark:bg-green-500/3 blur-[120px] rounded-full pointer-events-none" />
@@ -86,7 +86,7 @@ export const Footer = () => {
                   className="flex items-center cursor-pointer hover:opacity-80 transition-opacity duration-300">
                   <img
                     src={firiblockLogo}
-                    alt="FiribLock AI"
+                    alt="AI Muhofiz"
                     className="h-6 sm:h-7 md:h-8 w-auto"
                   />
                 </Link>

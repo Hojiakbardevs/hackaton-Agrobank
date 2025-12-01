@@ -36,7 +36,7 @@ const Roadmap = () => {
               <span className="text-gray-800 dark:text-white">
                 Bosqich va{" "}
               </span>
-              <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-700 dark:from-emerald-500 dark:via-green-500 dark:to-emerald-600 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-emerald-600 via-green-600 to-emerald-700 dark:from-emerald-500 dark:via-green-500 dark:to-emerald-600 bg-clip-text text-transparent">
                 Rivojlanish Rejasi
               </span>
             </motion.h2>

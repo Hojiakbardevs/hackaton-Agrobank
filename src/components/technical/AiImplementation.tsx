@@ -78,7 +78,7 @@ export function AIImplementation() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">
+        <h3 className="text-3xl font-bold mb-4 bg-linear-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">
           AI/ML amalgamasi qanday ishlaydi?
         </h3>
         <p className="text-gray-600 dark:text-gray-300 max-w-2xl">
@@ -96,7 +96,7 @@ export function AIImplementation() {
           className="space-y-6"
         >
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-linear-to-br from-emerald-500 to-cyan-500 flex items-center justify-center">
               <Brain className="w-6 h-6 text-white" />
             </div>
             <div>
@@ -118,10 +118,10 @@ export function AIImplementation() {
               >
                 <div className="relative bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 hover:border-emerald-500/50 transition-all duration-300 shadow-sm hover:shadow-emerald-500/20">
                   {/* Gradient Background */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-5 rounded-xl group-hover:opacity-10 transition-opacity duration-300`}></div>
+                  <div className={`absolute inset-0 bg-linear-to-br ${item.color} opacity-5 rounded-xl group-hover:opacity-10 transition-opacity duration-300`}></div>
                   
                   <div className="relative z-10 flex items-start gap-3">
-                    <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`w-10 h-10 rounded-lg bg-linear-to-br ${item.color} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300`}>
                       <div className="text-white">
                         {item.icon}
                       </div>
@@ -153,7 +153,7 @@ export function AIImplementation() {
           className="space-y-6"
         >
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-linear-to-br from-purple-500 to-pink-500 flex items-center justify-center">
               <Zap className="w-6 h-6 text-white" />
             </div>
             <div>
@@ -173,9 +173,9 @@ export function AIImplementation() {
                 transition={{ duration: 0.4, delay: i * 0.1 }}
                 whileHover={{ scale: 1.02 }}
               >
-                <div className="bg-gradient-to-r from-emerald-50 to-cyan-50 dark:from-emerald-900/20 dark:to-cyan-900/20 rounded-xl p-4 border border-emerald-200 dark:border-emerald-700 hover:border-emerald-500/50 transition-all duration-300">
+                <div className="bg-linear-to-r from-emerald-50 to-cyan-50 dark:from-emerald-900/20 dark:to-cyan-900/20 rounded-xl p-4 border border-emerald-200 dark:border-emerald-700 hover:border-emerald-500/50 transition-all duration-300">
                   <div className="flex items-start gap-3">
-                    <div className={`w-10 h-10 rounded-lg bg-white dark:bg-gray-800 flex items-center justify-center flex-shrink-0 ${item.color} group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`w-10 h-10 rounded-lg bg-white dark:bg-gray-800 flex items-center justify-center shrink-0 ${item.color} group-hover:scale-110 transition-transform duration-300`}>
                       {item.icon}
                     </div>
                     <div className="flex-1">
@@ -200,10 +200,10 @@ export function AIImplementation() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.4 }}
-        className="bg-gradient-to-r from-emerald-50 via-cyan-50 to-blue-50 dark:from-emerald-900/20 dark:via-cyan-900/20 dark:to-blue-900/20 rounded-2xl p-8 border border-emerald-200 dark:border-emerald-700"
+        className="bg-linear-to-r from-emerald-50 via-cyan-50 to-blue-50 dark:from-emerald-900/20 dark:via-cyan-900/20 dark:to-blue-900/20 rounded-2xl p-8 border border-emerald-200 dark:border-emerald-700 mb-8"
       >
         <div className="flex items-center gap-3 mb-8">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-500 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-xl bg-linear-to-br from-indigo-500 to-blue-500 flex items-center justify-center">
             <Radio className="w-6 h-6 text-white" />
           </div>
           <div>
@@ -213,14 +213,14 @@ export function AIImplementation() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          {["Bank API", "FiribLock SDK", "On-device AI", "Risk Analytics"].map((item, i) => (
+          {["Bank API", "Ai Muhofiz SDK", "On-device AI", "Risk Analytics"].map((item, i) => (
             <div key={i} className="text-center relative">
               <motion.div
                 className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-emerald-500/50 transition-all duration-300 shadow-sm hover:shadow-emerald-500/20"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center mx-auto mb-3">
+                <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-emerald-500 to-cyan-500 flex items-center justify-center mx-auto mb-3">
                   <div className="text-white font-bold text-lg">
                     {i + 1}
                   </div>

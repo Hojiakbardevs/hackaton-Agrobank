@@ -36,7 +36,7 @@ export const HeroLeft = () => {
         <span className="text-gray-800 dark:text-white block">
           Agrobank pulingizni ko'paytiradi.
         </span>
-        <span className="bg-gradient-to-r from-primary via-emerald-500 to-primary bg-clip-text text-transparent block mt-2">
+        <span className="bg-linear-to-r from-primary via-emerald-500 to-primary bg-clip-text text-transparent block mt-2">
           AI Muhofiz Firibgarlarini yo'q qiladi.
         </span>
       </motion.h1>

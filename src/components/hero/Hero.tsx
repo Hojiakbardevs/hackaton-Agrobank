@@ -8,7 +8,7 @@ export const Hero = () => {
   return (
     <>
       <Navbar />
-      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-20 lg:pt-0">
+      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-linear-to-br from-emerald-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-20 lg:pt-0">
         <BackgroundEffects />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
