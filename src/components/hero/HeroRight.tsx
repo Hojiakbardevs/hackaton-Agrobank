@@ -46,7 +46,7 @@ export const HeroRight = () => {
                             <div className="absolute inset-0 bg-red-500/20 animate-pulse" />
                             <Phone className="w-8 h-8 text-white z-10" />
                         </div>
-                        <h3 className="text-2xl font-semibold text-white mb-1">+998 90 123 45 67</h3>
+                        <h3 className="text-2xl font-semibold text-white mb-1">+998 90 966 47 77</h3>
                         <p className="text-gray-400 text-sm">O‘zbekiston</p>
                     </div>
 

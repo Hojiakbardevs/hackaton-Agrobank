@@ -33,7 +33,7 @@ export const Footer = () => {
       { name: "Qanday Ishlaydi", href: "/#how-solve" },
       { name: "Muammo va Yechim", href: "/#problem-solution" },
       { name: "Jamoa", href: "/#team" },
-      { name: "Demo Ko'rish", href: "/contact" },
+      { name: "Demo Ko'rish", href: "/demo" },
     ],
     company: [
       { name: "Biz Haqimizda", href: "/#team" },

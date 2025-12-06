@@ -51,6 +51,9 @@ const Navbar: React.FC = () => {
     { name: "Qanday hal qilamiz", href: "#texnologiya" },
   ];
 
+  // Contact page-da navigation links-larni ko'rsatmaslik
+  const shouldShowNavLinks = location.pathname === "/";
+
   // Logotiplarni theme ga qarab tanlash
   const firiblockLogo = theme === "dark" ? FiriblockDark : FiriblockLight;
   const agrobankLogo = theme === "dark" ? AgrobankDark : AgrobankLight;
@@ -125,21 +128,23 @@ const Navbar: React.FC = () => {
         <hr className="w-full border-border" />
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8 w-full justify-center py-2">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium tracking-wide cursor-pointer">
-              {link.name}
-            </a>
-          ))}
-        </div>
+        {shouldShowNavLinks && (
+          <div className="hidden md:flex items-center gap-8 w-full justify-center py-2">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium tracking-wide cursor-pointer">
+                {link.name}
+              </a>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
+      {mobileMenuOpen && shouldShowNavLinks && (
         <div className="md:hidden absolute top-full left-0 w-full bg-background border-b border-border p-6 flex flex-col gap-6 backdrop-blur-xl animate-in slide-in-from-top-5">
           {navLinks.map((link) => (
             <a

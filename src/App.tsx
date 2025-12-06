@@ -10,6 +10,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Roadmap from "./components/roadmap/Roadmap";
 import HowToSolutionTech from "./components/technical/howtoSolutiontech";
+import DemoPage from "./components/demo/DemoPage";
+import Mobile from "./components/mobilePhone/MobilePage";
 
 function App() {
   return (
@@ -60,6 +62,19 @@ function App() {
               </>
             }
           />
+          <Route
+            path="/demo"
+            element={
+              <>
+                <DemoPage />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={<>
+            <Mobile></Mobile></>}></Route>
         </Routes>
       </Router>
     </ThemeProvider>
