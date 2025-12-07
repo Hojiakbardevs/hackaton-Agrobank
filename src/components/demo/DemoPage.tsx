@@ -17,7 +17,6 @@ import {
 import { useState } from "react";
 import ApiDocumentation from "./ApiDocumentation";
 import DemoChatbot from "./DemoChatbot";
-import GeminiChatbot from "./GeminiChatbot";
 const DemoPage = () => {
   const [activeTab, setActiveTab] = useState<"video" | "api" | "chatbot">(
     "video"
@@ -99,7 +98,7 @@ const DemoPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 pt-24 pb-16">
+    <div className="min-h-screen bg-linear-to-b from-gray-950 via-gray-900 to-gray-950 pt-24 pb-16">
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-16">
         <motion.div
@@ -160,7 +159,7 @@ const DemoPage = () => {
               className="space-y-8">
               {/* Video Player */}
               <div className="bg-gray-900/50 border border-gray-800 rounded-2xl overflow-hidden shadow-2xl">
-                <div className="aspect-video bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 flex items-center justify-center relative">
+                <div className="aspect-video bg-linear-to-br from-gray-950 via-gray-900 to-gray-950 flex items-center justify-center relative">
                   {/* Replace with actual video */}
                   <div className="text-center p-8">
                     <div className="w-24 h-24 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6 cursor-pointer hover:bg-emerald-500/30 transition-all transform hover:scale-110 shadow-lg shadow-emerald-500/20">
@@ -335,7 +334,7 @@ const DemoPage = () => {
               </div>
 
               {/* Project Status */}
-              <div className="bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-500/20 rounded-2xl p-6 mt-8 hover:border-emerald-500/30 transition-all">
+              <div className="bg-linear-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-500/20 rounded-2xl p-6 mt-8 hover:border-emerald-500/30 transition-all">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-3">
