@@ -1,0 +1,1157 @@
+
+================================================================================
+                    UMUMIY SAVOLLAR / GENERAL QUESTIONS
+================================================================================
+
+--------------------------------------------------------------------------------
+SAVOL 1: Bu loyiha nima haqida? Nimaga xizmat qiladi?
+--------------------------------------------------------------------------------
+JAVOB:
+AI Muhofiz - bu sun'iy intellektga asoslangan telefon firibgarligini aniqlash
+tizimi. Asosiy maqsadi - O'zbekiston fuqarolarini telefon firibgarlaridan
+himoya qilish.
+
+Muammo: O'zbekistonda telefon firibgarligi holatlari ko'paymoqda. Firibgarlar:
+- O'zini bank xodimi sifatida tanishtiradi
+- Karta raqami, CVV, PIN kod, SMS kodlarni so'raydi
+- Qo'rqitish va shoshilinch vaziyat yaratish orqali aldaydi
+- Million so'mlik soxta yutuqlar haqida xabar beradi
+
+Yechim: AI Muhofiz qo'ng'iroq vaqtida:
+1. Ovozni matnga aylantiradi (Speech-to-Text)
+2. Matnni firibgarlik belgilariga tekshiradi
+3. Xavf darajasini 0-100% oralig'ida hisoblaydi
+4. Foydalanuvchini real vaqtda ogohlantiradi
+
+--------------------------------------------------------------------------------
+SAVOL 2: Qanday texnologiyalar ishlatilgan?
+--------------------------------------------------------------------------------
+JAVOB:
+
+Backend (Server tomoni):
+- Python 3.10+ - asosiy dasturlash tili
+- FastAPI - zamonaviy, tezkor web framework
+- Uvicorn - ASGI server
+
+Machine Learning (Sun'iy Intellekt):
+- Scikit-learn - Gradient Boosting Classifier
+- TF-IDF Vectorizer - matnni raqamlarga aylantirish
+- TensorFlow Lite - mobil qurilmalar uchun model
+
+Speech Recognition (Ovozni tanish):
+- Vosk - offline speech-to-text (Uzbek, Russian, English)
+- OpenAI Whisper - yuqori aniqlikdagi STT (optional)
+- UzbekVoice API - O'zbek tili uchun maxsus STT
+
+Audio Analysis (Ovoz tahlili):
+- Librosa - ovoz xususiyatlarini tahlil qilish
+- NumPy - matematik hisob-kitoblar
+
+Privacy & Security:
+- Rate Limiting (SlowAPI) - so'rovlarni cheklash
+- Data Masking - maxfiy ma'lumotlarni yashirish
+- Secure File Deletion - xavfsiz fayllarni o'chirish
+
+--------------------------------------------------------------------------------
+SAVOL 3: Loyiha arxitekturasi qanday?
+--------------------------------------------------------------------------------
+JAVOB:
+
+fraudguard/
+├── app/
+│   ├── main.py              # Asosiy FastAPI ilova
+│   ├── config.py            # Sozlamalar
+│   ├── privacy.py           # Maxfiylik himoyasi
+│   ├── models/
+│   │   ├── schemas.py       # Pydantic data modellari
+│   │   └── keywords.py      # Firibgarlik so'zlari bazasi
+│   └── services/
+│       ├── fraud_detector.py    # NLP asosidagi aniqlash
+│       ├── risk_scorer.py       # Xavf darajasi hisoblash
+│       ├── ml_classifier.py     # ML model
+│       ├── audio_processor.py   # Audio ishlov berish
+│       ├── voice_analyzer.py    # Ovoz tahlili
+│       └── offline/
+│           ├── sms_detector.py      # SMS firibgarlik
+│           ├── keyword_spotter.py   # Kalit so'z aniqlash
+│           └── offline_transcriber.py # Offline STT
+├── models/
+│   ├── fraud_classifier.pkl    # Sklearn model (222 KB)
+│   ├── fraud_model.tflite      # TFLite model (292 KB)
+│   └── vosk/                   # Vosk modellar (~40 MB)
+├── templates/
+│   └── dashboard.html          # Web interfeys
+├── tests/                      # Testlar
+├── flutter_integration/        # Flutter mobil ilova
+└── requirements.txt            # Kutubxonalar
+
+================================================================================
+              XAVF DARAJASI HISOBLASH / RISK SCORING SYSTEM
+================================================================================
+
+--------------------------------------------------------------------------------
+SAVOL 4: LOW, MEDIUM, HIGH, DANGER qanday aniqlanadi?
+--------------------------------------------------------------------------------
+JAVOB:
+
+Xavf darajalari quyidagi chegaralar asosida aniqlanadi:
+
+╔═══════════════╦══════════════╦═══════════════════════════════════════════╗
+║ Daraja        ║ Ball (0-100) ║ Ma'nosi                                   ║
+╠═══════════════╬══════════════╬═══════════════════════════════════════════╣
+║ LOW (Past)    ║ 0-30         ║ Xavfsiz - oddiy suhbat                    ║
+║ MEDIUM (O'rta)║ 31-50        ║ Ehtiyot - ba'zi shubhali belgilar bor    ║
+║ HIGH (Yuqori) ║ 51-70        ║ Xavfli - firibgarlik ehtimoli yuqori     ║
+║ DANGER (Xavf) ║ 71-100       ║ Juda xavfli - aniq firibgarlik belgilari ║
+╚═══════════════╩══════════════╩═══════════════════════════════════════════╝
+
+Kod (risk_scorer.py):
+```python
+self.thresholds = {
+    "medium": 31,    # >= 31 is MEDIUM
+    "high": 51,      # >= 51 is HIGH
+    "danger": 71     # >= 71 is DANGER
+}
+```
+
+--------------------------------------------------------------------------------
+SAVOL 5: Xavf balli (Risk Score) qanday hisoblanadi?
+--------------------------------------------------------------------------------
+JAVOB:
+
+Xavf balli 5 ta komponentdan iborat va har birining o'z vazni bor:
+
+╔═════════════════════╦═══════════╦════════════════════════════════════════╗
+║ Komponent           ║ Vazn      ║ Nima hisoblanadi                       ║
+╠═════════════════════╬═══════════╬════════════════════════════════════════╣
+║ 1. Keywords         ║ 30%       ║ Topilgan firibgarlik so'zlari          ║
+║ 2. Sentiment        ║ 20%       ║ Shoshilinch, tahdid, manipulyatsiya    ║
+║ 3. Voice Features   ║ 10%       ║ Gapirish tezligi, stress darajasi      ║
+║ 4. Fraud Patterns   ║ 20%       ║ Firibgarlik namunalari (regex)         ║
+║ 5. ML Model         ║ 20%       ║ Machine Learning bashorati             ║
+╚═════════════════════╩═══════════╩════════════════════════════════════════╝
+
+Formula (risk_scorer.py, 131-143 qatorlar):
+```python
+weighted_sum = 0
+total_weight = 0
+
+for key, score in scores.items():
+    weight = self.weights.get(key, 0)
+    weighted_sum += score * weight
+    total_weight += weight
+
+risk_score = weighted_sum / total_weight
+```
+
+MISOL:
+- Keywords: 70 ball * 0.30 = 21
+- Sentiment: 60 ball * 0.20 = 12
+- Voice: 40 ball * 0.10 = 4
+- Patterns: 50 ball * 0.20 = 10
+- ML: 80 ball * 0.20 = 16
+- JAMI: 21 + 12 + 4 + 10 + 16 = 63 ball = HIGH
+
+--------------------------------------------------------------------------------
+SAVOL 6: Kalit so'zlar (Keywords) qanday aniqlanadi va balllanadi?
+--------------------------------------------------------------------------------
+JAVOB:
+
+10 ta firibgarlik kategoriyasi mavjud:
+
+╔══════════════════════════╦═══════╦══════════════════════════════════════╗
+║ Kategoriya               ║ Vazn  ║ Misollar                             ║
+╠══════════════════════════╬═══════╬══════════════════════════════════════╣
+║ bank_information_request ║ 0.95  ║ karta raqami, CVV, PIN, SMS kod      ║
+║ money_request            ║ 0.90  ║ pul o'tkazing, transfer qiling       ║
+║ threat_intimidation      ║ 0.85  ║ bloklash, sudga berish, jarima       ║
+║ prize_scam               ║ 0.80  ║ million yutdingiz, sovrin            ║
+║ investment_scam          ║ 0.75  ║ 100% foiz, kafolatlangan daromad     ║
+║ authority_impersonation  ║ 0.75  ║ bank xodimi, politsiya               ║
+║ artificial_urgency       ║ 0.70  ║ tezda, hoziroq, vaqt yo'q            ║
+║ personal_info_request    ║ 0.70  ║ pasport, JSHSHIR, manzil             ║
+║ social_engineering       ║ 0.70  ║ hech kimga aytmang, sir              ║
+║ suspicious_action        ║ 0.65  ║ link bosing, ilova yuklab oling      ║
+╚══════════════════════════╩═══════╩══════════════════════════════════════╝
+
+Hisoblash (risk_scorer.py, 166-189 qatorlar):
+```python
+def _calculate_keyword_score(self, matches):
+    category_scores = {}
+    for match in matches:
+        severity = self.category_severity.get(match.category, 0.5)
+        weight = match.weight * severity
+        category_scores[category] = max(category_scores.get(category, 0), weight)
+
+    total_score = 0
+    for i, score in enumerate(sorted(category_scores.values(), reverse=True)):
+        # Diminishing returns - keyingi kategoriyalar kamroq ta'sir qiladi
+        diminish_factor = 1 / (1 + i * 0.3)
+        total_score += score * 100 * diminish_factor
+
+    return min(100, total_score)
+```
+
+--------------------------------------------------------------------------------
+SAVOL 7: Sentiment (Kayfiyat tahlili) qanday ishlaydi?
+--------------------------------------------------------------------------------
+JAVOB:
+
+3 ta sentiment parametri aniqlanadi:
+
+1. URGENCY SCORE (Shoshilinchlik - 0-100):
+   So'zlar: tezda, hoziroq, darhol, vaqt yo'q, shoshilinch
+   Formula: urgency_count * 20 (max 100)
+
+2. MANIPULATION SCORE (Manipulyatsiya - 0-100):
+   So'zlar: ishoning, yordam, hech kimga aytmang, sir saqlang
+   Formula: manipulation_count * 25 (max 100)
+
+3. THREAT SCORE (Tahdid - 0-100):
+   So'zlar: bloklash, sudga, jarima, qamoq, xaker
+   Formula: threat_count * 25 (max 100)
+
+Yakuniy sentiment ball (fraud_detector.py, 191-199):
+```python
+def _calculate_sentiment_score(self, sentiment):
+    score = (
+        sentiment.urgency_score * 0.30 +      # 30%
+        sentiment.manipulation_score * 0.35 + # 35%
+        sentiment.threat_score * 0.35         # 35%
+    )
+    return min(100, score)
+```
+
+MISOL:
+"Tezda karta raqamingizni ayting, hisobingiz bloklanadi!"
+- Urgency: "tezda" = 20 ball
+- Manipulation: 0
+- Threat: "bloklanadi" = 25 ball
+- Sentiment = 20*0.30 + 0*0.35 + 25*0.35 = 6 + 0 + 8.75 = 14.75 ball
+
+--------------------------------------------------------------------------------
+SAVOL 8: Kombinatsiya multiplikatorlari qanday ishlaydi?
+--------------------------------------------------------------------------------
+JAVOB:
+
+Ba'zi kombinatsiyalar xavfni oshiradi (risk_scorer.py, 243-274):
+
+╔══════════════════════════════════════════════════╦═════════════════╗
+║ Kombinatsiya                                     ║ Multiplikator   ║
+╠══════════════════════════════════════════════════╬═════════════════╣
+║ bank_information + artificial_urgency            ║ x1.3 (+30%)     ║
+║ money_request + threat_intimidation              ║ x1.25 (+25%)    ║
+║ urgency_score > 60 + threat_score > 60           ║ x1.2 (+20%)     ║
+║ 2+ CRITICAL indicators                           ║ x1.2 (+20%)     ║
+╚══════════════════════════════════════════════════╩═════════════════╝
+
+```python
+# Bank ma'lumoti + Shoshilinchlik = Klassik firibgarlik
+if "bank_information_request" in categories and "artificial_urgency" in categories:
+    score *= 1.3  # 30% oshirish
+
+# Pul so'rash + Tahdid = Juda xavfli
+if "money_request" in categories and "threat_intimidation" in categories:
+    score *= 1.25  # 25% oshirish
+```
+
+================================================================================
+            MACHINE LEARNING MODEL / SUN'IY INTELLEKT MODELI
+================================================================================
+
+--------------------------------------------------------------------------------
+SAVOL 9: ML model qanday ishlaydi?
+--------------------------------------------------------------------------------
+JAVOB:
+
+MODEL ARXITEKTURASI:
+1. TF-IDF Vectorizer - matnni raqamli vektorga aylantiradi
+2. Gradient Boosting Classifier - classification algoritmi
+
+TF-IDF (Term Frequency - Inverse Document Frequency):
+- Har bir so'zning muhimligini hisoblaydi
+- Kam uchraydigan, lekin muhim so'zlar yuqori ball oladi
+
+Parametrlar (ml_classifier.py, 90-96):
+```python
+self.vectorizer = TfidfVectorizer(
+    max_features=5000,     # Max 5000 ta so'z
+    ngram_range=(1, 3),    # 1-3 so'zli kombinatsiyalar
+    min_df=2,              # Kamida 2 marta uchrashi kerak
+    max_df=0.95,           # 95% dan ko'p uchraganlar tashlanadi
+    sublinear_tf=True      # Logarifmik masshtablash
+)
+```
+
+Gradient Boosting (ml_classifier.py, 103-108):
+```python
+self.classifier = GradientBoostingClassifier(
+    n_estimators=100,      # 100 ta decision tree
+    max_depth=5,           # Har bir tree chuqurligi
+    learning_rate=0.1,     # O'rganish tezligi
+    random_state=42        # Reproducibility uchun
+)
+```
+
+--------------------------------------------------------------------------------
+SAVOL 10: Training data (o'rgatish ma'lumotlari) qanday?
+--------------------------------------------------------------------------------
+JAVOB:
+
+FRAUD (Firibgarlik) misollar (65 ta):
+```
+"Karta raqamingizni ayting, bank xodimiman"
+"CVV kodini tezda yuboring, hisobingiz bloklanadi"
+"SMS kodni menga ayting, hisob xavfsizligi uchun"
+"Pin kodingizni tasdiqlash kerak, bank tekshiruvi"
+"Million so'm yutdingiz, soliq to'lang"
+"Скажите номер карты срочно"
+"Ваш счёт будет заблокирован"
+```
+
+SAFE (Xavfsiz) misollar (69 ta):
+```
+"Salom, qalaysiz, yaxshimisiz"
+"Buyurtmangiz yetkazib berildi"
+"Yigilish soat 10 da boshlanadi"
+"Привет, как дела"
+"Заказ доставлен успешно"
+```
+
+Data Augmentation:
+- Har bir misol 3 xil versiyada saqlanadi:
+  - Asl holat
+  - Kichik harflar (lowercase)
+  - Katta harflar (UPPERCASE)
+- Jami: (65 + 69) * 3 = 402 ta training sample
+
+--------------------------------------------------------------------------------
+SAVOL 11: Model aniqlik ko'rsatkichlari qanday?
+--------------------------------------------------------------------------------
+JAVOB:
+
+Training natijasi (train_model.py):
+```
+Training Accuracy: ~95-98%
+Test Accuracy: ~92-95%
+Cross-Validation: ~90-93% (+/- 3-5%)
+
+Classification Report (Fraud class):
+- Precision: ~94-96%  (aniq bashorat qilish)
+- Recall: ~91-94%     (hamma firibgarlikni topish)
+- F1-Score: ~92-95%   (precision va recall balansi)
+```
+
+Precision = True Positives / (True Positives + False Positives)
+Recall = True Positives / (True Positives + False Negatives)
+F1 = 2 * (Precision * Recall) / (Precision + Recall)
+
+================================================================================
+                    OFFLINE IMKONIYATLAR / OFFLINE FEATURES
+================================================================================
+
+--------------------------------------------------------------------------------
+SAVOL 12: Nima uchun offline rejim kerak?
+--------------------------------------------------------------------------------
+JAVOB:
+
+Sabablari:
+1. MAXFIYLIK: Foydalanuvchi ovozi internetga yuborilmaydi
+2. TEZLIK: Lokal ishlov berish tezroq (server kutish yo'q)
+3. ISHONCHLILIK: Internet yo'q joyda ham ishlaydi
+4. XAVFSIZLIK: Ma'lumotlar qurilmadan chiqmaydi
+
+Offline xizmatlar:
+- Vosk STT (ovozni matnga) - 100% offline
+- Keyword spotting - 100% offline
+- SMS fraud detection - 100% offline
+- ML classification - 100% offline
+- Risk scoring - 100% offline
+
+--------------------------------------------------------------------------------
+SAVOL 13: Vosk speech recognition qanday ishlaydi?
+--------------------------------------------------------------------------------
+JAVOB:
+
+Vosk - bu Kaldi asosidagi open-source STT kutubxonasi.
+
+Xususiyatlari:
+- Kichik model hajmi (~40 MB)
+- Offline ishlaydi
+- 20+ til qo'llab-quvvatlanadi
+- Mobile-friendly
+
+Qo'llab-quvvatlanadigan tillar:
+- vosk-model-small-uz-0.22 (O'zbek)
+- vosk-model-small-ru-0.22 (Rus)
+- vosk-model-small-en-us-0.15 (Ingliz)
+
+Kod (offline_transcriber.py):
+```python
+from vosk import Model, KaldiRecognizer
+
+model = Model(model_path)
+recognizer = KaldiRecognizer(model, sample_rate)
+
+# Audio stream ishlov berish
+while data:
+    recognizer.AcceptWaveform(data)
+
+result = json.loads(recognizer.FinalResult())
+text = result.get("text", "")
+```
+
+================================================================================
+                    SMS FIRIBGARLIK ANIQLASH / SMS FRAUD DETECTION
+================================================================================
+
+--------------------------------------------------------------------------------
+SAVOL 14: SMS firibgarlik qanday aniqlanadi?
+--------------------------------------------------------------------------------
+JAVOB:
+
+SMSFraudDetector klassi quyidagi tahlillarni bajaradi:
+
+1. OTP KOD ANIQLASH:
+   - 4-8 xonali raqamlar qidiriladi
+   - Regex pattern: \b\d{4,8}\b
+
+2. BANK SMS ANIQLASH:
+   40+ O'zbekiston banklari aniqlash:
+   - Kapitalbank, NBU, Agrobank, Ipoteka bank
+   - Click, Payme, Humo, UzCard
+   - Hamkorbank, Davr bank, va boshqalar
+
+3. XAVF DARAJALARI:
+╔══════════════╦═══════════════════════════════════════════════════════╗
+║ Daraja       ║ Sharoit                                               ║
+╠══════════════╬═══════════════════════════════════════════════════════╣
+║ SAFE         ║ OTP yo'q, bank SMS emas                               ║
+║ SUSPICIOUS   ║ Bank SMS, lekin OTP yo'q                              ║
+║ DANGER       ║ OTP bor + qo'ng'iroq vaqtida keldi                    ║
+║ CRITICAL     ║ Bank OTP + qo'ng'iroq vaqtida + firibgarlik pattern   ║
+╚══════════════╩═══════════════════════════════════════════════════════╝
+
+4. QONG'IROQ VAQTIDA SMS MONITORING:
+   - Qo'ng'iroq boshida: set_call_state(True)
+   - SMS kelsa: sms_during_call listga qo'shiladi
+   - Qo'ng'iroq tugaganda: ogohlantiruv beriladi
+
+--------------------------------------------------------------------------------
+SAVOL 15: OTP kodlar nima uchun qaytarilmaydi?
+--------------------------------------------------------------------------------
+JAVOB:
+
+MAXFIYLIK SABABLARI:
+1. OTP = bir martalik parol, juda maxfiy
+2. Server loglarida saqlanmasligi kerak
+3. API response da ko'rinmasligi kerak
+4. Firibgar API dan foydalanib OTP ololmasligi kerak
+
+Kod (main.py, 194-204):
+```python
+return {
+    "is_otp": result.is_otp,
+    "is_bank_related": result.is_bank_related,
+    "risk_level": result.risk_level.value,
+    "otp_detected": result.otp_code is not None,  # Faqat True/False!
+    # "otp_code": result.otp_code  <-- HECH QACHON QAYTARILMAYDI!
+    "bank_name": result.bank_name,
+    "warning_message": result.warning_message,
+}
+```
+
+================================================================================
+                    MAXFIYLIK HIMOYASI / PRIVACY PROTECTION
+================================================================================
+
+--------------------------------------------------------------------------------
+SAVOL 16: Ma'lumotlar qanday himoyalanadi?
+--------------------------------------------------------------------------------
+JAVOB:
+
+1. DATA MASKING (Ma'lumotlarni yashirish):
+```
+Karta raqami: 1234-5678-9012-3456 → ****-****-****-3456
+Telefon:      +998901234567       → +998*****4567
+OTP kod:      123456              → ******
+CVV:          123                 → ***
+```
+
+Kod (privacy.py):
+```python
+class PrivacyGuard:
+    @staticmethod
+    def mask_card_number(text):
+        pattern = r'\b(\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?)(\d{4})\b'
+        return re.sub(pattern, r'****-****-****-\2', text)
+
+    @staticmethod
+    def mask_phone_number(text):
+        pattern = r'\+998(\d{2})(\d{3})(\d{4})'
+        return re.sub(pattern, r'+998*****\3', text)
+```
+
+2. SECURE FILE DELETION:
+```python
+class SecureFileHandler:
+    @staticmethod
+    def secure_delete(file_path):
+        if os.path.exists(file_path):
+            # Random data bilan yozib chiqish
+            size = os.path.getsize(file_path)
+            with open(file_path, 'wb') as f:
+                f.write(os.urandom(size))
+            # So'ng o'chirish
+            os.remove(file_path)
+```
+
+3. PRIVACY HEADERS (Barcha API javoblarda):
+```
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-Data-Retention: none
+X-Privacy-Policy: no-storage
+Cache-Control: no-store, no-cache, must-revalidate, private
+```
+
+--------------------------------------------------------------------------------
+SAVOL 17: Rate limiting nima uchun kerak?
+--------------------------------------------------------------------------------
+JAVOB:
+
+Rate limiting - so'rovlar sonini cheklash.
+
+SABABLARI:
+1. DoS (Denial of Service) hujumlardan himoya
+2. Server resurslarini tejash
+3. API suiste'molini oldini olish
+4. Bot hujumlarini bloklash
+
+CHEGARALAR:
+╔═════════════════════════╦═══════════════╗
+║ Endpoint                ║ Limit         ║
+╠═════════════════════════╬═══════════════╣
+║ Dashboard (/)           ║ 60/minute     ║
+║ API Info                ║ 30/minute     ║
+║ Text Analysis           ║ 20/minute     ║
+║ Audio Analysis          ║ 10/minute     ║
+║ SMS Analysis            ║ 30/minute     ║
+║ Offline Transcribe      ║ 10/minute     ║
+║ Call Start/End          ║ 20/minute     ║
+╚═════════════════════════╩═══════════════╝
+
+Kod (main.py):
+```python
+from slowapi import Limiter
+limiter = Limiter(key_func=get_remote_address)
+
+@app.post("/api/v1/analyze/text")
+@limiter.limit("20/minute")
+async def analyze_text(request: Request, text: str):
+    ...
+```
+
+================================================================================
+                    API ENDPOINTS / API SO'NGGI NUQTALARI
+================================================================================
+
+--------------------------------------------------------------------------------
+SAVOL 18: Qanday API endpointlar mavjud?
+--------------------------------------------------------------------------------
+JAVOB:
+
+ONLINE ENDPOINTS:
+╔═════════════════════════════╦═════════╦══════════════════════════════════╗
+║ Endpoint                    ║ Method  ║ Tavsif                           ║
+╠═════════════════════════════╬═════════╬══════════════════════════════════╣
+║ /                           ║ GET     ║ Web dashboard                    ║
+║ /api                        ║ GET     ║ API ma'lumoti                    ║
+║ /health                     ║ GET     ║ Xizmat holati                    ║
+║ /privacy                    ║ GET     ║ Maxfiylik siyosati               ║
+║ /api/v1/analyze/text        ║ POST    ║ Matn tahlili                     ║
+║ /api/v1/analyze             ║ POST    ║ Audio tahlili (base64/URL)       ║
+║ /api/v1/analyze/file        ║ POST    ║ Audio fayl tahlili               ║
+║ /api/v1/stream              ║ WS      ║ Real-time streaming (WebSocket)  ║
+╚═════════════════════════════╩═════════╩══════════════════════════════════╝
+
+OFFLINE ENDPOINTS:
+╔═════════════════════════════╦═════════╦══════════════════════════════════╗
+║ Endpoint                    ║ Method  ║ Tavsif                           ║
+╠═════════════════════════════╬═════════╬══════════════════════════════════╣
+║ /api/v1/offline/sms         ║ POST    ║ SMS firibgarlik tahlili          ║
+║ /api/v1/offline/keywords    ║ POST    ║ Kalit so'zlarni aniqlash         ║
+║ /api/v1/offline/transcribe  ║ POST    ║ Offline ovozni matnga            ║
+║ /api/v1/offline/call/start  ║ POST    ║ Qo'ng'iroq monitoringni boshlash ║
+║ /api/v1/offline/call/end    ║ POST    ║ Qo'ng'iroq monitoringni tugatish ║
+║ /api/v1/offline/status      ║ GET     ║ Offline xizmatlar holati         ║
+╚═════════════════════════════╩═════════╩══════════════════════════════════╝
+
+--------------------------------------------------------------------------------
+SAVOL 19: Text Analysis API qanday ishlaydi?
+--------------------------------------------------------------------------------
+JAVOB:
+
+REQUEST:
+```
+POST /api/v1/analyze/text?text=Karta raqamingizni ayting&language=uz
+```
+
+RESPONSE:
+```json
+{
+    "text": "Karta ****-****-****-ingizni ayting",  // Masked
+    "language": "uz",
+    "risk_score": 75.5,
+    "risk_level": "danger",
+    "confidence": 0.85,
+    "is_fraud": true,
+    "warning_message": "XAVF! Firibgarlik belgilari aniqlandi...",
+    "keywords_found": 2,
+    "indicators_found": 3,
+    "details": {
+        "keywords": [
+            {"keyword": "karta raqami", "category": "bank_information_request"}
+        ],
+        "sentiment": {
+            "urgency": 40,
+            "threat": 20,
+            "manipulation": 10
+        },
+        "indicators": [
+            {
+                "type": "CRITICAL",
+                "description": "Bank ma'lumotlari so'ralmoqda",
+                "score": 95
+            }
+        ]
+    }
+}
+```
+
+--------------------------------------------------------------------------------
+SAVOL 20: WebSocket streaming qanday ishlaydi?
+--------------------------------------------------------------------------------
+JAVOB:
+
+Real-time qo'ng'iroq tahlili uchun WebSocket ishlatiladi.
+
+JARAYON:
+1. Client WebSocket ulanishni ochadi
+2. Audio chunk'larni yuboradi (3 sekundlik)
+3. Server har bir chunk ni tahlil qiladi
+4. Natija darhol qaytariladi
+
+Kod (main.py, 368-402):
+```python
+@app.websocket("/api/v1/stream")
+async def stream_analysis(websocket: WebSocket):
+    await websocket.accept()
+    accumulated_text = ""
+
+    while True:
+        data = await websocket.receive_bytes()  # Audio chunk
+
+        # Transkriptsiya
+        chunk_text = await audio_processor.transcribe_chunk(data)
+        accumulated_text += " " + chunk_text
+
+        # Tahlil
+        keyword_matches = fraud_detector.detect_keywords(accumulated_text)
+        sentiment = fraud_detector.analyze_sentiment(accumulated_text)
+        current_risk = risk_scorer.calculate_quick_score(keyword_matches, sentiment)
+
+        # Real-time ogohlantirish
+        warnings = []
+        if current_risk > 70:
+            warnings.append("XAVFLI: Firibgarlik belgilari aniqlandi!")
+
+        # Natijani yuborish
+        await websocket.send_json({
+            "risk_score": current_risk,
+            "risk_level": risk_scorer.get_risk_level(current_risk),
+            "warnings": warnings
+        })
+```
+
+================================================================================
+                    FLUTTER INTEGRATSIYA / MOBILE APP
+================================================================================
+
+--------------------------------------------------------------------------------
+SAVOL 21: Flutter ilovasi qanday ishlaydi?
+--------------------------------------------------------------------------------
+JAVOB:
+
+Flutter ilovasi uchun kerakli fayllar:
+
+1. fraud_model.tflite (292 KB) - TensorFlow Lite model
+2. vocabulary.json (6.25 KB) - So'zlar lug'ati
+3. fraud_keywords.json (924 bytes) - Firibgarlik so'zlari
+
+JAMI HAJM: ~300 KB - juda kichik!
+
+Flutter kod misoli:
+```dart
+import 'package:tflite_flutter/tflite_flutter.dart';
+
+class FraudDetector {
+    late Interpreter _interpreter;
+
+    Future<void> loadModel() async {
+        _interpreter = await Interpreter.fromAsset('fraud_model.tflite');
+    }
+
+    bool detectFraud(String text) {
+        // Text tokenization
+        var input = tokenize(text);
+        var output = List.filled(2, 0.0).reshape([1, 2]);
+
+        // Run inference
+        _interpreter.run(input, output);
+
+        // output[0][1] = fraud probability
+        return output[0][1] > 0.5;
+    }
+}
+```
+
+Qo'ng'iroq vaqtida ishlash:
+- Android: CallScreeningService
+- iOS: CallKit
+- Audio yozib olish va real-time tahlil
+
+================================================================================
+                    VOICE ANALYSIS / OVOZ TAHLILI
+================================================================================
+
+--------------------------------------------------------------------------------
+SAVOL 22: Ovoz xususiyatlari qanday tahlil qilinadi?
+--------------------------------------------------------------------------------
+JAVOB:
+
+VoiceFeatures modeli 6 ta parametrni o'z ichiga oladi:
+
+1. SPEAKING_RATE (Gapirish tezligi):
+   - O'lcham: so'z/daqiqa (WPM)
+   - Normal: 120-150 WPM
+   - Shubhali: >180 WPM (juda tez = shoshilmoqda)
+
+2. PITCH_MEAN (O'rtacha ovoz balandligi):
+   - O'lcham: Hz (Hertz)
+   - Erkaklar: 85-155 Hz
+   - Ayollar: 165-255 Hz
+
+3. PITCH_STD (Ovoz o'zgaruvchanligi):
+   - Yuqori variatsiya = stress yoki aldash belgisi
+   - Shubhali: >50
+
+4. ENERGY_MEAN (Ovoz kuchi):
+   - Qanchalik baland gapirish
+   - dB o'lchamida
+
+5. PAUSE_RATIO (Pauza nisbati):
+   - Gapirish/jimlik nisbati
+   - Ko'p pauza = o'ylash/aldash
+
+6. STRESS_LEVEL (Stress darajasi - 0-100):
+   - Hisoblash: pitch variatsiyasi + energy o'zgarishi
+   - >70 = yuqori stress
+
+Kod (voice_analyzer.py):
+```python
+import librosa
+import numpy as np
+
+def analyze(self, audio_path):
+    y, sr = librosa.load(audio_path, sr=16000)
+
+    # Pitch analysis
+    pitches, magnitudes = librosa.piptrack(y=y, sr=sr)
+    pitch_mean = np.mean(pitches[pitches > 0])
+    pitch_std = np.std(pitches[pitches > 0])
+
+    # Energy
+    energy = librosa.feature.rms(y=y)
+    energy_mean = np.mean(energy)
+
+    # Speaking rate (words per minute estimation)
+    onsets = librosa.onset.onset_detect(y=y, sr=sr)
+    duration = len(y) / sr
+    speaking_rate = len(onsets) / duration * 60
+
+    return VoiceFeatures(...)
+```
+
+================================================================================
+                    AMALIY MISOLLAR / PRACTICAL EXAMPLES
+================================================================================
+
+--------------------------------------------------------------------------------
+SAVOL 23: Haqiqiy firibgarlik misolini ko'rsating
+--------------------------------------------------------------------------------
+JAVOB:
+
+KIRISH MATNI:
+"Assalomu alaykum, men Kapitalbank xavfsizlik xizmatidan qo'ng'iroq
+qilyapman. Sizning hisobingizdan shubhali tranzaksiya aniqlandi.
+Tezda karta raqamingizni va orqa tomondagi 3 xonali kodni ayting,
+aks holda hisobingiz 5 daqiqa ichida bloklanadi!"
+
+TAHLIL NATIJASI:
+
+1. KEYWORDS TOPILDI (7 ta):
+   - "bank" (authority: 0.75)
+   - "xavfsizlik xizmati" (authority: 0.70)
+   - "karta raqami" (bank_info: 0.95)
+   - "3 xonali kod" / "CVV" (bank_info: 0.95)
+   - "tezda" (urgency: 0.70)
+   - "5 daqiqa" (urgency: 0.70)
+   - "bloklanadi" (threat: 0.85)
+
+2. SENTIMENT:
+   - Urgency: 40 (2 ta so'z * 20)
+   - Manipulation: 0
+   - Threat: 25 (1 ta so'z * 25)
+
+3. KATEGORIYALAR:
+   - bank_information_request ✓
+   - authority_impersonation ✓
+   - artificial_urgency ✓
+   - threat_intimidation ✓
+
+4. KOMBINATSIYA MULTIPLIKATORLARI:
+   - bank_info + urgency = x1.3
+
+5. FRAUD INDICATORS:
+   - CRITICAL: Bank ma'lumotlari so'ralmoqda (95 ball)
+   - HIGH: Tahdid elementi kuchli (75 ball)
+   - HIGH: Hokimiyat vakili sifatida ko'rsatish (70 ball)
+   - MEDIUM: Sun'iy shoshilinch vaziyat (60 ball)
+
+YAKUNIY NATIJA:
+╔═══════════════════════════════════════════════════════╗
+║ Risk Score: 89.5                                      ║
+║ Risk Level: DANGER                                    ║
+║ Confidence: 0.95                                      ║
+║ Is Fraud: TRUE                                        ║
+║                                                       ║
+║ Warning: XAVF! Firibgarlik belgilari aniqlandi.      ║
+║ Shaxsiy ma'lumotlaringizni bermang!                  ║
+╚═══════════════════════════════════════════════════════╝
+
+--------------------------------------------------------------------------------
+SAVOL 24: Xavfsiz qo'ng'iroq misolini ko'rsating
+--------------------------------------------------------------------------------
+JAVOB:
+
+KIRISH MATNI:
+"Salom, Akmal akamisan? Bu men Shahzodman. Ertaga soat 10 da
+ofisda uchrashamizmi? Loyiha bo'yicha muhokama qilishimiz kerak.
+Qo'ng'iroq qil bo'sh bo'lsang."
+
+TAHLIL NATIJASI:
+
+1. KEYWORDS TOPILDI (0 ta):
+   - Hech qanday firibgarlik so'zi yo'q
+
+2. SENTIMENT:
+   - Urgency: 0
+   - Manipulation: 0
+   - Threat: 0
+
+3. FRAUD INDICATORS: Yo'q
+
+YAKUNIY NATIJA:
+╔═══════════════════════════════════════════════════════╗
+║ Risk Score: 5.2                                       ║
+║ Risk Level: LOW                                       ║
+║ Confidence: 0.5                                       ║
+║ Is Fraud: FALSE                                       ║
+║                                                       ║
+║ Warning: Xavfsiz.                                     ║
+╚═══════════════════════════════════════════════════════╝
+
+================================================================================
+                    KENGAYTIRILGAN SAVOLLAR / ADVANCED QUESTIONS
+================================================================================
+
+--------------------------------------------------------------------------------
+SAVOL 25: False Positive va False Negative nima?
+--------------------------------------------------------------------------------
+JAVOB:
+
+FALSE POSITIVE (Noto'g'ri ijobiy):
+- Xavfsiz matnni firibgarlik deb belgilash
+- Misol: "Bank kartam yo'qolib qoldi" - bu oddiy xabar, lekin
+  "bank karta" so'zlari tufayli yuqori ball olishi mumkin
+
+YECHIM:
+- Kontekstni tahlil qilish
+- Kombinatsiya talab qilish (faqat bitta keyword yetarli emas)
+- ML model yordamida aniqlikni oshirish
+
+FALSE NEGATIVE (Noto'g'ri salbiy):
+- Haqiqiy firibgarlikni aniqlamaslik
+- Misol: Yangi firibgarlik usuli - bizning bazada yo'q so'zlar
+
+YECHIM:
+- Doimiy keyword bazasini yangilash
+- ML modelni qayta o'rgatish
+- Sentiment tahlilini kuchaytirish
+
+--------------------------------------------------------------------------------
+SAVOL 26: Model qanday qayta o'rgatiladi (retraining)?
+--------------------------------------------------------------------------------
+JAVOB:
+
+1. YANGI MA'LUMOTLAR YIGISH:
+   - Yangi firibgarlik namunalari
+   - Foydalanuvchi feedback
+   - False positive/negative holatlar
+
+2. TRAIN_MODEL.PY ISHGA TUSHIRISH:
+```bash
+python train_model.py
+```
+
+3. JARAYON:
+```python
+# 1. Ma'lumotlarni tayyorlash
+texts, labels = create_training_data()
+
+# 2. Augmentatsiya
+augmented_texts, augmented_labels = augment_data(texts, labels)
+
+# 3. TF-IDF vectorization
+X_train_tfidf = vectorizer.fit_transform(X_train)
+
+# 4. Model o'rgatish
+classifier.fit(X_train_tfidf, y_train)
+
+# 5. Baholash
+metrics = evaluate(classifier, X_test, y_test)
+
+# 6. Saqlash
+joblib.dump({"vectorizer": vectorizer, "classifier": classifier},
+            "models/fraud_classifier.pkl")
+```
+
+4. MODEL FAYLLARINI YANGILASH:
+   - fraud_classifier.pkl (server uchun)
+   - fraud_model.tflite (mobil uchun)
+
+--------------------------------------------------------------------------------
+SAVOL 27: Tizim kengaytirilishi (scalability) qanday?
+--------------------------------------------------------------------------------
+JAVOB:
+
+GORIZONTAL SCALING:
+- FastAPI async support - ko'p so'rovlarni parallel ishlov berish
+- Docker containerization - bir nechta instance ishga tushirish
+- Load balancer orqali trafik taqsimlash
+
+VERTIKAL SCALING:
+- Kuchli server (ko'proq RAM, CPU)
+- GPU acceleration (ML model uchun)
+
+CACHING:
+- Redis yoki in-memory caching
+- Tez-tez ishlatiladigan so'rovlarni keshlash
+
+ASYNC PROCESSING:
+```python
+# FastAPI async endpoints
+@app.post("/api/v1/analyze/text")
+async def analyze_text(request: Request, text: str):
+    # Non-blocking operations
+    result = await process_text(text)
+    return result
+```
+
+KUBERNETES:
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-muhofiz
+spec:
+  replicas: 3  # 3 ta instance
+  template:
+    spec:
+      containers:
+      - name: api
+        image: ai-muhofiz:latest
+        resources:
+          limits:
+            cpu: "1"
+            memory: "2Gi"
+```
+
+--------------------------------------------------------------------------------
+SAVOL 28: Xavfsizlik (Security) qanday ta'minlanadi?
+--------------------------------------------------------------------------------
+JAVOB:
+
+1. INPUT VALIDATION:
+```python
+def sanitize_input(text: str, max_length: int = 10000) -> str:
+    # HTML teglarni olib tashlash
+    text = re.sub(r'<[^>]+>', '', text)
+    # SQL injection oldini olish
+    text = text.replace("'", "''")
+    # Uzunlikni cheklash
+    return text[:max_length]
+```
+
+2. RATE LIMITING:
+- IP asosida so'rovlarni cheklash
+- DoS hujumlardan himoya
+
+3. HTTPS:
+- Barcha trafikni shifrlash
+- TLS/SSL sertifikat
+
+4. CORS:
+```python
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Production da aniq domenlar
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+```
+
+5. ENVIRONMENT VARIABLES:
+```python
+# .env faylda maxfiy ma'lumotlar
+UZBEKVOICE_API_KEY=xxx
+SECRET_KEY=xxx
+```
+
+6. NO SENSITIVE LOGGING:
+```python
+# Hech qachon:
+# logger.info(f"User text: {text}")  # XATO!
+
+# Faqat:
+# logger.info("Text analysis completed")  # TO'G'RI
+```
+
+================================================================================
+                    DOCKER VA DEPLOYMENT
+================================================================================
+
+--------------------------------------------------------------------------------
+SAVOL 29: Docker qanday ishlatiladi?
+--------------------------------------------------------------------------------
+JAVOB:
+
+DOCKERFILE:
+```dockerfile
+FROM python:3.10-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 8080
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
+```
+
+DOCKER-COMPOSE.YML:
+```yaml
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - DEBUG=false
+      - WHISPER_MODEL=medium
+    volumes:
+      - ./models:/app/models
+    restart: unless-stopped
+```
+
+ISHGA TUSHIRISH:
+```bash
+# Build
+docker build -t ai-muhofiz .
+
+# Run
+docker run -p 8080:8080 ai-muhofiz
+
+# Docker Compose
+docker-compose up -d
+```
+
+--------------------------------------------------------------------------------
+SAVOL 30: Production ga deploy qanday qilinadi?
+--------------------------------------------------------------------------------
+JAVOB:
+
+RAILWAY:
+```json
+// railway.json
+{
+    "build": {
+        "builder": "NIXPACKS"
+    },
+    "deploy": {
+        "startCommand": "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    }
+}
+```
+
+PROCFILE:
+```
+web: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+```
+
+ENV VARIABLES:
+- PORT (Railway tomonidan avtomatik)
+- WHISPER_MODEL=medium
+- DEBUG=false
+- USE_UZBEKVOICE=true
+
+================================================================================
+                    XULOSA / CONCLUSION
+================================================================================
+
+AI Muhofiz - bu murakkab, ko'p qatlamli tizim:
+
+1. FRONTEND: Dashboard (HTML/CSS/JS)
+2. BACKEND: FastAPI (Python)
+3. ML: Sklearn + TensorFlow Lite
+4. STT: Vosk + Whisper
+5. NLP: Keyword detection + Sentiment analysis
+6. SECURITY: Privacy-first design
+
+ASOSIY TEXNOLOGIYALAR:
+- Python 3.10+
+- FastAPI + Uvicorn
+- Scikit-learn (Gradient Boosting)
+- TensorFlow Lite
+- Vosk / Whisper
+- Librosa (audio analysis)
+- Docker
+
+UNIQUE FEATURES:
+- 100% Offline capability
+- Privacy-first architecture
+- Multi-language support (UZ, RU, EN)
+- Real-time streaming analysis
+- SMS fraud detection
+- Voice stress analysis
+
+================================================================================
+Tayyorladi: AI Muhofiz Team
+Sana: 2024
+================================================================================

@@ -17,13 +17,14 @@ import {
 import { useState } from "react";
 import ApiDocumentation from "./ApiDocumentation";
 import DemoChatbot from "./DemoChatbot";
+import GeminiChatbot from "./GeminiChatbot";
 const DemoPage = () => {
   const [activeTab, setActiveTab] = useState<"video" | "api" | "chatbot">(
     "video"
   );
   const [copied, setCopied] = useState(false);
 
-  const copyToClipboard = (text: string) => {
+  const copyToClipboard = (text: string, _id?: string) => {
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -34,26 +35,55 @@ const DemoPage = () => {
       name: "React + TypeScript",
       icon: <Code className="w-4 h-4" />,
       color: "text-blue-400",
+      category: "Frontend",
+    },
+    {
+      name: "Flutter (iOS/Android)",
+      icon: <Globe className="w-4 h-4" />,
+      color: "text-cyan-400",
+      category: "Mobile",
     },
     {
       name: "Python FastAPI",
       icon: <Zap className="w-4 h-4" />,
       color: "text-green-400",
+      category: "Backend",
+    },
+    {
+      name: "PostgreSQL Database",
+      icon: <Shield className="w-4 h-4" />,
+      color: "text-blue-500",
+      category: "Backend",
     },
     {
       name: "Whisper AI (STT)",
       icon: <Cpu className="w-4 h-4" />,
       color: "text-purple-400",
+      category: "AI/ML",
+    },
+    {
+      name: "Custom TTS Model",
+      icon: <MessageCircle className="w-4 h-4" />,
+      color: "text-yellow-400",
+      category: "AI/ML",
     },
     {
       name: "Custom NLP Model",
       icon: <Shield className="w-4 h-4" />,
       color: "text-orange-400",
+      category: "AI/ML",
     },
     {
-      name: "WebSocket Streaming",
-      icon: <Globe className="w-4 h-4" />,
-      color: "text-cyan-400",
+      name: "TensorFlow Lite",
+      icon: <Cpu className="w-4 h-4" />,
+      color: "text-pink-400",
+      category: "AI/ML",
+    },
+    {
+      name: "Scikit-learn (ML)",
+      icon: <Cpu className="w-4 h-4" />,
+      color: "text-red-400",
+      category: "AI/ML",
     },
   ];
 
@@ -63,17 +93,19 @@ const DemoPage = () => {
     "Firibgarlik pattern aniqlanishi",
     "Risk score hisoblash",
     "Audio va Text tahlil",
+    "O'qitilgan NLP modeli (94% aniqlik)",
+    "Custom TTS (Text-to-Speech) modeli",
     "WebSocket orqali jonli stream",
   ];
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-gray-950 via-gray-900 to-gray-950 pt-20">
+    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 pt-24 pb-16">
       {/* Hero Section */}
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12">
+          className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/30 rounded-full text-emerald-400 text-sm font-medium mb-4">
             🎉 2-Bosqich Demo
           </span>
@@ -87,7 +119,7 @@ const DemoPage = () => {
         </motion.div>
 
         {/* Tab Navigation */}
-        <div className="flex justify-center gap-2 mb-8">
+        <div className="flex flex-wrap justify-center gap-3 mb-12 px-4">
           {[
             {
               id: "video",
@@ -108,13 +140,13 @@ const DemoPage = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as typeof activeTab)}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium transition-all ${
+              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all transform hover:scale-105 ${
                 activeTab === tab.id
                   ? "bg-emerald-500 text-white shadow-lg shadow-emerald-500/25"
                   : "bg-gray-800/50 text-gray-400 hover:bg-gray-800 hover:text-white"
               }`}>
               {tab.icon}
-              {tab.label}
+              <span className="hidden sm:inline">{tab.label}</span>
             </button>
           ))}
         </div>
@@ -127,17 +159,17 @@ const DemoPage = () => {
               animate={{ opacity: 1, y: 0 }}
               className="space-y-8">
               {/* Video Player */}
-              <div className="bg-gray-900/50 border border-gray-800 rounded-2xl overflow-hidden">
-                <div className="aspect-video bg-gray-950 flex items-center justify-center relative">
+              <div className="bg-gray-900/50 border border-gray-800 rounded-2xl overflow-hidden shadow-2xl">
+                <div className="aspect-video bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 flex items-center justify-center relative">
                   {/* Replace with actual video */}
-                  <div className="text-center">
-                    <div className="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4 cursor-pointer hover:bg-emerald-500/30 transition-colors">
-                      <Play className="w-8 h-8 text-emerald-400 ml-1" />
+                  <div className="text-center p-8">
+                    <div className="w-24 h-24 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6 cursor-pointer hover:bg-emerald-500/30 transition-all transform hover:scale-110 shadow-lg shadow-emerald-500/20">
+                      <Play className="w-10 h-10 text-emerald-400 ml-1" />
                     </div>
-                    <p className="text-gray-400">
+                    <p className="text-gray-300 text-lg mb-2">
                       Demo video yuklash uchun bosing
                     </p>
-                    <p className="text-gray-500 text-sm mt-2">
+                    <p className="text-gray-500 text-sm">
                       Video faylni public/demo-video.mp4 ga joylashtiring
                     </p>
                   </div>
@@ -154,12 +186,12 @@ const DemoPage = () => {
               </div>
 
               {/* Description Section */}
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-2 gap-6 mt-8">
                 {/* What's in the video */}
-                <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center">
-                      <FileText className="w-5 h-5 text-blue-400" />
+                <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 hover:border-gray-700 transition-all">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center">
+                      <FileText className="w-6 h-6 text-blue-400" />
                     </div>
                     <h3 className="text-xl font-semibold text-white">
                       Videoda nima ko'rsatilgan
@@ -175,7 +207,7 @@ const DemoPage = () => {
                     ].map((item, i) => (
                       <li
                         key={i}
-                        className="flex items-start gap-3 text-gray-300">
+                        className="flex items-start gap-3 text-gray-300 text-sm">
                         <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 shrink-0" />
                         <span>{item}</span>
                       </li>
@@ -184,10 +216,10 @@ const DemoPage = () => {
                 </div>
 
                 {/* Problem & Solution */}
-                <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 bg-orange-500/20 rounded-xl flex items-center justify-center">
-                      <Shield className="w-5 h-5 text-orange-400" />
+                <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 hover:border-gray-700 transition-all">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center">
+                      <Shield className="w-6 h-6 text-orange-400" />
                     </div>
                     <h3 className="text-xl font-semibold text-white">
                       Muammo va Yechim
@@ -217,40 +249,83 @@ const DemoPage = () => {
               </div>
 
               {/* Tech Stack */}
-              <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6">
+              <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 mt-8 hover:border-gray-700 transition-all">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-purple-500/20 rounded-xl flex items-center justify-center">
-                    <Cpu className="w-5 h-5 text-purple-400" />
+                  <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center">
+                    <Cpu className="w-6 h-6 text-purple-400" />
                   </div>
                   <h3 className="text-xl font-semibold text-white">
-                    Texnologiyalar va AI Yechimlar
+                    Texnologiyalar va Platformalar
                   </h3>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-6">
+                  {/* Platformalar */}
                   <div>
-                    <p className="text-gray-400 mb-4">
-                      Ishlatilgan texnologiyalar:
-                    </p>
+                    <h4 className="text-emerald-400 font-semibold mb-3 flex items-center gap-2">
+                      <Globe className="w-5 h-5" />
+                      Platformalar
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                      <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-4">
+                        <Code className="w-6 h-6 text-blue-400 mb-2" />
+                        <h5 className="text-white font-medium mb-1">
+                          Web Dashboard
+                        </h5>
+                        <p className="text-gray-400 text-xs">
+                          React + TypeScript
+                        </p>
+                      </div>
+                      <div className="bg-cyan-500/10 border border-cyan-500/30 rounded-xl p-4">
+                        <Globe className="w-6 h-6 text-cyan-400 mb-2" />
+                        <h5 className="text-white font-medium mb-1">
+                          iOS Ilova
+                        </h5>
+                        <p className="text-gray-400 text-xs">Flutter (iOS)</p>
+                      </div>
+                      <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-4">
+                        <Globe className="w-6 h-6 text-green-400 mb-2" />
+                        <h5 className="text-white font-medium mb-1">
+                          Android Ilova
+                        </h5>
+                        <p className="text-gray-400 text-xs">Flutter (APK)</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Texnologiyalar */}
+                  <div>
+                    <h4 className="text-purple-400 font-semibold mb-3 flex items-center gap-2">
+                      <Cpu className="w-5 h-5" />
+                      Ishlatilgan texnologiyalar
+                    </h4>
                     <div className="flex flex-wrap gap-2">
                       {techStack.map((tech, i) => (
                         <span
                           key={i}
-                          className="flex items-center gap-2 px-3 py-1.5 bg-gray-800/50 border border-gray-700 rounded-lg text-sm">
+                          className="flex items-center gap-2 px-3 py-2 bg-gray-800/50 border border-gray-700 rounded-lg text-sm hover:border-gray-600 transition-colors">
                           <span className={tech.color}>{tech.icon}</span>
                           <span className="text-gray-300">{tech.name}</span>
+                          <span className="text-gray-500 text-xs">
+                            ({tech.category})
+                          </span>
                         </span>
                       ))}
                     </div>
                   </div>
+
+                  {/* Asosiy funksiyalar */}
                   <div>
-                    <p className="text-gray-400 mb-4">Asosiy funksiyalar:</p>
-                    <div className="grid grid-cols-2 gap-2">
+                    <h4 className="text-emerald-400 font-semibold mb-3 flex items-center gap-2">
+                      <CheckCircle className="w-5 h-5" />
+                      Asosiy funksiyalar va modellar
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                       {features.map((feature, i) => (
                         <div
                           key={i}
-                          className="flex items-center gap-2 text-sm text-gray-300">
-                          <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full" />
+                          className="flex items-center gap-2 text-sm text-gray-300 bg-gray-800/30 px-3 py-2 rounded-lg">
+                          <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
                           {feature}
                         </div>
                       ))}
@@ -260,47 +335,54 @@ const DemoPage = () => {
               </div>
 
               {/* Project Status */}
-              <div className="bg-linear-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-500/20 rounded-2xl p-6">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                  <div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm font-medium">
+              <div className="bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-500/20 rounded-2xl p-6 mt-8 hover:border-emerald-500/30 transition-all">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="px-4 py-1.5 bg-emerald-500/20 text-emerald-400 rounded-full text-sm font-medium">
                         MVP
                       </span>
-                      <span className="text-gray-400">Loyiha holati</span>
+                      <span className="text-gray-400 text-sm">
+                        Loyiha holati
+                      </span>
                     </div>
-                    <h3 className="text-xl font-semibold text-white mb-2">
+                    <h3 className="text-2xl font-semibold text-white mb-3">
                       Keyingi qadamlar
                     </h3>
-                    <ul className="text-gray-400 text-sm space-y-1">
+                    <ul className="text-gray-300 text-sm space-y-2">
                       <li className="flex items-center gap-2">
-                        <ArrowRight className="w-4 h-4 text-emerald-400" />
-                        Mobil ilova (Android/iOS) integratsiyasi
+                        <ArrowRight className="w-4 h-4 text-emerald-400 shrink-0" />
+                        <span>Mobil ilova (Android/iOS) integratsiyasi</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <ArrowRight className="w-4 h-4 text-emerald-400" />
-                        Bank API bilan to'liq integratsiya
+                        <ArrowRight className="w-4 h-4 text-emerald-400 shrink-0" />
+                        <span>Bank API bilan to'liq integratsiya</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <ArrowRight className="w-4 h-4 text-emerald-400" />
-                        Ko'proq tillarni qo'shish (Qoraqalpoq, Tojik)
+                        <ArrowRight className="w-4 h-4 text-emerald-400 shrink-0" />
+                        <span>
+                          Ko'proq tillarni qo'shish (Qoraqalpoq, Tojik)
+                        </span>
                       </li>
                     </ul>
                   </div>
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-3 min-w-[200px]">
                     <a
                       href="http://176.118.198.131:8000/docs"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-medium transition-colors">
+                      className="flex items-center justify-center gap-2 px-5 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-medium transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/20">
                       <ExternalLink className="w-4 h-4" />
                       API Docs (Swagger)
                     </a>
                     <button
                       onClick={() =>
-                        copyToClipboard("http://176.118.198.131:8000")
+                        copyToClipboard(
+                          "http://176.118.198.131:8000",
+                          "base-url"
+                        )
                       }
-                      className="flex items-center gap-2 px-5 py-2.5 bg-gray-800 hover:bg-gray-700 text-white rounded-xl font-medium transition-colors">
+                      className="flex items-center justify-center gap-2 px-5 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-xl font-medium transition-all transform hover:scale-105">
                       {copied ? (
                         <Check className="w-4 h-4" />
                       ) : (

@@ -275,7 +275,19 @@ ws.onmessage = (event) => {
               className="w-full flex items-center justify-between p-4 hover:bg-gray-800/30 transition-colors">
               <div className="flex items-center gap-4">
                 <div
-                  className={`w-10 h-10 bg-${endpoint.color}-500/20 rounded-xl flex items-center justify-center text-${endpoint.color}-400`}>
+                  className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                    endpoint.color === "emerald"
+                      ? "bg-emerald-500/20 text-emerald-400"
+                      : endpoint.color === "blue"
+                      ? "bg-blue-500/20 text-blue-400"
+                      : endpoint.color === "purple"
+                      ? "bg-purple-500/20 text-purple-400"
+                      : endpoint.color === "orange"
+                      ? "bg-orange-500/20 text-orange-400"
+                      : endpoint.color === "cyan"
+                      ? "bg-cyan-500/20 text-cyan-400"
+                      : "bg-pink-500/20 text-pink-400"
+                  }`}>
                   {endpoint.icon}
                 </div>
                 <div className="text-left">
@@ -455,12 +467,38 @@ ws.onmessage = (event) => {
           ].map((item) => (
             <div
               key={item.level}
-              className={`bg-${item.color}-500/10 border border-${item.color}-500/30 rounded-xl p-4 text-center`}>
-              <div className={`text-${item.color}-400 font-bold text-lg`}>
+              className={`rounded-xl p-4 text-center ${
+                item.color === "emerald"
+                  ? "bg-emerald-500/10 border border-emerald-500/30"
+                  : item.color === "yellow"
+                  ? "bg-yellow-500/10 border border-yellow-500/30"
+                  : item.color === "orange"
+                  ? "bg-orange-500/10 border border-orange-500/30"
+                  : "bg-red-500/10 border border-red-500/30"
+              }`}>
+              <div
+                className={`font-bold text-lg ${
+                  item.color === "emerald"
+                    ? "text-emerald-400"
+                    : item.color === "yellow"
+                    ? "text-yellow-400"
+                    : item.color === "orange"
+                    ? "text-orange-400"
+                    : "text-red-400"
+                }`}>
                 {item.level.toUpperCase()}
               </div>
               <div className="text-gray-400 text-sm">{item.score}</div>
-              <div className={`text-${item.color}-300 text-sm mt-1`}>
+              <div
+                className={`text-sm mt-1 ${
+                  item.color === "emerald"
+                    ? "text-emerald-300"
+                    : item.color === "yellow"
+                    ? "text-yellow-300"
+                    : item.color === "orange"
+                    ? "text-orange-300"
+                    : "text-red-300"
+                }`}>
                 {item.desc}
               </div>
             </div>
