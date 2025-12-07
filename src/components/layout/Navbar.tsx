@@ -73,6 +73,7 @@ const Navbar: React.FC = () => {
               to="/"
               className="flex items-center cursor-pointer hover:opacity-80 transition-opacity duration-300">
               <img
+                key={theme}
                 src={firiblockLogo}
                 alt="AI Muhofiz"
                 className="h-6 sm:h-7 md:h-8 w-auto"
@@ -85,6 +86,7 @@ const Navbar: React.FC = () => {
               to="/"
               className="flex items-center cursor-pointer hover:opacity-80 transition-opacity duration-300">
               <img
+                key={theme}
                 src={agrobankLogo}
                 alt="Agrobank"
                 className="h-6 sm:h-7 md:h-8 w-auto"
@@ -97,6 +99,7 @@ const Navbar: React.FC = () => {
               to="/"
               className="flex items-center cursor-pointer hover:opacity-80 transition-opacity duration-300">
               <img
+                key={theme}
                 src={tdiuLogo}
                 alt="TDIU"
                 className="h-6 sm:h-7 md:h-8 w-auto"
@@ -106,11 +109,11 @@ const Navbar: React.FC = () => {
 
           <div className="hidden md:flex items-center gap-4">
             <ModeToggle />
-            {location.pathname !== "/contact" && (
+            {location.pathname !== "/demo" && (
               <Button
                 className="size-lg font-semibold"
-                onClick={() => navigate("/contact")}>
-                Bog'lanish
+                onClick={() => navigate("/demo")}>
+                Demo
               </Button>
             )}
           </div>
@@ -155,11 +158,11 @@ const Navbar: React.FC = () => {
               {link.name}
             </a>
           ))}
-          {location.pathname !== "/contact" && (
+          {location.pathname !== "/demo" && (
             <Button
               className="w-full py-6 text-lg font-bold shadow-lg shadow-primary/20"
-              onClick={() => navigate("/contact")}>
-              Bog'lanish
+              onClick={() => navigate("/demo")}>
+              Demo
             </Button>
           )}
         </div>
