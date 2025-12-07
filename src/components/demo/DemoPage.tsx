@@ -18,6 +18,7 @@ import { useState } from "react";
 import ApiDocumentation from "./ApiDocumentation";
 import DemoChatbot from "./DemoChatbot";
 import { useTheme } from "../theme-provider";
+import demoVideo from "../../assets/aivideo.mp4";
 
 const DemoPage = () => {
   const { theme } = useTheme();
@@ -186,33 +187,13 @@ const DemoPage = () => {
                       ? "bg-linear-to-br from-gray-950 via-gray-900 to-gray-950"
                       : "bg-linear-to-br from-gray-100 via-gray-50 to-gray-100"
                   }`}>
-                  {/* Replace with actual video */}
-                  <div className="text-center p-8">
-                    <div className="w-24 h-24 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6 cursor-pointer hover:bg-emerald-500/30 transition-all transform hover:scale-110 shadow-lg shadow-emerald-500/20">
-                      <Play className="w-10 h-10 text-emerald-400 ml-1" />
-                    </div>
-                    <p
-                      className={`text-lg mb-2 ${
-                        theme === "dark" ? "text-gray-300" : "text-gray-700"
-                      }`}>
-                      Demo video yuklash uchun bosing
-                    </p>
-                    <p
-                      className={`text-sm ${
-                        theme === "dark" ? "text-gray-500" : "text-gray-400"
-                      }`}>
-                      Video faylni public/demo-video.mp4 ga joylashtiring
-                    </p>
-                  </div>
-
-                  {/* Uncomment when video is ready */}
-                  {/* <video 
-                    controls 
-                    className="w-full h-full"
-                    poster="/demo-thumbnail.jpg"
-                  >
-                    <source src="/demo-video.mp4" type="video/mp4" />
-                  </video> */}
+                  <video
+                    src={demoVideo}
+                    controls
+                    preload="metadata"
+                    playsInline
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               </div>
 
