@@ -17,7 +17,10 @@ import {
 import { useState } from "react";
 import ApiDocumentation from "./ApiDocumentation";
 import DemoChatbot from "./DemoChatbot";
+import { useTheme } from "../theme-provider";
+
 const DemoPage = () => {
+  const { theme } = useTheme();
   const [activeTab, setActiveTab] = useState<"video" | "api" | "chatbot">(
     "video"
   );
@@ -98,7 +101,12 @@ const DemoPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-gray-950 via-gray-900 to-gray-950 pt-24 pb-16">
+    <div
+      className={`min-h-screen pt-24 pb-16 ${
+        theme === "dark"
+          ? "bg-linear-to-b from-gray-950 via-gray-900 to-gray-950"
+          : "bg-linear-to-b from-gray-50 via-white to-gray-50"
+      }`}>
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-16">
         <motion.div
@@ -108,10 +116,16 @@ const DemoPage = () => {
           <span className="inline-block px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/30 rounded-full text-emerald-400 text-sm font-medium mb-4">
             🎉 2-Bosqich Demo
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1
+            className={`text-4xl md:text-5xl font-bold mb-4 ${
+              theme === "dark" ? "text-white" : "text-gray-900"
+            }`}>
             AI Muhofiz - Demo
           </h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p
+            className={`text-lg max-w-2xl mx-auto ${
+              theme === "dark" ? "text-gray-400" : "text-gray-600"
+            }`}>
             Firibgarlik qo'ng'iroqlarini real-time aniqlash tizimi. Quyida
             ilovamiz qanday ishlashini ko'rishingiz mumkin.
           </p>
@@ -142,7 +156,9 @@ const DemoPage = () => {
               className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all transform hover:scale-105 ${
                 activeTab === tab.id
                   ? "bg-emerald-500 text-white shadow-lg shadow-emerald-500/25"
-                  : "bg-gray-800/50 text-gray-400 hover:bg-gray-800 hover:text-white"
+                  : theme === "dark"
+                  ? "bg-gray-800/50 text-gray-400 hover:bg-gray-800 hover:text-white"
+                  : "bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900 border border-gray-200"
               }`}>
               {tab.icon}
               <span className="hidden sm:inline">{tab.label}</span>
@@ -158,17 +174,33 @@ const DemoPage = () => {
               animate={{ opacity: 1, y: 0 }}
               className="space-y-8">
               {/* Video Player */}
-              <div className="bg-gray-900/50 border border-gray-800 rounded-2xl overflow-hidden shadow-2xl">
-                <div className="aspect-video bg-linear-to-br from-gray-950 via-gray-900 to-gray-950 flex items-center justify-center relative">
+              <div
+                className={`border rounded-2xl overflow-hidden shadow-2xl ${
+                  theme === "dark"
+                    ? "bg-gray-900/50 border-gray-800"
+                    : "bg-white border-gray-200"
+                }`}>
+                <div
+                  className={`aspect-video flex items-center justify-center relative ${
+                    theme === "dark"
+                      ? "bg-linear-to-br from-gray-950 via-gray-900 to-gray-950"
+                      : "bg-linear-to-br from-gray-100 via-gray-50 to-gray-100"
+                  }`}>
                   {/* Replace with actual video */}
                   <div className="text-center p-8">
                     <div className="w-24 h-24 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6 cursor-pointer hover:bg-emerald-500/30 transition-all transform hover:scale-110 shadow-lg shadow-emerald-500/20">
                       <Play className="w-10 h-10 text-emerald-400 ml-1" />
                     </div>
-                    <p className="text-gray-300 text-lg mb-2">
+                    <p
+                      className={`text-lg mb-2 ${
+                        theme === "dark" ? "text-gray-300" : "text-gray-700"
+                      }`}>
                       Demo video yuklash uchun bosing
                     </p>
-                    <p className="text-gray-500 text-sm">
+                    <p
+                      className={`text-sm ${
+                        theme === "dark" ? "text-gray-500" : "text-gray-400"
+                      }`}>
                       Video faylni public/demo-video.mp4 ga joylashtiring
                     </p>
                   </div>
@@ -187,12 +219,20 @@ const DemoPage = () => {
               {/* Description Section */}
               <div className="grid md:grid-cols-2 gap-6 mt-8">
                 {/* What's in the video */}
-                <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 hover:border-gray-700 transition-all">
+                <div
+                  className={`border rounded-2xl p-6 transition-all ${
+                    theme === "dark"
+                      ? "bg-gray-900/50 border-gray-800 hover:border-gray-700"
+                      : "bg-white border-gray-200 hover:border-gray-300"
+                  }`}>
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center">
                       <FileText className="w-6 h-6 text-blue-400" />
                     </div>
-                    <h3 className="text-xl font-semibold text-white">
+                    <h3
+                      className={`text-xl font-semibold ${
+                        theme === "dark" ? "text-white" : "text-gray-900"
+                      }`}>
                       Videoda nima ko'rsatilgan
                     </h3>
                   </div>
@@ -206,7 +246,9 @@ const DemoPage = () => {
                     ].map((item, i) => (
                       <li
                         key={i}
-                        className="flex items-start gap-3 text-gray-300 text-sm">
+                        className={`flex items-start gap-3 text-sm ${
+                          theme === "dark" ? "text-gray-300" : "text-gray-700"
+                        }`}>
                         <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 shrink-0" />
                         <span>{item}</span>
                       </li>
@@ -215,19 +257,30 @@ const DemoPage = () => {
                 </div>
 
                 {/* Problem & Solution */}
-                <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 hover:border-gray-700 transition-all">
+                <div
+                  className={`border rounded-2xl p-6 transition-all ${
+                    theme === "dark"
+                      ? "bg-gray-900/50 border-gray-800 hover:border-gray-700"
+                      : "bg-white border-gray-200 hover:border-gray-300"
+                  }`}>
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center">
                       <Shield className="w-6 h-6 text-orange-400" />
                     </div>
-                    <h3 className="text-xl font-semibold text-white">
+                    <h3
+                      className={`text-xl font-semibold ${
+                        theme === "dark" ? "text-white" : "text-gray-900"
+                      }`}>
                       Muammo va Yechim
                     </h3>
                   </div>
                   <div className="space-y-4">
                     <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4">
                       <p className="text-red-300 font-medium mb-1">Muammo:</p>
-                      <p className="text-gray-400 text-sm">
+                      <p
+                        className={`text-sm ${
+                          theme === "dark" ? "text-gray-400" : "text-gray-600"
+                        }`}>
                         O'zbekistonda telefon firibgarligi 2024-yilda 340% ga
                         oshdi. Firibgarlar bank xodimlari sifatida qo'ng'iroq
                         qilib, karta ma'lumotlarini olmoqda.
@@ -237,7 +290,10 @@ const DemoPage = () => {
                       <p className="text-emerald-300 font-medium mb-1">
                         Yechim:
                       </p>
-                      <p className="text-gray-400 text-sm">
+                      <p
+                        className={`text-sm ${
+                          theme === "dark" ? "text-gray-400" : "text-gray-600"
+                        }`}>
                         AI Muhofiz real-time qo'ng'iroqlarni tahlil qiladi,
                         firibgarlik pattern larini aniqlaydi va foydalanuvchini
                         darhol ogohlantiradi.
@@ -248,12 +304,20 @@ const DemoPage = () => {
               </div>
 
               {/* Tech Stack */}
-              <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 mt-8 hover:border-gray-700 transition-all">
+              <div
+                className={`border rounded-2xl p-6 mt-8 transition-all ${
+                  theme === "dark"
+                    ? "bg-gray-900/50 border-gray-800 hover:border-gray-700"
+                    : "bg-white border-gray-200 hover:border-gray-300"
+                }`}>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center">
                     <Cpu className="w-6 h-6 text-purple-400" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white">
+                  <h3
+                    className={`text-xl font-semibold ${
+                      theme === "dark" ? "text-white" : "text-gray-900"
+                    }`}>
                     Texnologiyalar va Platformalar
                   </h3>
                 </div>
@@ -268,26 +332,48 @@ const DemoPage = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                       <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-4">
                         <Code className="w-6 h-6 text-blue-400 mb-2" />
-                        <h5 className="text-white font-medium mb-1">
+                        <h5
+                          className={`font-medium mb-1 ${
+                            theme === "dark" ? "text-white" : "text-gray-900"
+                          }`}>
                           Web Dashboard
                         </h5>
-                        <p className="text-gray-400 text-xs">
+                        <p
+                          className={`text-xs ${
+                            theme === "dark" ? "text-gray-400" : "text-gray-600"
+                          }`}>
                           React + TypeScript
                         </p>
                       </div>
                       <div className="bg-cyan-500/10 border border-cyan-500/30 rounded-xl p-4">
                         <Globe className="w-6 h-6 text-cyan-400 mb-2" />
-                        <h5 className="text-white font-medium mb-1">
+                        <h5
+                          className={`font-medium mb-1 ${
+                            theme === "dark" ? "text-white" : "text-gray-900"
+                          }`}>
                           iOS Ilova
                         </h5>
-                        <p className="text-gray-400 text-xs">Flutter (iOS)</p>
+                        <p
+                          className={`text-xs ${
+                            theme === "dark" ? "text-gray-400" : "text-gray-600"
+                          }`}>
+                          Flutter (iOS)
+                        </p>
                       </div>
                       <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-4">
                         <Globe className="w-6 h-6 text-green-400 mb-2" />
-                        <h5 className="text-white font-medium mb-1">
+                        <h5
+                          className={`font-medium mb-1 ${
+                            theme === "dark" ? "text-white" : "text-gray-900"
+                          }`}>
                           Android Ilova
                         </h5>
-                        <p className="text-gray-400 text-xs">Flutter (APK)</p>
+                        <p
+                          className={`text-xs ${
+                            theme === "dark" ? "text-gray-400" : "text-gray-600"
+                          }`}>
+                          Flutter (APK)
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -302,10 +388,26 @@ const DemoPage = () => {
                       {techStack.map((tech, i) => (
                         <span
                           key={i}
-                          className="flex items-center gap-2 px-3 py-2 bg-gray-800/50 border border-gray-700 rounded-lg text-sm hover:border-gray-600 transition-colors">
+                          className={`flex items-center gap-2 px-3 py-2 border rounded-lg text-sm transition-colors ${
+                            theme === "dark"
+                              ? "bg-gray-800/50 border-gray-700 hover:border-gray-600"
+                              : "bg-gray-50 border-gray-200 hover:border-gray-300"
+                          }`}>
                           <span className={tech.color}>{tech.icon}</span>
-                          <span className="text-gray-300">{tech.name}</span>
-                          <span className="text-gray-500 text-xs">
+                          <span
+                            className={
+                              theme === "dark"
+                                ? "text-gray-300"
+                                : "text-gray-700"
+                            }>
+                            {tech.name}
+                          </span>
+                          <span
+                            className={`text-xs ${
+                              theme === "dark"
+                                ? "text-gray-500"
+                                : "text-gray-400"
+                            }`}>
                             ({tech.category})
                           </span>
                         </span>
@@ -323,7 +425,11 @@ const DemoPage = () => {
                       {features.map((feature, i) => (
                         <div
                           key={i}
-                          className="flex items-center gap-2 text-sm text-gray-300 bg-gray-800/30 px-3 py-2 rounded-lg">
+                          className={`flex items-center gap-2 text-sm px-3 py-2 rounded-lg ${
+                            theme === "dark"
+                              ? "text-gray-300 bg-gray-800/30"
+                              : "text-gray-700 bg-gray-50"
+                          }`}>
                           <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
                           {feature}
                         </div>
@@ -334,21 +440,35 @@ const DemoPage = () => {
               </div>
 
               {/* Project Status */}
-              <div className="bg-linear-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-500/20 rounded-2xl p-6 mt-8 hover:border-emerald-500/30 transition-all">
+              <div
+                className={`border rounded-2xl p-6 mt-8 transition-all ${
+                  theme === "dark"
+                    ? "bg-linear-to-r from-emerald-500/10 to-blue-500/10 border-emerald-500/20 hover:border-emerald-500/30"
+                    : "bg-linear-to-r from-emerald-50 to-blue-50 border-emerald-200 hover:border-emerald-300"
+                }`}>
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-3">
                       <span className="px-4 py-1.5 bg-emerald-500/20 text-emerald-400 rounded-full text-sm font-medium">
                         MVP
                       </span>
-                      <span className="text-gray-400 text-sm">
+                      <span
+                        className={`text-sm ${
+                          theme === "dark" ? "text-gray-400" : "text-gray-600"
+                        }`}>
                         Loyiha holati
                       </span>
                     </div>
-                    <h3 className="text-2xl font-semibold text-white mb-3">
+                    <h3
+                      className={`text-2xl font-semibold mb-3 ${
+                        theme === "dark" ? "text-white" : "text-gray-900"
+                      }`}>
                       Keyingi qadamlar
                     </h3>
-                    <ul className="text-gray-300 text-sm space-y-2">
+                    <ul
+                      className={`text-sm space-y-2 ${
+                        theme === "dark" ? "text-gray-300" : "text-gray-700"
+                      }`}>
                       <li className="flex items-center gap-2">
                         <ArrowRight className="w-4 h-4 text-emerald-400 shrink-0" />
                         <span>Mobil ilova (Android/iOS) integratsiyasi</span>

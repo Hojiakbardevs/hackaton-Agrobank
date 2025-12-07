@@ -430,6 +430,177 @@ UNIQUE FEATURES:
 - SMS fraud detection
 - Voice stress analysis
 
+================================================================================
+                    JAMOA / TEAM INFORMATION
+================================================================================
+
+--------------------------------------------------------------------------------
+SAVOL 42: Jamoa tarkibi qanday? Kimlar ishtirok etadi?
+--------------------------------------------------------------------------------
+JAVOB:
+AI Muhofiz loyihasida 6 kishilik professional fintech va antifrod tajribaga 
+ega jamoa ishtirok etadi. Har bir a'zo o'z yo'nalishida chuqur ekspert va 
+loyihaga bevosita hissa qo'shadi.
+
+Jamoa a'zolari:
+1. Abdulhakimov Hojiakbar - Founder & Frontend Lead
+2. Azizbek Xaitov - Co-Founder & Startup Advisor
+3. Abulqosim Rafiqov - CTO  Fullstack AI Engineer
+4. Xusan Xukumov - QA/Software Engineer
+5. Marjona Bobonazarova - Junior AI Developer
+6. Hulkarbonu Rustamova - Junior Software Engineer
+
+--------------------------------------------------------------------------------
+SAVOL 43: Abdulhakimov Hojiakbar haqida ma'lumot bering
+--------------------------------------------------------------------------------
+JAVOB:
+Abdulhakimov Hojiakbar - Founder & Frontend Lead
+
+Lavozimi: Middle Frontend Software Engineer
+Tajriba: 5 yil
+Mas'uliyat: Dizayn, codlash, UI va AI yo'nalishlarida javobgar
+Qo'shimcha: Suniy intellekt tadqiqotlar institutida bosh mutaxassis
+
+Texnologiyalar:
+- React
+- TypeScript
+- Next.js
+- Tailwind CSS
+- UI/UX
+- AI
+
+Ijtimoiy tarmoqlar:
+- LinkedIn: mavjud
+- GitHub: mavjud
+
+--------------------------------------------------------------------------------
+SAVOL 44: Azizbek Xaitov haqida ma'lumot bering
+--------------------------------------------------------------------------------
+JAVOB:
+Azizbek Xaitov - Co-Founder & Startup Advisor
+
+Tajriba: 5+ yil TDIU startap ekotizimida
+Ekspertiza: 
+- Yangi g'oyalarni tezkor validatsiya qilish
+- Jamoalarni rivojlantirish
+- Biznes modeli va moliyaviy strategiyalarni shakllantirishda amaliy ekspert
+
+Yo'nalishlar:
+- FinTech
+- AgTech
+- EdTech
+- GovTech
+- Smart City
+- IoT
+- GreenTech
+
+Ijtimoiy tarmoqlar:
+- LinkedIn: mavjud
+
+--------------------------------------------------------------------------------
+SAVOL 45: Abulqosim Rafiqov haqida ma'lumot bering
+--------------------------------------------------------------------------------
+JAVOB:
+Abulqosim Rafiqov - Fullstack AI Engineer
+
+Tajriba: 4 yil
+Hozirgi lavozim: Nihol kompaniyasida Senior Software Engineer
+Ekspertiza: Django, PostgreSQL, Machine Learning bo'yicha chuqur bilim
+Mutaxassisligi: RESTful API, optimizatsiya va test-driven development
+
+Texnologiyalar:
+- Python
+- Django
+- PostgreSQL
+- React
+- Node.js
+- Machine Learning
+- AI/ML
+- RESTful API
+
+Ijtimoiy tarmoqlar:
+- LinkedIn: mavjud
+- GitHub: mavjud
+
+--------------------------------------------------------------------------------
+SAVOL 46: Xusan Xukumov haqida ma'lumot bering
+--------------------------------------------------------------------------------
+JAVOB:
+Xusan Xukumov - QA/Software Engineer
+
+Hozirgi lavozim: Evertech kompaniyasida QA/Software Engineer
+Tajriba: 2 yil QA tajribasi
+Mutaxassisligi: Flutter, Automation, Python, Java
+Qo'shimcha: GenAI va LLM fine-tuning bilan shug'ullanadi
+
+Texnologiyalar:
+- Flutter
+- QA Automation
+- Python
+- Java
+- GenAI
+- ML
+
+Ijtimoiy tarmoqlar:
+- GitHub: mavjud
+
+--------------------------------------------------------------------------------
+SAVOL 47: Marjona Bobonazarova haqida ma'lumot bering
+--------------------------------------------------------------------------------
+JAVOB:
+Marjona Bobonazarova - Junior AI Developer
+
+Ta'lim: IDU universiteti talabasi
+Mutaxassisligi: ML developer
+Yo'nalish: Machine Learning va AI yo'nalishida o'qiydi va loyihalar bilan 
+shug'ullanadi
+
+Texnologiyalar:
+- Machine Learning
+- Python
+- AI/ML
+- Data Science
+
+Ijtimoiy tarmoqlar:
+- LinkedIn: mavjud
+- GitHub: mavjud
+
+--------------------------------------------------------------------------------
+SAVOL 48: Hulkarbonu Rustamova haqida ma'lumot bering
+--------------------------------------------------------------------------------
+JAVOB:
+Hulkarbonu Rustamova - Junior Software Engineer
+
+Hozirgi lavozim: Uzbek Industrial and Construction Bankda Project Management
+Startup: LenguaStory-AI startup asoschisi
+Ta'lim: Toshkent Davlat Iqtisodiyot Universiteti
+
+Texnologiyalar:
+- Angular
+- Oracle
+- Business Strategy
+- Banking
+
+Ijtimoiy tarmoqlar:
+- LinkedIn: mavjud
+
+--------------------------------------------------------------------------------
+SAVOL 49: Jamoa qanday tarzda ishlaydi?
+--------------------------------------------------------------------------------
+JAVOB:
+AI Muhofiz jamoasi 6 kishilik professional guruh bo'lib, har bir a'zo o'z 
+yo'nalishida chuqur ekspertizaga ega:
+
+1. Frontend & Design: Hojiakbar (React, TypeScript, UI/UX)
+2. Biznes strategiya: Azizbek (startup advisor, FinTech ekspert)
+3. Backend & AI: Abulqosim (Python, Django, ML)
+4. QA & Mobile: Xusan (Flutter, Testing, GenAI)
+5. AI Development: Marjona (Machine Learning, Data Science)
+6. Banking & Management: Hulkarbonu (Project Management, Banking)
+
+Jamoa fintech va antifrod tajribaga ega bo'lib, Agrobank + AI Muhofiz 
+loyihasiga bevosita hissa qo'shadi.
+
 Tayyorladi: AI Muhofiz Team
 Sana: 2024
 ================================================================================

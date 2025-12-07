@@ -14,8 +14,10 @@ import {
   Server,
   Info,
 } from "lucide-react";
+import { useTheme } from "../theme-provider";
 
 const ApiDocumentation = () => {
+  const { theme } = useTheme();
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [expandedEndpoint, setExpandedEndpoint] = useState<string | null>(
     "text-analysis"
@@ -208,27 +210,51 @@ ws.onmessage = (event) => {
       animate={{ opacity: 1, y: 0 }}
       className="space-y-6">
       {/* Header */}
-      <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6">
+      <div
+        className={`border rounded-2xl p-6 ${
+          theme === "dark"
+            ? "bg-gray-900/50 border-gray-800"
+            : "bg-white border-gray-200"
+        }`}>
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-bold text-white mb-2">
+            <h2
+              className={`text-2xl font-bold mb-2 ${
+                theme === "dark" ? "text-white" : "text-gray-900"
+              }`}>
               API Dokumentatsiya
             </h2>
-            <p className="text-gray-400">
+            <p className={theme === "dark" ? "text-gray-400" : "text-gray-600"}>
               AI Muhofiz API - firibgarlik qo'ng'iroqlarini aniqlash uchun
               RESTful API
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <div className="px-4 py-2 bg-gray-800 rounded-xl">
-              <span className="text-gray-400 text-sm">Base URL:</span>
+            <div
+              className={
+                theme === "dark"
+                  ? "px-4 py-2 bg-gray-800 rounded-xl"
+                  : "px-4 py-2 bg-gray-100 rounded-xl"
+              }>
+              <span
+                className={
+                  theme === "dark"
+                    ? "text-gray-400 text-sm"
+                    : "text-gray-600 text-sm"
+                }>
+                Base URL:
+              </span>
               <code className="ml-2 text-emerald-400 font-mono text-sm">
                 {baseUrl}
               </code>
             </div>
             <button
               onClick={() => copyToClipboard(baseUrl, "base-url")}
-              className="p-2 bg-gray-800 hover:bg-gray-700 rounded-xl transition-colors">
+              className={
+                theme === "dark"
+                  ? "p-2 bg-gray-800 hover:bg-gray-700 rounded-xl transition-colors"
+                  : "p-2 bg-gray-100 hover:bg-gray-200 rounded-xl transition-colors"
+              }>
               {copiedId === "base-url" ? (
                 <Check className="w-5 h-5 text-emerald-400" />
               ) : (
@@ -264,7 +290,11 @@ ws.onmessage = (event) => {
         {endpoints.map((endpoint) => (
           <div
             key={endpoint.id}
-            className="bg-gray-900/50 border border-gray-800 rounded-2xl overflow-hidden">
+            className={`border rounded-2xl overflow-hidden ${
+              theme === "dark"
+                ? "bg-gray-900/50 border-gray-800"
+                : "bg-white border-gray-200"
+            }`}>
             {/* Header */}
             <button
               onClick={() =>
@@ -272,7 +302,9 @@ ws.onmessage = (event) => {
                   expandedEndpoint === endpoint.id ? null : endpoint.id
                 )
               }
-              className="w-full flex items-center justify-between p-4 hover:bg-gray-800/30 transition-colors">
+              className={`w-full flex items-center justify-between p-4 transition-colors ${
+                theme === "dark" ? "hover:bg-gray-800/30" : "hover:bg-gray-100"
+              }`}>
               <div className="flex items-center gap-4">
                 <div
                   className={`w-10 h-10 rounded-xl flex items-center justify-center ${
@@ -298,19 +330,41 @@ ws.onmessage = (event) => {
                       )}`}>
                       {endpoint.method}
                     </span>
-                    <code className="text-white font-mono">
+                    <code
+                      className={
+                        theme === "dark"
+                          ? "text-white font-mono"
+                          : "text-gray-900 font-mono"
+                      }>
                       {endpoint.path}
                     </code>
                   </div>
-                  <p className="text-gray-400 text-sm mt-1">
+                  <p
+                    className={
+                      theme === "dark"
+                        ? "text-gray-400 text-sm mt-1"
+                        : "text-gray-600 text-sm mt-1"
+                    }>
                     {endpoint.description}
                   </p>
                 </div>
               </div>
               {expandedEndpoint === endpoint.id ? (
-                <ChevronUp className="w-5 h-5 text-gray-400" />
+                <ChevronUp
+                  className={
+                    theme === "dark"
+                      ? "w-5 h-5 text-gray-400"
+                      : "w-5 h-5 text-gray-600"
+                  }
+                />
               ) : (
-                <ChevronDown className="w-5 h-5 text-gray-400" />
+                <ChevronDown
+                  className={
+                    theme === "dark"
+                      ? "w-5 h-5 text-gray-400"
+                      : "w-5 h-5 text-gray-600"
+                  }
+                />
               )}
             </button>
 
@@ -319,17 +373,34 @@ ws.onmessage = (event) => {
               <motion.div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
-                className="border-t border-gray-800 p-4 space-y-4">
+                className={`border-t p-4 space-y-4 ${
+                  theme === "dark" ? "border-gray-800" : "border-gray-200"
+                }`}>
                 {/* Parameters */}
                 {endpoint.params && (
                   <div>
-                    <h4 className="text-white font-medium mb-2">
+                    <h4
+                      className={
+                        theme === "dark"
+                          ? "text-white font-medium mb-2"
+                          : "text-gray-900 font-medium mb-2"
+                      }>
                       Parametrlar:
                     </h4>
-                    <div className="bg-gray-950/50 rounded-xl p-3">
+                    <div
+                      className={
+                        theme === "dark"
+                          ? "bg-gray-950/50 rounded-xl p-3"
+                          : "bg-gray-50 rounded-xl p-3"
+                      }>
                       <table className="w-full text-sm">
                         <thead>
-                          <tr className="text-gray-400 text-left">
+                          <tr
+                            className={
+                              theme === "dark"
+                                ? "text-gray-400 text-left"
+                                : "text-gray-600 text-left"
+                            }>
                             <th className="pb-2">Nomi</th>
                             <th className="pb-2">Turi</th>
                             <th className="pb-2">Majburiy</th>
@@ -338,7 +409,13 @@ ws.onmessage = (event) => {
                         </thead>
                         <tbody>
                           {endpoint.params.map((param, i) => (
-                            <tr key={i} className="border-t border-gray-800">
+                            <tr
+                              key={i}
+                              className={
+                                theme === "dark"
+                                  ? "border-t border-gray-800"
+                                  : "border-t border-gray-200"
+                              }>
                               <td className="py-2 text-emerald-400 font-mono">
                                 {param.name}
                               </td>
@@ -349,10 +426,22 @@ ws.onmessage = (event) => {
                                 {param.required ? (
                                   <span className="text-red-400">Ha</span>
                                 ) : (
-                                  <span className="text-gray-500">Yo'q</span>
+                                  <span
+                                    className={
+                                      theme === "dark"
+                                        ? "text-gray-500"
+                                        : "text-gray-400"
+                                    }>
+                                    Yo'q
+                                  </span>
                                 )}
                               </td>
-                              <td className="py-2 text-gray-300">
+                              <td
+                                className={
+                                  theme === "dark"
+                                    ? "py-2 text-gray-300"
+                                    : "py-2 text-gray-700"
+                                }>
                                 {param.desc}
                               </td>
                             </tr>
@@ -367,7 +456,12 @@ ws.onmessage = (event) => {
                 {endpoint.request && (
                   <div>
                     <div className="flex items-center justify-between mb-2">
-                      <h4 className="text-white font-medium">
+                      <h4
+                        className={
+                          theme === "dark"
+                            ? "text-white font-medium"
+                            : "text-gray-900 font-medium"
+                        }>
                         So'rov namunasi:
                       </h4>
                       <button
@@ -377,7 +471,11 @@ ws.onmessage = (event) => {
                             `req-${endpoint.id}`
                           )
                         }
-                        className="flex items-center gap-1 text-xs text-gray-400 hover:text-white transition-colors">
+                        className={`flex items-center gap-1 text-xs transition-colors ${
+                          theme === "dark"
+                            ? "text-gray-400 hover:text-white"
+                            : "text-gray-600 hover:text-gray-900"
+                        }`}>
                         {copiedId === `req-${endpoint.id}` ? (
                           <Check className="w-4 h-4 text-emerald-400" />
                         ) : (
@@ -386,7 +484,12 @@ ws.onmessage = (event) => {
                         Nusxalash
                       </button>
                     </div>
-                    <pre className="bg-gray-950 rounded-xl p-4 overflow-x-auto">
+                    <pre
+                      className={
+                        theme === "dark"
+                          ? "bg-gray-950 rounded-xl p-4 overflow-x-auto"
+                          : "bg-gray-50 rounded-xl p-4 overflow-x-auto"
+                      }>
                       <code className="text-sm text-gray-300 font-mono whitespace-pre">
                         {endpoint.request}
                       </code>
@@ -397,12 +500,23 @@ ws.onmessage = (event) => {
                 {/* Response Example */}
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <h4 className="text-white font-medium">Javob namunasi:</h4>
+                    <h4
+                      className={
+                        theme === "dark"
+                          ? "text-white font-medium"
+                          : "text-gray-900 font-medium"
+                      }>
+                      Javob namunasi:
+                    </h4>
                     <button
                       onClick={() =>
                         copyToClipboard(endpoint.response, `res-${endpoint.id}`)
                       }
-                      className="flex items-center gap-1 text-xs text-gray-400 hover:text-white transition-colors">
+                      className={`flex items-center gap-1 text-xs transition-colors ${
+                        theme === "dark"
+                          ? "text-gray-400 hover:text-white"
+                          : "text-gray-600 hover:text-gray-900"
+                      }`}>
                       {copiedId === `res-${endpoint.id}` ? (
                         <Check className="w-4 h-4 text-emerald-400" />
                       ) : (
@@ -411,7 +525,12 @@ ws.onmessage = (event) => {
                       Nusxalash
                     </button>
                   </div>
-                  <pre className="bg-gray-950 rounded-xl p-4 overflow-x-auto">
+                  <pre
+                    className={
+                      theme === "dark"
+                        ? "bg-gray-950 rounded-xl p-4 overflow-x-auto"
+                        : "bg-gray-50 rounded-xl p-4 overflow-x-auto"
+                    }>
                     <code className="text-sm text-emerald-300 font-mono whitespace-pre">
                       {endpoint.response}
                     </code>
@@ -439,8 +558,16 @@ ws.onmessage = (event) => {
       </div>
 
       {/* Risk Levels Legend */}
-      <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6">
-        <h3 className="text-xl font-semibold text-white mb-4">
+      <div
+        className={`border rounded-2xl p-6 ${
+          theme === "dark"
+            ? "bg-gray-900/50 border-gray-800"
+            : "bg-white border-gray-200"
+        }`}>
+        <h3
+          className={`text-xl font-semibold mb-4 ${
+            theme === "dark" ? "text-white" : "text-gray-900"
+          }`}>
           Risk Darajalari
         </h3>
         <div className="grid md:grid-cols-4 gap-4">
@@ -488,7 +615,14 @@ ws.onmessage = (event) => {
                 }`}>
                 {item.level.toUpperCase()}
               </div>
-              <div className="text-gray-400 text-sm">{item.score}</div>
+              <div
+                className={
+                  theme === "dark"
+                    ? "text-gray-400 text-sm"
+                    : "text-gray-600 text-sm"
+                }>
+                {item.score}
+              </div>
               <div
                 className={`text-sm mt-1 ${
                   item.color === "emerald"
