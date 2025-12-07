@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import {
   Phone,
   AlertTriangle,
-  Activity,
   Grip,
   Mic,
   Volume2,
