@@ -165,6 +165,20 @@ const DemoPage = () => {
               <span className="hidden sm:inline">{tab.label}</span>
             </button>
           ))}
+
+          {/* Dashboard Button */}
+          <a
+            href="http://176.118.198.131:8000/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all transform hover:scale-105 ${
+              theme === "dark"
+                ? "bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-600/25"
+                : "bg-blue-500 text-white hover:bg-blue-600 shadow-lg shadow-blue-500/25"
+            }`}>
+            <Globe className="w-4 h-4" />
+            <span className="hidden sm:inline">Dashboard</span>
+          </a>
         </div>
 
         {/* Content Area */}
@@ -182,11 +196,12 @@ const DemoPage = () => {
                     : "bg-white border-gray-200"
                 }`}>
                 <div
-                  className={`aspect-video flex items-center justify-center relative ${
+                  className={`w-full flex items-center justify-center relative ${
                     theme === "dark"
                       ? "bg-linear-to-br from-gray-950 via-gray-900 to-gray-950"
                       : "bg-linear-to-br from-gray-100 via-gray-50 to-gray-100"
-                  }`}>
+                  }`}
+                  style={{ aspectRatio: "16 / 9", minHeight: "400px" }}>
                   <video
                     src={demoVideo}
                     controls
