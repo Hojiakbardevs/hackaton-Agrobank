@@ -79,10 +79,35 @@ const DemoChatbot = () => {
 
       setMessages((prev) => [...prev, botResponse]);
     } catch (error) {
+      console.error("Chatbot error:", error);
+
+      // Fallback javoblar
+      const getFallbackResponse = (input: string): string => {
+        const lowerInput = input.toLowerCase();
+
+        if (lowerInput.includes("loyiha") || lowerInput.includes("nima")) {
+          return "AI Muhofiz - telefon firibgarligini real-time aniqlash tizimi. Bu loyiha qo'ng'iroq paytida firibgarlik pattern larini aniqlaydi va foydalanuvchini darhol ogohlantiradi.";
+        }
+        if (lowerInput.includes("qanday") || lowerInput.includes("ishlay")) {
+          return "Tizim qo'ng'iroq kelganda real-time audio tahlil qiladi, Whisper AI bilan nutqni matnga aylantiradi, NLP model firibgarlik pattern larini qidiradi va risk score hisoblab ogohlantirish beradi.";
+        }
+        if (
+          lowerInput.includes("texnologiya") ||
+          lowerInput.includes("stack")
+        ) {
+          return "Texnologiyalar: React + TypeScript (Frontend), FastAPI (Backend), PostgreSQL (DB), Whisper AI (STT), Custom NLP model, TensorFlow Lite, Flutter (Mobile).";
+        }
+        if (lowerInput.includes("api")) {
+          return "API dokumentatsiya: http://176.118.198.131:8000/docs - bu yerda barcha endpoint lar ko'rishingiz mumkin.";
+        }
+
+        return "Kechirasiz, hozirda AI xizmat ishlamayapti. Lekin loyiha haqida savollaringiz bo'lsa, boshqa so'zlar bilan so'rang: 'loyiha nima qiladi', 'qanday ishlaydi', 'texnologiyalar' kabi.";
+      };
+
       const errorResponse: Message = {
         id: messages.length + 2,
         type: "bot",
-        content: "Kechirasiz, xatolik yuz berdi. Iltimos qayta urinib ko'ring.",
+        content: getFallbackResponse(currentInput),
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, errorResponse]);
