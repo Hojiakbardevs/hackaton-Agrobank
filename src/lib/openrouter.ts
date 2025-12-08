@@ -1,6 +1,12 @@
 import { SYSTEM_PROMPT } from "./knowledge";
 
-const API_BASE = import.meta.env.VITE_OPENROUTER_PROXY || "/api/openrouter";
+// Proxy endpoint (serverless). In dev, set VITE_OPENROUTER_PROXY to your running backend,
+// e.g. http://localhost:3000/api/openrouter when using `vercel dev`.
+const API_BASE =
+    import.meta.env.VITE_OPENROUTER_PROXY ||
+    (typeof window !== "undefined"
+        ? `${window.location.origin}/api/openrouter`
+        : "/api/openrouter");
 
 export async function getAIResponse(userInput: string): Promise<string> {
     try {
@@ -14,6 +20,11 @@ export async function getAIResponse(userInput: string): Promise<string> {
 
         if (!res.ok) {
             const text = await res.text();
+            if (res.status === 404) {
+                throw new Error(
+                    "404: /api/openrouter topilmadi. Devda `vercel dev` bilan backendni ishga tushiring yoki VITE_OPENROUTER_PROXY ni backend URL ga sozlang."
+                );
+            }
             throw new Error(`Upstream error (${res.status}): ${text}`);
         }
 
