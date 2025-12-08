@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
-import { getAIResponse } from "../../lib/openai";
+import { getAIResponse } from "../../lib/openrouter";
 import {
   Send,
   Bot,
