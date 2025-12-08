@@ -1,4 +1,4 @@
-import { SYSTEM_PROMPT } from "../src/lib/knowledge";
+import { SYSTEM_PROMPT } from "../src/lib/knowledge.js";
 
 // Serverless proxy to OpenRouter to keep the API key secret and bypass CORS.
 export default async function handler(req: any, res: any) {
