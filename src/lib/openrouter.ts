@@ -1,42 +1,58 @@
+import { OpenRouter } from "@openrouter/sdk";
 import { SYSTEM_PROMPT } from "./knowledge";
 
-// Proxy endpoint (serverless). In dev, set VITE_OPENROUTER_PROXY to your running backend,
-// e.g. http://localhost:3000/api/openrouter when using `vercel dev`.
-const API_BASE =
-    import.meta.env.VITE_OPENROUTER_PROXY ||
-    (typeof window !== "undefined"
-        ? `${window.location.origin}/api/openrouter`
-        : "/api/openrouter");
+// OpenRouter SDK instance with API key from env
+const openRouter = new OpenRouter({
+    apiKey: import.meta.env.VITE_OPENROUTER_API_KEY || "",
+    defaultHeaders: {
+        "HTTP-Referer": "https://hackaton-agrobank.vercel.app",
+        "X-Title": "AI Muhofiz - Agrobank Demo",
+    },
+});
 
 export async function getAIResponse(userInput: string): Promise<string> {
+    const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
+
+    if (!apiKey) {
+        return "OpenRouter API key topilmadi. Iltimos, .env faylida VITE_OPENROUTER_API_KEY ni qo'shing.";
+    }
+
     try {
-        const res = await fetch(API_BASE, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ message: userInput, system: SYSTEM_PROMPT }),
+        const completion = await openRouter.chat.send({
+            model: "openrouter/auto", // Auto-selects best model
+            messages: [
+                {
+                    role: "system",
+                    content: SYSTEM_PROMPT,
+                },
+                {
+                    role: "user",
+                    content: userInput,
+                },
+            ],
+            stream: false,
         });
 
-        if (!res.ok) {
-            const text = await res.text();
-            if (res.status === 404) {
-                throw new Error(
-                    "404: /api/openrouter topilmadi. Devda `vercel dev` bilan backendni ishga tushiring yoki VITE_OPENROUTER_PROXY ni backend URL ga sozlang."
-                );
-            }
-            throw new Error(`Upstream error (${res.status}): ${text}`);
+        const reply = completion.choices?.[0]?.message?.content;
+        if (!reply) {
+            throw new Error("OpenRouter javob qaytarmadi");
         }
 
-        const data = await res.json();
-        const reply = data?.reply;
-        if (!reply) throw new Error("Empty reply from OpenRouter");
         return reply.trim();
     } catch (error: any) {
-        console.error("OpenRouter fetch error:", error);
-        return (
-            "Kechirasiz, AI javob bera olmadi. Keyinroq urinib ko'ring yoki administratorga xabar bering. Tafsilot: " +
-            (error?.message || "noma'lum xato")
-        );
+        console.error("OpenRouter SDK error:", error);
+
+        // Xatolar uchun aniq xabarlar
+        if (error?.message?.includes("401") || error?.message?.includes("Unauthorized")) {
+            return "API kalit noto'g'ri yoki muddati tugagan. Iltimos, yangi kalit yarating.";
+        }
+        if (error?.message?.includes("429") || error?.message?.includes("rate limit")) {
+            return "So'rovlar soni ko'p. Iltimos, bir oz kuting.";
+        }
+        if (error?.message?.includes("quota") || error?.message?.includes("balance")) {
+            return "OpenRouter hisobingizda mablag' yetarli emas. Iltimos, hisobni to'ldiring.";
+        }
+
+        return `Kechirasiz, AI javob bera olmadi. Tafsilot: ${error?.message || "noma'lum xato"}`;
     }
 }

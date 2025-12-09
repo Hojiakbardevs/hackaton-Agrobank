@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
-import { getAIResponse } from "../../lib/openrouter";
 import {
   Send,
   Bot,
@@ -11,6 +10,7 @@ import {
   HelpCircle,
 } from "lucide-react";
 import { useTheme } from "../theme-provider";
+import { getAIResponse } from "@/lib/openrouter";
 
 interface Message {
   id: number;
@@ -134,7 +134,7 @@ const DemoChatbot = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="max-w-3xl mx-auto">
+      className="max-w-4xl mx-auto">
       {/* Header */}
       <div
         className={`border rounded-t-2xl p-4 ${
@@ -166,11 +166,16 @@ const DemoChatbot = () => {
 
       {/* Messages */}
       <div
-        className={`border-x h-[400px] overflow-y-auto p-4 space-y-4 ${
+        className={`border-x h-[600px] overflow-y-auto p-4 space-y-4 scroll-smooth ${
           theme === "dark"
             ? "bg-gray-950/50 border-gray-800"
             : "bg-gray-50 border-gray-200"
-        }`}>
+        }`}
+        style={{
+          scrollbarWidth: "thin",
+          scrollbarColor:
+            theme === "dark" ? "#374151 transparent" : "#d1d5db transparent",
+        }}>
         {messages.map((message) => (
           <motion.div
             key={message.id}
