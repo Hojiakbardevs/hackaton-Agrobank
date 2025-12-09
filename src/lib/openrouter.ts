@@ -1,15 +1,6 @@
 import { OpenRouter } from "@openrouter/sdk";
 import { SYSTEM_PROMPT } from "./knowledge";
 
-// OpenRouter SDK instance with API key from env
-const openRouter = new OpenRouter({
-    apiKey: import.meta.env.VITE_OPENROUTER_API_KEY || "",
-    defaultHeaders: {
-        "HTTP-Referer": "https://hackaton-agrobank.vercel.app",
-        "X-Title": "AI Muhofiz - Agrobank Demo",
-    },
-});
-
 export async function getAIResponse(userInput: string): Promise<string> {
     const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
 
@@ -18,6 +9,11 @@ export async function getAIResponse(userInput: string): Promise<string> {
     }
 
     try {
+        // Create instance per request to avoid TS errors with defaultHeaders
+        const openRouter = new OpenRouter({
+            apiKey: apiKey,
+        });
+
         const completion = await openRouter.chat.send({
             model: "openrouter/auto", // Auto-selects best model
             messages: [
@@ -38,7 +34,9 @@ export async function getAIResponse(userInput: string): Promise<string> {
             throw new Error("OpenRouter javob qaytarmadi");
         }
 
-        return reply.trim();
+        // Type guard: ensure reply is string before calling trim
+        const replyText = typeof reply === "string" ? reply : String(reply);
+        return replyText.trim();
     } catch (error: any) {
         console.error("OpenRouter SDK error:", error);
 
